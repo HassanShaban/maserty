@@ -1,0 +1,26 @@
+class SharedDataModel {
+  late String ip;
+  late String db;
+  late String storageName;
+  late int storageID;
+  late int branchID;
+  late String branchName;
+  late String username;
+  late String storageCurrency;
+  late double storageCurrencyRate;
+  late String currencyName;
+  late double currencyID;
+  late double currencyRate;
+  late double localCurrencyRate;
+  late String taxName;
+  late int taxID;
+  late double taxPerc;
+  late int entryTaxID;
+  late int storeID;
+  late String storeName;
+  late String bankName;
+  late double bankId;
+  late String visaName;
+  late double visaId;
+  late int cpuID;
+}

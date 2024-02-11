@@ -1,0 +1,11 @@
+<svg id="Menu" xmlns="http://www.w3.org/2000/svg" width="107.673" height="112.067" viewBox="0 0 107.673 112.067">
+  <g id="Header">
+    <path id="Path_650" data-name="Path 650" d="M155.434,100.5V92.74C155.441,73.552,168.227,58,184,58h79.1c-14.93,0-27.135,13.949-28.411,31.708v11.057c0,17.914-11.14,32.65-25.452,34.54L184,135.312c-15.778,0-28.567,15.559-28.568,34.756Z" transform="translate(-155.433 -58)" fill="#eceef1"/>
+  </g>
+  <g id="Header-2" data-name="Header" transform="translate(24 30)">
+    <g id="Top_Banner" data-name="Top Banner" transform="translate(-371 -41)">
+      <path id="menu_rounded" d="M3,7A1,1,0,1,0,3,9H27a1,1,0,1,0,0-2Zm0,7a1,1,0,1,0,0,2H27a1,1,0,1,0,0-2Zm0,7a1,1,0,1,0,0,2H27a1,1,0,1,0,0-2Z" transform="translate(369 34)" fill="#fff"/>
+      <path id="menu_rounded-2" data-name="menu_rounded" d="M3,7A1,1,0,1,0,3,9H27a1,1,0,1,0,0-2Zm0,7a1,1,0,1,0,0,2H27a1,1,0,1,0,0-2Zm0,7a1,1,0,1,0,0,2H27a1,1,0,1,0,0-2Z" transform="translate(369 34)"/>
+    </g>
+  </g>
+</svg>
