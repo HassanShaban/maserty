@@ -1,4 +1,4 @@
-package com.maserty.maserty.maserty
+package com.maserty.maserty
 
 import io.flutter.embedding.android.FlutterActivity
 
