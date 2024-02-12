@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 
 const primaryColor = Color(0xff12A697);
 const walkThroughText = Color(0xff5A5A5A);
+const textblack=Color(0xff202020);
+const lightblue=Color(0xffF7FCFC);
+
 const cardTabColor = Color(0xffeff3ff);
 const greenColor = Color(0xff87B86C);
 const redColor = Color(0xffCD5C5C);
