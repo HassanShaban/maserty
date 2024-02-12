@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:maserty/style/colors/colors.dart';
-import 'package:maserty/utils/app_localizations.dart';
-import 'package:maserty/utils/navigation_widget.dart';
 import 'package:page_view_dot_indicator/page_view_dot_indicator.dart';
 
 class WalkThrough extends StatefulWidget {
