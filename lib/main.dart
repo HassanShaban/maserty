@@ -6,9 +6,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:maserty/features/login/presentation/pages/choose_category.dart';
 import 'package:maserty/features/login/presentation/pages/login.dart';
 import 'package:maserty/features/login/presentation/pages/sign_up.dart';
+import 'package:maserty/features/login/presentation/pages/students.dart';
 import 'package:maserty/features/splash_screen.dart';
+import 'package:maserty/features/teachers/presentation/pages/teacher_mission.dart';
 import 'package:maserty/rest/dio_helper.dart';
 import 'package:maserty/utils/app_localizations.dart';
 import 'package:maserty/utils/bolc_observer.dart';
@@ -98,7 +101,7 @@ class _MyAppState extends State<MyApp> {
             );
           },
 
-          home: SignUP(),
+          home: TeacherMission(),
         ));
   }
 }

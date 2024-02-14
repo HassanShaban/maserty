@@ -24,7 +24,8 @@ class Login extends StatelessWidget {
             children: [
               Align(
                   alignment: AlignmentDirectional.topStart,
-                  child: Icon(Icons.arrow_back_ios)),
+                  child: Icon(Icons.arrow_back_ios
+                  )),
               Image.asset('assets/images/splash.png'),
               SizedBox(
                 height: 30.h,
@@ -35,7 +36,8 @@ class Login extends StatelessWidget {
                     color: Colors.black,
                     fontSize: 24.sp,
                     fontWeight: FontWeight.w600,
-                    fontFamily: 'poppins'),
+                    fontFamily: 'poppins'
+                ),
               ),
               SizedBox(
                 height: 30.h,
