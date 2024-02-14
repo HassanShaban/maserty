@@ -12,6 +12,7 @@ import 'package:maserty/features/login/presentation/pages/sign_up.dart';
 import 'package:maserty/features/login/presentation/pages/students.dart';
 import 'package:maserty/features/login/presentation/pages/students_grid.dart';
 import 'package:maserty/features/splash_screen.dart';
+import 'package:maserty/features/teachers/presentation/pages/choose_what_search.dart';
 import 'package:maserty/features/teachers/presentation/pages/teacher_mission.dart';
 import 'package:maserty/rest/dio_helper.dart';
 import 'package:maserty/utils/app_localizations.dart';
@@ -102,7 +103,7 @@ class _MyAppState extends State<MyApp> {
             );
           },
 
-          home: StudentsGrid(),
+          home: ChooseWhatSearch(),
         ));
   }
 }
