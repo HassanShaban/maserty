@@ -10,6 +10,7 @@ import 'package:maserty/features/login/presentation/pages/choose_category.dart';
 import 'package:maserty/features/login/presentation/pages/login.dart';
 import 'package:maserty/features/login/presentation/pages/sign_up.dart';
 import 'package:maserty/features/login/presentation/pages/students.dart';
+import 'package:maserty/features/login/presentation/pages/students_grid.dart';
 import 'package:maserty/features/splash_screen.dart';
 import 'package:maserty/features/teachers/presentation/pages/teacher_mission.dart';
 import 'package:maserty/rest/dio_helper.dart';
@@ -101,7 +102,7 @@ class _MyAppState extends State<MyApp> {
             );
           },
 
-          home: TeacherMission(),
+          home: StudentsGrid(),
         ));
   }
 }
