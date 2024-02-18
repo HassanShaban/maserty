@@ -41,7 +41,8 @@ dependencies:
   flutter_svg: ^2.0.6
   change_app_package_name: ^1.1.0
   page_view_dot_indicator: ^2.3.0
-
+  im_stepper: ^1.0.1+1
+  horizontal_stepper_flutter: ^1.0.3
 
 
 dev_dependencies:

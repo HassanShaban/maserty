@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:maserty/features/teachers/presentation/pages/add_mission_teacher.dart';
 import 'package:maserty/style/colors/colors.dart';
 
 class TeacherMission extends StatefulWidget {
@@ -55,14 +56,15 @@ class _TeacherMissionState extends State<TeacherMission>
                 child: Text('أضافة مهمة'),
               ),
               Tab(
-                child: Text('أضافة مهمة'),
+                child: Text('الاطلاع علي المهام'),
               )
             ]),
+            SizedBox(height: 30.h,),
             Expanded(
                 child: TabBarView(
               controller: tabController,
               children: [
-                Text('1'),
+                AddMissionTeacher(),
                 ListView.builder(
                   itemCount: 200,
                   shrinkWrap: true,

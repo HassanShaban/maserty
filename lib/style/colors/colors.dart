@@ -7,6 +7,7 @@ const blackColor = Color(0xff202020);
 const circleBackColor = Color(0xfff8fcfc);
 const enableColor = Color(0xffE1E1E1);
 const greenColor = Color(0xff87B86C);
+const add = Color(0xffF2B544);
 const redColor = Color(0xffCD5C5C);
 const shadeColor = Color(0xfff4f4f4);
 const orangeColor = Color(0xfff57a4c);

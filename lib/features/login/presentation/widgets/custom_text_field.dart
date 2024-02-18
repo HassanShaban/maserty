@@ -3,32 +3,32 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:maserty/style/colors/colors.dart';
 
 class CustomTextFormField extends StatelessWidget {
-  CustomTextFormField(
-      { this.label ,
-        required this.controller,
-        Key? key,
-        this.validator,
-        this.keyboardType,
-        this.onChange,
-        this.hint,
-        this.isEnabled,
-        this.prefix,
-        this.suffix,
-        this.onTap,
-        this.readOnly = false,
-        this.onFieldSubmitted,
-        this.width = 327,
-        this.focusNode,
-        required this.autoFocus,
-        this.contentPaddingHorizontal = 10,
-        this.contentPaddingVertical = 6,
-        this.radius = 8,
-        this.fillColor,
-        this.enabledBorderColor = enableColor,
-        this.focusBorderColor = selectedBorder,
-        this.errorBorderColor = Colors.red,
-      })
-      : super(key: key);
+  CustomTextFormField({
+    this.label,
+    required this.controller,
+    Key? key,
+    this.validator,
+    this.keyboardType,
+    this.onChange,
+    this.hint,
+    this.isEnabled,
+    this.prefix,
+    this.suffix,
+    this.onTap,
+    this.readOnly = false,
+    this.onFieldSubmitted,
+    this.width = 327,
+    this.focusNode,
+    required this.autoFocus,
+    this.contentPaddingHorizontal = 10,
+    this.contentPaddingVertical = 6,
+    this.radius = 8,
+    this.fillColor,
+    this.enabledBorderColor = enableColor,
+    this.focusBorderColor = selectedBorder,
+    this.errorBorderColor = Colors.red,
+    this.onSuffixPressed,
+  }) : super(key: key);
   String? label;
   String? hint;
   TextEditingController controller;
@@ -51,6 +51,7 @@ class CustomTextFormField extends StatelessWidget {
   Color enabledBorderColor;
   Color focusBorderColor;
   Color errorBorderColor;
+  Function()? onSuffixPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -69,11 +70,16 @@ class CustomTextFormField extends StatelessWidget {
       decoration: InputDecoration(
           fillColor: fillColor,
           hintText: hint,
-          contentPadding: EdgeInsets.symmetric(horizontal: contentPaddingHorizontal, vertical: contentPaddingVertical),
+          contentPadding: EdgeInsets.symmetric(
+              horizontal: contentPaddingHorizontal,
+              vertical: contentPaddingVertical),
           helperStyle: TextStyle(height: .2),
           helperText: "",
           prefixIcon: prefix != null ? prefix : null,
-          suffixIcon: suffix,
+          suffixIcon: GestureDetector(onTap: onSuffixPressed, child: Container(
+              width: 32.h,
+              height: 32.w,
+              child: suffix)),
           errorStyle: TextStyle(height: .5),
           // label: Padding(
           //   padding: EdgeInsets.symmetric(horizontal: 0),
@@ -86,25 +92,19 @@ class CustomTextFormField extends StatelessWidget {
               borderRadius: BorderRadius.circular(radius),
               borderSide: BorderSide(
                 color: enabledBorderColor,
-              )
-          ),
+              )),
           focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(radius),
-              borderSide: BorderSide(color: focusBorderColor )
-          ),
+              borderSide: BorderSide(color: focusBorderColor)),
           disabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(radius),
-              borderSide: BorderSide(color: enabledBorderColor)
-          ),
+              borderSide: BorderSide(color: enabledBorderColor)),
           focusedErrorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(radius),
-              borderSide: BorderSide(color: errorBorderColor)
-          ) ,
+              borderSide: BorderSide(color: errorBorderColor)),
           errorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(radius),
-              borderSide: BorderSide(color: errorBorderColor)
-          )
-      ),
+              borderSide: BorderSide(color: errorBorderColor))),
     );
   }
 }
