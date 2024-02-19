@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:maserty/features/login/presentation/widgets/custom_button.dart';
 import 'package:maserty/features/login/presentation/widgets/custom_text_field.dart';
 
-import '../../../../style/colors/colors.dart';
+import '../../../../../style/colors/colors.dart';
 
 class AddMissionTeacher extends StatelessWidget {
   AddMissionTeacher({Key? key}) : super(key: key);

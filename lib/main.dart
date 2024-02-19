@@ -9,12 +9,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:maserty/features/login/presentation/pages/choose_category.dart';
 import 'package:maserty/features/login/presentation/pages/login.dart';
 import 'package:maserty/features/login/presentation/pages/sign_up.dart';
-import 'package:maserty/features/login/presentation/pages/students.dart';
-import 'package:maserty/features/login/presentation/pages/students_grid.dart';
+import 'package:maserty/features/students/students_grid.dart';
 import 'package:maserty/features/request_job/presentation/pages/dot_stepper_job_request.dart';
 import 'package:maserty/features/splash_screen.dart';
-import 'package:maserty/features/teachers/presentation/pages/choose_what_search.dart';
-import 'package:maserty/features/teachers/presentation/pages/teacher_mission.dart';
+import 'package:maserty/features/teachers/presentation/pages/mission/choose_what_search.dart';
+import 'package:maserty/features/teachers/presentation/pages/mission/teacher_mission.dart';
 import 'package:maserty/rest/dio_helper.dart';
 import 'package:maserty/utils/app_localizations.dart';
 import 'package:maserty/utils/bolc_observer.dart';
@@ -104,7 +103,7 @@ class _MyAppState extends State<MyApp> {
             );
           },
 
-          home: DotStepperJobRequest(),
+          home: SplashScreen(),
         ));
   }
 }

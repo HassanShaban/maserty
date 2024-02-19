@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:maserty/features/teachers/presentation/pages/add_mission_teacher.dart';
+import 'package:maserty/features/teachers/presentation/pages/mission/add_mission_teacher.dart';
 import 'package:maserty/style/colors/colors.dart';
 
-class TeacherMission extends StatefulWidget {
-  TeacherMission({Key? key}) : super(key: key);
+import 'Teacher_meetings_item.dart';
+import 'add_meeting_teacher.dart';
+
+
+class TeacherMeetings extends StatefulWidget {
+  TeacherMeetings({Key? key}) : super(key: key);
 
   @override
-  State<TeacherMission> createState() => _TeacherMissionState();
+  State<TeacherMeetings> createState() => _TeacherMeetingsState();
 }
 
-class _TeacherMissionState extends State<TeacherMission>
+class _TeacherMeetingsState extends State<TeacherMeetings>
     with SingleTickerProviderStateMixin {
   TabController? tabController;
 
@@ -34,7 +38,8 @@ class _TeacherMissionState extends State<TeacherMission>
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Icon(Icons.arrow_back_ios),
+                GestureDetector(onTap: (){Navigator.pop(context);},
+                    child: Icon(Icons.arrow_back_ios)),
                 Expanded(
                   child: Text(
                     "المعلمين",
@@ -53,33 +58,23 @@ class _TeacherMissionState extends State<TeacherMission>
             ),
             TabBar(controller: tabController, labelColor: primaryColor, tabs: [
               Tab(
-                child: Text('أضافة مهمة'),
+                child: Text('أضافة إجتماع'),
               ),
               Tab(
-                child: Text('الاطلاع علي المهام'),
+                child: Text('الاطلاع علي الإجتماعات'),
               )
             ]),
-            SizedBox(height: 30.h,),
+            SizedBox(height: 10.h,),
             Expanded(
                 child: TabBarView(
               controller: tabController,
               children: [
-                AddMissionTeacher(),
+                AddMeetingTeacher(),
                 ListView.builder(
                   itemCount: 200,
                   shrinkWrap: true,
                   itemBuilder: (context, position) {
-                    return Container(
-                      color: Colors.black12,
-                      child: Row(
-                        children: [
-                          Expanded(flex: 5, child: Text('Items')),
-                          Expanded(flex: 2, child: Text('Items')),
-                          Expanded(flex: 2, child: Text('Items')),
-                          Expanded(flex: 2, child: Text('Items'))
-                        ],
-                      ),
-                    );
+                    return TeacherMeetingsItem();
                   },
                 ),
               ],

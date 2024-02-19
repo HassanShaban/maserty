@@ -10,9 +10,9 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: Container(
+      child: Container(height: 50.h,
         padding: EdgeInsets.symmetric(
-            horizontal: 35.w, vertical: 22.h),
+            horizontal: 10.w, vertical: 10.h),
         decoration: BoxDecoration(
             color: primaryColor,
             borderRadius:

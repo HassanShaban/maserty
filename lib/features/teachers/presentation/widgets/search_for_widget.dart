@@ -12,9 +12,9 @@ class SearchFor extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: Container(
+      child: Container(margin: EdgeInsetsDirectional.symmetric(vertical: 10),
         width: 151.w,
-        height: 131.h,
+       // height: 131.h,
         padding: EdgeInsetsDirectional.all(8),
         decoration: BoxDecoration(
             color: circleBackColor, borderRadius: BorderRadius.circular(8.r)),

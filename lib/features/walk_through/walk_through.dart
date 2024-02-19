@@ -4,6 +4,8 @@ import 'package:maserty/features/home/home_screen.dart';
 import 'package:maserty/style/colors/colors.dart';
 import 'package:page_view_dot_indicator/page_view_dot_indicator.dart';
 
+import '../login/presentation/pages/login.dart';
+
 class WalkThrough extends StatefulWidget {
   const WalkThrough({Key? key}) : super(key: key);
 
@@ -158,6 +160,10 @@ class _WalkThroughState extends State<WalkThrough> {
                                   ),
                                   InkWell(
                                     onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (context) => Login()),
+                                      );
                                    //
                                     },
                                     child: Container(

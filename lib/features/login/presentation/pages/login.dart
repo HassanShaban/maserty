@@ -22,14 +22,16 @@ class Login extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Align(
-                  alignment: AlignmentDirectional.topStart,
-                  child: Icon(Icons.arrow_back_ios
-                  )),
-              Image.asset('assets/images/splash.png'),
-              SizedBox(
-                height: 30.h,
+              GestureDetector(onTap: (){
+                Navigator.pop(context);
+              },
+                child: Align(
+                    alignment: AlignmentDirectional.topStart,
+                    child: Icon(Icons.arrow_back_ios
+                    )),
               ),
+              Image.asset('assets/images/splash.png'),
+
               Text(
                 'تسجيل الدخول',
                 style: TextStyle(
@@ -40,7 +42,7 @@ class Login extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: 30.h,
+                height: 20.h,
               ),
               Text(
                 'اسم المستخدم',
@@ -57,7 +59,7 @@ class Login extends StatelessWidget {
                   controller: userNameTextField, autoFocus: true,
               hint: 'اسم المستخدم',),
               SizedBox(
-                height: 20.h,
+                height: 10.h,
               ),
               Text(
                 'كلمة المرور',
@@ -97,8 +99,7 @@ class Login extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 30.h,),
-
+              SizedBox(height: 20.h,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -109,9 +110,9 @@ class Login extends StatelessWidget {
                     decoration: TextDecoration.underline,
                   ),
                 )
-              ],)
+              ],),
 
-
+              SizedBox(height: 5.h,),
             ],
           ),
         ),

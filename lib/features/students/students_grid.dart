@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:maserty/features/login/presentation/widgets/degree_widget.dart';
+import 'package:maserty/features/students/students_screen.dart';
 import 'package:maserty/style/colors/colors.dart';
 
 class StudentsGrid extends StatelessWidget {
@@ -18,7 +19,10 @@ class StudentsGrid extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Icon(Icons.arrow_back_ios),
+              GestureDetector(onTap: (){
+                Navigator.pop(context);
+              },
+                  child: Icon(Icons.arrow_back_ios)),
               Expanded(
                 child: Text(
                   "الطلاب",
@@ -72,7 +76,13 @@ class StudentsGrid extends StatelessWidget {
               itemCount: 6,
               itemBuilder: (context, index) {
                 return Degree(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => StudentsScreen()),
+                    );
+
+                  },
                   text: ' الصف الاول الابتدائي',
                 );
               },

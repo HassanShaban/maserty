@@ -4,8 +4,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../style/colors/colors.dart';
+import '../students/students_grid.dart';
 import '../students/students_screen.dart';
-import '../teachers/teachers_duties_screen.dart';
+import '../teachers/presentation/pages/mission/choose_what_search.dart';
+import '../teachers/presentation/pages/mission/teacher_mission.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -18,11 +20,18 @@ class HomeScreen extends StatelessWidget {
       color: Colors.white,
       child: Scaffold(
         backgroundColor: Colors.white,
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          elevation: 0,
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back_ios, color: Colors.black),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+        ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(height: 30.h,),
-            Container(margin: EdgeInsetsDirectional.only(top: 40),
+            Container(margin: EdgeInsetsDirectional.only(top: 20),
                 child: Center(child: Image.asset('assets/images/splash.png'))),
             Center(
               child: Text(
@@ -37,13 +46,13 @@ class HomeScreen extends StatelessWidget {
             GestureDetector(onTap: (){
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => StudentsScreen()),
+                MaterialPageRoute(builder: (context) => StudentsGrid()),
               );
 
             },
               child: Container(
-                width: 130.0,
-                height: 130.0,
+                width: 150.0,
+                height: 150.0,
                 decoration: BoxDecoration(
                   color: lightblue,
                   shape: BoxShape.circle,
@@ -69,13 +78,13 @@ class HomeScreen extends StatelessWidget {
             GestureDetector(onTap: (){
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => TeacherDuties()),
+                MaterialPageRoute(builder: (context) => ChooseWhatSearch()),
               );
 
             },
               child: Container(
-                width: 130.0,
-                height: 130.0,
+                width: 150.0,
+                height: 150.0,
                 decoration: BoxDecoration(
                   color: lightblue,
                   shape: BoxShape.circle,
