@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:maserty/features/home/home_screen.dart';
 import 'package:maserty/style/colors/colors.dart';
 import 'package:page_view_dot_indicator/page_view_dot_indicator.dart';
 
@@ -119,15 +120,13 @@ class _WalkThroughState extends State<WalkThrough> {
                       SizedBox(
                         height: 25.h,
                       ),
-                      Divider(
-                        height: 3,
-                        color: Colors.blue,
-                      ),
-                      SizedBox(
-                        height: 30.h,
-                      ),
+
                       InkWell(
                         onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => HomeScreen()),
+                          );
                           // navigateAndFinish(context, TabeebakSideMenu());
                         },
                         child: Container(
@@ -159,15 +158,14 @@ class _WalkThroughState extends State<WalkThrough> {
                                   ),
                                   InkWell(
                                     onTap: () {
-                                  // navigateAndFinish(context, SignUp());
+                                   //
                                     },
                                     child: Container(
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: 35.w, vertical: 22.h),
+                                  padding: EdgeInsetsDirectional.all(20),
                                   decoration: BoxDecoration(
                                       color: Colors.white,
                                       border:
-                                          Border.all(color: Colors.blue),
+                                          Border.all(color: primaryColor),
                                       borderRadius:
                                           BorderRadius.circular(10.r)),
                                   child: Center(
@@ -185,17 +183,21 @@ class _WalkThroughState extends State<WalkThrough> {
                                 ],
                               ),
                               SizedBox(
-                                height: 29.w,
+                                height: 29.h,
                               ),
                               Text(
-                                'Have an account? Log in',
+                                'طلب توظيف',
                                 style: TextStyle(
-                                  color: Colors.blue,
+                                  color: Colors.black,
+                                  decoration: TextDecoration.underline,
                                   fontSize: 20.sp,
                                   fontFamily: 'poppins',
                                   fontWeight: FontWeight.w300,
                                 ),
-                              )
+                              ),
+                              SizedBox(
+                                height: 20.h,
+                              ),
                             ],
                           ),
                         ),
