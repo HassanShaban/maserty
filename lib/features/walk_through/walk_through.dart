@@ -188,9 +188,10 @@ class _WalkThroughState extends State<WalkThrough> {
                                 height: 29.h,
                               ),
                               Text(
-                                'Have an account? Log in',
+                                'طلب توظيف',
                                 style: TextStyle(
-                                  color: primaryColor,
+                                  color: Colors.black,
+                                  decoration: TextDecoration.underline,
                                   fontSize: 20.sp,
                                   fontFamily: 'poppins',
                                   fontWeight: FontWeight.w300,

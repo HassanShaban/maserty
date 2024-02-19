@@ -4,6 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../style/colors/colors.dart';
+import '../students/students_screen.dart';
+import '../teachers/teachers_duties_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -32,51 +34,67 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             SizedBox(height: 20.h,),
-            Container(
-              width: 130.0,
-              height: 130.0,
-              decoration: BoxDecoration(
-                color: lightblue,
-                shape: BoxShape.circle,
-              ),
-              child: Column(crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset("assets/images/student.png",width: 40,height: 40,),
-                  Center(
-                    child: Text(
-                      "الطلاب",
-                      style: TextStyle(
-                          fontSize: 24.sp,
-                          fontWeight: FontWeight.w600,
-                          color: textblack),
+            GestureDetector(onTap: (){
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => StudentsScreen()),
+              );
+
+            },
+              child: Container(
+                width: 130.0,
+                height: 130.0,
+                decoration: BoxDecoration(
+                  color: lightblue,
+                  shape: BoxShape.circle,
+                ),
+                child: Column(crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset("assets/images/student.png",width: 40,height: 40,),
+                    Center(
+                      child: Text(
+                        "الطلاب",
+                        style: TextStyle(
+                            fontSize: 24.sp,
+                            fontWeight: FontWeight.w600,
+                            color: textblack),
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
             SizedBox(height: 30.h,),
-            Container(
-              width: 130.0,
-              height: 130.0,
-              decoration: BoxDecoration(
-                color: lightblue,
-                shape: BoxShape.circle,
-              ),
-              child: Column(crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset("assets/images/class.png",width: 40,height: 40,),
-                  Center(
-                    child: Text(
-                      "المعلمين",
-                      style: TextStyle(
-                          fontSize: 24.sp,
-                          fontWeight: FontWeight.w600,
-                          color: textblack),
+            GestureDetector(onTap: (){
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => TeacherDuties()),
+              );
+
+            },
+              child: Container(
+                width: 130.0,
+                height: 130.0,
+                decoration: BoxDecoration(
+                  color: lightblue,
+                  shape: BoxShape.circle,
+                ),
+                child: Column(crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset("assets/images/class.png",width: 40,height: 40,),
+                    Center(
+                      child: Text(
+                        "المعلمين",
+                        style: TextStyle(
+                            fontSize: 24.sp,
+                            fontWeight: FontWeight.w600,
+                            color: textblack),
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             )
           ],
