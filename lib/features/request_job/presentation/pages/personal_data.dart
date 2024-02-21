@@ -1,14 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:maserty/features/login/presentation/widgets/custom_text_field.dart';
+import 'package:maserty/features/request_job/presentation/pages/communication_info.dart';
+import 'package:maserty/features/request_job/presentation/widgets/header.dart';
+import 'package:maserty/features/request_job/presentation/widgets/next_previous_buttons.dart';
 import 'package:maserty/style/colors/colors.dart';
+import 'package:maserty/utils/navigation_widget.dart';
 
-class PersonalData extends StatelessWidget {
+class PersonalData extends StatefulWidget {
   PersonalData({Key? key}) : super(key: key);
+
+  @override
+  State<PersonalData> createState() => _PersonalDataState();
+}
+
+class _PersonalDataState extends State<PersonalData> {
   TextEditingController firstNameArabicTextField = TextEditingController();
+
   TextEditingController fatherNameArabicTextField = TextEditingController();
+
   TextEditingController grandFatherArabicTextField = TextEditingController();
+
   TextEditingController confirmPasswordTextField = TextEditingController();
+
+  int currentSexIndex = -1;
+  List<String> degree= [
+    'College'
+
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -23,24 +42,7 @@ class PersonalData extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
 
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Icon(Icons.arrow_back_ios),
-                  Expanded(
-                    child: Text(
-                      "طلب توظيف",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          color: blackColor,
-                          fontSize: 24.sp,
-                          fontWeight: FontWeight.w600,
-                          fontFamily: 'poppins'),
-                    ),
-                  ),
-                ],
-              ),
-
+              JobHeader(),
               SizedBox(
                 height: 30.h,
               ),
@@ -232,6 +234,362 @@ class PersonalData extends StatelessWidget {
                 autoFocus: false,
                 hint: 'اسم الأب انجليزي',
               ),
+
+              SizedBox(height: 20.h,),
+
+              Row(
+                children: [
+                  Text(
+                    'اسم الجد انجليزي',
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.w600,
+                        fontFamily: 'poppins'),
+                  ),
+                  Icon(
+                    Icons.star_border_purple500_rounded,
+                    color: requiredField,
+                  )
+                ],
+              ),
+              SizedBox(
+                height: 10.h,
+              ),
+              CustomTextFormField(
+                controller: grandFatherArabicTextField,
+                autoFocus: false,
+                hint: 'اسم الجد انجليزي',
+              ),
+
+              SizedBox(height: 20.h,),
+
+              Row(
+                children: [
+                  Text(
+                    'الجنسية',
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.w600,
+                        fontFamily: 'poppins'),
+                  ),
+                  Icon(
+                    Icons.star_border_purple500_rounded,
+                    color: requiredField,
+                  )
+                ],
+              ),
+              SizedBox(
+                height: 10.h,
+              ),
+              CustomTextFormField(
+                controller: grandFatherArabicTextField,
+                autoFocus: false,
+                hint: 'الجنسية',
+              ),
+
+              SizedBox(height: 20.h,),
+
+              Row(
+                children: [
+
+                  Text(
+                    'الجنس',
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.w600,
+                        fontFamily: 'poppins'),
+                  ),
+
+                  SizedBox(width: 10.w,),
+                  Radio(
+                      value: 0,
+                      groupValue: currentSexIndex,
+                      onChanged: (int? v) {
+                        setState(() {
+                          currentSexIndex = v!;
+
+                        });
+                      }),
+                  Text("ذكر"),
+                  Radio(
+                      value: 1,
+                      groupValue: currentSexIndex,
+                      onChanged:  (int? v) {
+                        setState(() {
+                          currentSexIndex = v!;
+                        });
+                      }),
+                  Text("أنثي"),
+                ],
+              ),
+
+              SizedBox(height: 10.h,),
+
+              Text(
+                'نوع الهوية',
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w600,
+                    fontFamily: 'poppins'),
+              ),
+
+              SizedBox(height: 20.h,),
+              Container(
+                width: MediaQuery.of(context).size.width,
+                padding: EdgeInsetsDirectional.fromSTEB(10.w, 3.h, 10.w, 3.h),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(color: enableColor)
+
+                ),
+                child:
+                DropdownButton<String>(
+                  isExpanded: true,
+                  hint: Text(
+                    'نوع الهوية',
+                    style: TextStyle(
+                        color: enableColor,
+                        fontSize: 12.sp
+                    ),
+                  ),
+                  underline: const SizedBox(),
+                  items:
+                  degree.map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Text(
+                            value,
+                            style: TextStyle(
+                                fontSize: 14.sp, color: gridcolor),
+                          ),
+                          Divider(
+                            // height: 2.h,
+                          )
+                        ],
+                      ),
+                    );
+                  }).toList(),
+                  onChanged: (Object? value) {},
+                ),
+
+              ),
+              SizedBox(height: 20.h,),
+
+              Text(
+                'رقم الهوية',
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w600,
+                    fontFamily: 'poppins'),
+              ),
+              SizedBox(height: 10.h,),
+              CustomTextFormField(
+                controller: grandFatherArabicTextField,
+                autoFocus: false,
+                hint: 'رقم الهوية',
+              ),
+
+              SizedBox(height: 20.h,),
+              Text(
+                'تاريخ انتهاء الهوية',
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w600,
+                    fontFamily: 'poppins'),
+              ),
+
+              SizedBox(height: 10.h,),
+
+              CustomTextFormField(
+                controller: firstNameArabicTextField,
+                autoFocus: false,
+                suffix: Icon(Icons.calendar_month),
+                onSuffixPressed: () {},
+                hint: 'تاريخ انتهاء الهوية',
+              ),
+
+              SizedBox(height: 20.h,),
+              Text(
+                'تاريخ الميلاد',
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w600,
+                    fontFamily: 'poppins'),
+              ),
+
+              SizedBox(height: 10.h,),
+
+              CustomTextFormField(
+                controller: firstNameArabicTextField,
+                autoFocus: false,
+                suffix: Icon(Icons.calendar_month),
+                onSuffixPressed: () {},
+                hint: 'تاريخ الميلاد',
+              ),
+
+
+              SizedBox(height: 20.h,),
+              Text(
+                'مكان الميلاد',
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w600,
+                    fontFamily: 'poppins'),
+              ),
+
+              SizedBox(height: 10.h,),
+
+              CustomTextFormField(
+                controller: firstNameArabicTextField,
+                autoFocus: false,
+                hint: 'مكان الميلاد',
+              ),
+
+              SizedBox(height: 20.h,),
+              SizedBox(height: 15.h,),
+
+              Text(
+                'الحالة الاحتماعية',
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w600,
+                    fontFamily: 'poppins'),
+              ),
+
+              SizedBox(height: 10.h,),
+              Container(
+                width: MediaQuery.of(context).size.width,
+                padding: EdgeInsetsDirectional.fromSTEB(10.w, 3.h, 10.w, 3.h),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(color: enableColor)
+
+                ),
+                child:
+                DropdownButton<String>(
+                  isExpanded: true,
+                  hint: Text(
+                    'الحالة الاحتماعية',
+                    style: TextStyle(
+                        color: enableColor,
+                        fontSize: 12.sp
+                    ),
+                  ),
+                  underline: const SizedBox(),
+                  items:
+                  degree.map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Text(
+                            value,
+                            style: TextStyle(
+                                fontSize: 14.sp, color: gridcolor),
+                          ),
+                          Divider(
+                            // height: 2.h,
+                          )
+                        ],
+                      ),
+                    );
+                  }).toList(),
+                  onChanged: (Object? value) {},
+                ),
+
+              ),
+
+
+              SizedBox(height: 20.h,),
+              Row(
+                children: [
+                  Text(
+                    'صورة الهوية',
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.w600,
+                        fontFamily: 'poppins'),
+                  ),
+                  SizedBox(
+                    width: 10.w,
+                  ),
+                  Container(
+                    padding: EdgeInsetsDirectional.all(3),
+                    decoration: BoxDecoration(
+                      color: add,
+                      borderRadius: BorderRadius.circular(8.r),
+                    ),
+                    child: Text('اضافة مرفق',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.w600,
+                            fontFamily: 'poppins')
+                    ),
+                  ),
+
+
+                ],
+              ),
+              SizedBox(height: 10.h,),
+              Row(
+                children: [
+                  Text(
+                    'ملف السيرة الذاتية',
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.w600,
+                        fontFamily: 'poppins'),
+                  ),
+                  SizedBox(
+                    width: 10.w,
+                  ),
+                  Container(
+                    padding: EdgeInsetsDirectional.all(3),
+                    decoration: BoxDecoration(
+                      color: add,
+                      borderRadius: BorderRadius.circular(8.r),
+                    ),
+                    child: Text('اضافة مرفق',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.w600,
+                            fontFamily: 'poppins')
+                    ),
+                  ),
+
+
+                ],
+              ),
+
+
+              SizedBox(height: 20.h,),
+
+              NextPreviousButtons(
+
+                nextPressed: (){
+                  navigateTo(context, CommunicationInfo());
+                },
+              )
+
             ],
           ),
         ),

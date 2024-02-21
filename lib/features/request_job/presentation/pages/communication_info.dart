@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:maserty/features/login/presentation/widgets/custom_text_field.dart';
+import 'package:maserty/features/request_job/presentation/pages/qualification.dart';
+import 'package:maserty/features/request_job/presentation/widgets/header.dart';
+import 'package:maserty/features/request_job/presentation/widgets/next_previous_buttons.dart';
 import 'package:maserty/style/colors/colors.dart';
+import 'package:maserty/utils/navigation_widget.dart';
 
 class CommunicationInfo extends StatelessWidget {
    CommunicationInfo({Key? key}) : super(key: key);
@@ -25,24 +29,11 @@ class CommunicationInfo extends StatelessWidget {
 
 
 
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Icon(Icons.arrow_back_ios),
-                  Expanded(
-                    child: Text(
-                      "طلب توظيف",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          color: blackColor,
-                          fontSize: 24.sp,
-                          fontWeight: FontWeight.w600,
-                          fontFamily: 'poppins'),
-                    ),
-                  ),
-                ],
+              JobHeader(
+                onBackPressed: (){
+                  Navigator.pop(context);
+                },
               ),
-
               SizedBox(
                 height: 30.h,
               ),
@@ -238,41 +229,15 @@ class CommunicationInfo extends StatelessWidget {
                 hint: 'البريد الالكتروني',
               ),
 
-              Row(
-                children: [
-                  Container(
-                    width: 104.w,
-                    height: 48.h,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      border: Border.all(color: primaryColor),
-                      borderRadius: BorderRadius.circular(8)
-                    ),
-                    child: Center(
-                      child: Text('السابق',
-                      style: TextStyle(
-                        color: Colors.black
-                      ),),
-                    ),
-                  ),
-                  SizedBox(width: 10.w,),
-                  Container(
-                    width: 104.w,
-                    height: 48.h,
-                    decoration: BoxDecoration(
-                        color: primaryColor,
-                        border: Border.all(color: primaryColor),
-                        borderRadius: BorderRadius.circular(8)
-                    ),
-                    child: Center(
-                      child: Text('التالي',
-                        style: TextStyle(
-                            color: Colors.white
-                        ),),
-                    ),
-                  ),
+              NextPreviousButtons(
+                previousPressed: (){
+                  Navigator.pop(context);
+                },
+                nextPressed: (){
+                  navigateTo(context, Qualification());
+                },
 
-                ],
+
               )
 
             ],
