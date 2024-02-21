@@ -9,8 +9,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:maserty/features/login/presentation/pages/choose_category.dart';
 import 'package:maserty/features/login/presentation/pages/login.dart';
 import 'package:maserty/features/login/presentation/pages/sign_up.dart';
-import 'package:maserty/features/students/students_grid.dart';
+
 import 'package:maserty/features/request_job/presentation/pages/dot_stepper_job_request.dart';
+import 'package:maserty/features/request_job/presentation/pages/experience.dart';
+import 'package:maserty/features/request_job/presentation/pages/finish_job.dart';
+import 'package:maserty/features/request_job/presentation/pages/personal_data.dart';
+import 'package:maserty/features/request_job/presentation/pages/qualification.dart';
+import 'package:maserty/features/request_job/presentation/pages/send_job_successfully.dart';
 import 'package:maserty/features/splash_screen.dart';
 import 'package:maserty/features/teachers/presentation/pages/mission/choose_what_search.dart';
 import 'package:maserty/features/teachers/presentation/pages/mission/teacher_mission.dart';
@@ -104,6 +109,7 @@ class _MyAppState extends State<MyApp> {
           },
 
           home: SplashScreen(),
+         // home: PersonalData(),
         ));
   }
 }
