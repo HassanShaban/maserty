@@ -7,6 +7,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:maserty/features/sign_up/presentation/pages/add_student_data.dart';
+import 'package:maserty/features/sign_up/presentation/pages/father_data.dart';
 import 'package:maserty/rest/dio_helper.dart';
 import 'package:maserty/utils/app_localizations.dart';
 import 'package:maserty/utils/bolc_observer.dart';
@@ -96,7 +97,7 @@ class _MyAppState extends State<MyApp> {
             );
           },
 
-          home: AddStudentData(),
+          home: FatherData(),
         ));
   }
 }

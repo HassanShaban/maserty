@@ -4,6 +4,8 @@ import 'package:maserty/features/login/presentation/widgets/custom_text_field.da
 import 'package:maserty/features/request_job/presentation/pages/communication_info.dart';
 import 'package:maserty/features/request_job/presentation/widgets/header.dart';
 import 'package:maserty/features/request_job/presentation/widgets/next_previous_buttons.dart';
+import 'package:maserty/features/request_job/presentation/widgets/save_cancel.dart';
+import 'package:maserty/features/sign_up/presentation/pages/student_data.dart';
 import 'package:maserty/style/colors/colors.dart';
 import 'package:maserty/utils/navigation_widget.dart';
 
@@ -789,72 +791,9 @@ class _AddStudentDataState extends State<AddStudentData> {
                 Checkbox(value: false, onChanged: null),
                 Text('هل يواجه الطالب/ة اي مشاكل في المدرسة')
               ],),
-
-              Row(
-                children: [
-                  Text(
-                    'صورة الهوية',
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.w600,
-                        fontFamily: 'poppins'),
-                  ),
-                  SizedBox(
-                    width: 10.w,
-                  ),
-                  Container(
-                    padding: EdgeInsetsDirectional.all(3),
-                    decoration: BoxDecoration(
-                      color: add,
-                      borderRadius: BorderRadius.circular(8.r),
-                    ),
-                    child: Text('اضافة مرفق',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.w600,
-                            fontFamily: 'poppins')),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 10.h,
-              ),
-              Row(
-                children: [
-                  Text(
-                    'ملف السيرة الذاتية',
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.w600,
-                        fontFamily: 'poppins'),
-                  ),
-                  SizedBox(
-                    width: 10.w,
-                  ),
-                  Container(
-                    padding: EdgeInsetsDirectional.all(3),
-                    decoration: BoxDecoration(
-                      color: add,
-                      borderRadius: BorderRadius.circular(8.r),
-                    ),
-                    child: Text('اضافة مرفق',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.w600,
-                            fontFamily: 'poppins')),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 20.h,
-              ),
-              NextPreviousButtons(
-                nextPressed: () {
-                  navigateTo(context, CommunicationInfo());
+              SaveCancelButtons(
+                savePressed: (){
+                  navigateTo(context, StudentData());
                 },
               )
             ],

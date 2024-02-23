@@ -5,6 +5,7 @@ import 'package:maserty/features/request_job/presentation/pages/experience.dart'
 import 'package:maserty/features/request_job/presentation/widgets/header.dart';
 import 'package:maserty/features/request_job/presentation/widgets/next_previous_buttons.dart';
 import 'package:maserty/features/sign_up/presentation/pages/add_student_data.dart';
+import 'package:maserty/features/sign_up/presentation/pages/finish_sign_up.dart';
 import 'package:maserty/style/colors/colors.dart';
 import 'package:maserty/utils/navigation_widget.dart';
 
@@ -75,7 +76,7 @@ class StudentData extends StatelessWidget {
                   Navigator.pop(context);
                 },
                 nextPressed: (){
-                  navigateTo(context, Experience());
+                  navigateTo(context, FinishSignUp());
                 },
 
 
