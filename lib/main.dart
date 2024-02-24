@@ -1,29 +1,21 @@
+
+
 import 'package:device_preview/device_preview.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:maserty/features/login/presentation/pages/choose_category.dart';
-import 'package:maserty/features/login/presentation/pages/login.dart';
-import 'package:maserty/features/login/presentation/pages/sign_up.dart';
-
-import 'package:maserty/features/request_job/presentation/pages/dot_stepper_job_request.dart';
-import 'package:maserty/features/request_job/presentation/pages/experience.dart';
-import 'package:maserty/features/request_job/presentation/pages/finish_job.dart';
-import 'package:maserty/features/request_job/presentation/pages/personal_data.dart';
-import 'package:maserty/features/request_job/presentation/pages/qualification.dart';
-import 'package:maserty/features/request_job/presentation/pages/send_job_successfully.dart';
-import 'package:maserty/features/splash_screen.dart';
-import 'package:maserty/features/teachers/presentation/pages/mission/choose_what_search.dart';
-import 'package:maserty/features/teachers/presentation/pages/mission/teacher_mission.dart';
 import 'package:maserty/rest/dio_helper.dart';
 import 'package:maserty/utils/app_localizations.dart';
 import 'package:maserty/utils/bolc_observer.dart';
 import 'package:maserty/utils/cash_helper.dart';
 import 'package:maserty/utils/constants.dart';
+
+import 'features/splash_screen.dart';
 
 void main() async {
 
@@ -110,6 +102,7 @@ class _MyAppState extends State<MyApp> {
 
           home: SplashScreen(),
          // home: PersonalData(),
+          //home: FatherData(),
         ));
   }
 }

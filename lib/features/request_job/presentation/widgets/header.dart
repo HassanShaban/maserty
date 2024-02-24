@@ -3,8 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:maserty/style/colors/colors.dart';
 
 class JobHeader extends StatelessWidget {
-   JobHeader({Key? key , this.onBackPressed}) : super(key: key);
+   JobHeader({Key? key , this.onBackPressed , this.txt}) : super(key: key);
    Function()? onBackPressed;
+   String? txt;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -15,7 +16,7 @@ class JobHeader extends StatelessWidget {
             child: Icon(Icons.arrow_back_ios)),
         Expanded(
           child: Text(
-            "طلب توظيف",
+           txt ?? "طلب توظيف",
             textAlign: TextAlign.center,
             style: TextStyle(
                 color: blackColor,

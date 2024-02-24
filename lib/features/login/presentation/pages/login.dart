@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:maserty/features/home/home_screen.dart';
 import 'package:maserty/features/login/presentation/widgets/custom_button.dart';
 import 'package:maserty/features/login/presentation/widgets/custom_text_field.dart';
 import 'package:maserty/features/login/presentation/widgets/password_text_field.dart';
@@ -88,7 +89,12 @@ class Login extends StatelessWidget {
               SizedBox(height: 10.h,),
               CustomButton(
                 text: 'دخول',
-                onTap: (){},
+                onTap: (){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => HomeScreen()),
+                  );
+                },
               ),
              SizedBox(height: 15.h,),
               Center(

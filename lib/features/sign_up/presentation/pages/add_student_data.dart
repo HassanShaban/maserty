@@ -4,17 +4,19 @@ import 'package:maserty/features/login/presentation/widgets/custom_text_field.da
 import 'package:maserty/features/request_job/presentation/pages/communication_info.dart';
 import 'package:maserty/features/request_job/presentation/widgets/header.dart';
 import 'package:maserty/features/request_job/presentation/widgets/next_previous_buttons.dart';
+import 'package:maserty/features/request_job/presentation/widgets/save_cancel.dart';
+import 'package:maserty/features/sign_up/presentation/pages/student_data.dart';
 import 'package:maserty/style/colors/colors.dart';
 import 'package:maserty/utils/navigation_widget.dart';
 
-class PersonalData extends StatefulWidget {
-  PersonalData({Key? key}) : super(key: key);
+class AddStudentData extends StatefulWidget {
+  AddStudentData({Key? key}) : super(key: key);
 
   @override
-  State<PersonalData> createState() => _PersonalDataState();
+  State<AddStudentData> createState() => _AddStudentDataState();
 }
 
-class _PersonalDataState extends State<PersonalData> {
+class _AddStudentDataState extends State<AddStudentData> {
   TextEditingController firstNameArabicTextField = TextEditingController();
 
   TextEditingController fatherNameArabicTextField = TextEditingController();
@@ -24,10 +26,7 @@ class _PersonalDataState extends State<PersonalData> {
   TextEditingController confirmPasswordTextField = TextEditingController();
 
   int currentSexIndex = -1;
-  List<String> degree= [
-    'College'
-
-  ];
+  List<String> degree = ['College'];
 
   @override
   Widget build(BuildContext context) {
@@ -41,13 +40,15 @@ class _PersonalDataState extends State<PersonalData> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-
-              JobHeader(),
+              JobHeader(
+                txt: 'تسجيل طالب جديد',
+                onBackPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
               SizedBox(
                 height: 30.h,
               ),
-
-
               Row(
                 children: [
                   Text(
@@ -234,9 +235,9 @@ class _PersonalDataState extends State<PersonalData> {
                 autoFocus: false,
                 hint: 'اسم الأب انجليزي',
               ),
-
-              SizedBox(height: 20.h,),
-
+              SizedBox(
+                height: 20.h,
+              ),
               Row(
                 children: [
                   Text(
@@ -261,9 +262,9 @@ class _PersonalDataState extends State<PersonalData> {
                 autoFocus: false,
                 hint: 'اسم الجد انجليزي',
               ),
-
-              SizedBox(height: 20.h,),
-
+              SizedBox(
+                height: 20.h,
+              ),
               Row(
                 children: [
                   Text(
@@ -288,12 +289,11 @@ class _PersonalDataState extends State<PersonalData> {
                 autoFocus: false,
                 hint: 'الجنسية',
               ),
-
-              SizedBox(height: 20.h,),
-
+              SizedBox(
+                height: 20.h,
+              ),
               Row(
                 children: [
-
                   Text(
                     'الجنس',
                     style: TextStyle(
@@ -302,22 +302,22 @@ class _PersonalDataState extends State<PersonalData> {
                         fontWeight: FontWeight.w600,
                         fontFamily: 'poppins'),
                   ),
-
-                  SizedBox(width: 10.w,),
+                  SizedBox(
+                    width: 10.w,
+                  ),
                   Radio(
                       value: 0,
                       groupValue: currentSexIndex,
                       onChanged: (int? v) {
                         setState(() {
                           currentSexIndex = v!;
-
                         });
                       }),
                   Text("ذكر"),
                   Radio(
                       value: 1,
                       groupValue: currentSexIndex,
-                      onChanged:  (int? v) {
+                      onChanged: (int? v) {
                         setState(() {
                           currentSexIndex = v!;
                         });
@@ -325,9 +325,9 @@ class _PersonalDataState extends State<PersonalData> {
                   Text("أنثي"),
                 ],
               ),
-
-              SizedBox(height: 10.h,),
-
+              SizedBox(
+                height: 10.h,
+              ),
               Text(
                 'نوع الهوية',
                 style: TextStyle(
@@ -336,29 +336,23 @@ class _PersonalDataState extends State<PersonalData> {
                     fontWeight: FontWeight.w600,
                     fontFamily: 'poppins'),
               ),
-
-              SizedBox(height: 20.h,),
+              SizedBox(
+                height: 20.h,
+              ),
               Container(
                 width: MediaQuery.of(context).size.width,
                 padding: EdgeInsetsDirectional.fromSTEB(10.w, 3.h, 10.w, 3.h),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
-                    border: Border.all(color: enableColor)
-
-                ),
-                child:
-                DropdownButton<String>(
+                    border: Border.all(color: enableColor)),
+                child: DropdownButton<String>(
                   isExpanded: true,
                   hint: Text(
                     'نوع الهوية',
-                    style: TextStyle(
-                        color: enableColor,
-                        fontSize: 12.sp
-                    ),
+                    style: TextStyle(color: enableColor, fontSize: 12.sp),
                   ),
                   underline: const SizedBox(),
-                  items:
-                  degree.map<DropdownMenuItem<String>>((String value) {
+                  items: degree.map<DropdownMenuItem<String>>((String value) {
                     return DropdownMenuItem<String>(
                       value: value,
                       child: Column(
@@ -367,22 +361,21 @@ class _PersonalDataState extends State<PersonalData> {
                         children: [
                           Text(
                             value,
-                            style: TextStyle(
-                                fontSize: 14.sp, color: gridcolor),
+                            style: TextStyle(fontSize: 14.sp, color: gridcolor),
                           ),
                           Divider(
-                            // height: 2.h,
-                          )
+                              // height: 2.h,
+                              )
                         ],
                       ),
                     );
                   }).toList(),
                   onChanged: (Object? value) {},
                 ),
-
               ),
-              SizedBox(height: 20.h,),
-
+              SizedBox(
+                height: 20.h,
+              ),
               Text(
                 'رقم الهوية',
                 style: TextStyle(
@@ -391,14 +384,17 @@ class _PersonalDataState extends State<PersonalData> {
                     fontWeight: FontWeight.w600,
                     fontFamily: 'poppins'),
               ),
-              SizedBox(height: 10.h,),
+              SizedBox(
+                height: 10.h,
+              ),
               CustomTextFormField(
                 controller: grandFatherArabicTextField,
                 autoFocus: false,
                 hint: 'رقم الهوية',
               ),
-
-              SizedBox(height: 20.h,),
+              SizedBox(
+                height: 20.h,
+              ),
               Text(
                 'تاريخ انتهاء الهوية',
                 style: TextStyle(
@@ -407,9 +403,9 @@ class _PersonalDataState extends State<PersonalData> {
                     fontWeight: FontWeight.w600,
                     fontFamily: 'poppins'),
               ),
-
-              SizedBox(height: 10.h,),
-
+              SizedBox(
+                height: 10.h,
+              ),
               CustomTextFormField(
                 controller: firstNameArabicTextField,
                 autoFocus: false,
@@ -417,8 +413,9 @@ class _PersonalDataState extends State<PersonalData> {
                 onSuffixPressed: () {},
                 hint: 'تاريخ انتهاء الهوية',
               ),
-
-              SizedBox(height: 20.h,),
+              SizedBox(
+                height: 20.h,
+              ),
               Text(
                 'تاريخ الميلاد',
                 style: TextStyle(
@@ -427,9 +424,9 @@ class _PersonalDataState extends State<PersonalData> {
                     fontWeight: FontWeight.w600,
                     fontFamily: 'poppins'),
               ),
-
-              SizedBox(height: 10.h,),
-
+              SizedBox(
+                height: 10.h,
+              ),
               CustomTextFormField(
                 controller: firstNameArabicTextField,
                 autoFocus: false,
@@ -437,59 +434,88 @@ class _PersonalDataState extends State<PersonalData> {
                 onSuffixPressed: () {},
                 hint: 'تاريخ الميلاد',
               ),
-
-
-              SizedBox(height: 20.h,),
-              Text(
-                'مكان الميلاد',
-                style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.w600,
-                    fontFamily: 'poppins'),
+              SizedBox(
+                height: 20.h,
               ),
-
-              SizedBox(height: 10.h,),
-
+              Row(
+                children: [
+                  Text(
+                    'مكان الميلاد/الدولة',
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.w600,
+                        fontFamily: 'poppins'),
+                  ),
+                  Icon(
+                    Icons.star_border_purple500_rounded,
+                    color: requiredField,
+                  )
+                ],
+              ),
+              SizedBox(
+                height: 10.h,
+              ),
               CustomTextFormField(
                 controller: firstNameArabicTextField,
                 autoFocus: false,
-                hint: 'مكان الميلاد',
+                hint: 'مكان الميلاد/الدولة',
               ),
-
-              SizedBox(height: 20.h,),
-
+              SizedBox(
+                height: 20.h,
+              ),
+              Row(
+                children: [
+                  Text(
+                    'مكان الميلاد/المدينة',
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.w600,
+                        fontFamily: 'poppins'),
+                  ),
+                  Icon(
+                    Icons.star_border_purple500_rounded,
+                    color: requiredField,
+                  )
+                ],
+              ),
+              SizedBox(
+                height: 10.h,
+              ),
+              CustomTextFormField(
+                controller: firstNameArabicTextField,
+                autoFocus: false,
+                hint: 'مكان الميلاد/المدينة',
+              ),
+              SizedBox(
+                height: 20.h,
+              ),
               Text(
-                'الحالة الاحتماعية',
+                'المسار الدراسي',
                 style: TextStyle(
                     color: Colors.black,
                     fontSize: 16.sp,
                     fontWeight: FontWeight.w600,
                     fontFamily: 'poppins'),
               ),
-
-              SizedBox(height: 10.h,),
+              SizedBox(
+                height: 10.h,
+              ),
               Container(
                 width: MediaQuery.of(context).size.width,
                 padding: EdgeInsetsDirectional.fromSTEB(10.w, 3.h, 10.w, 3.h),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
-                    border: Border.all(color: enableColor)
-
-                ),
-                child:
-                DropdownButton<String>(
+                    border: Border.all(color: enableColor)),
+                child: DropdownButton<String>(
                   isExpanded: true,
                   hint: Text(
-                    'الحالة الاحتماعية',
-                    style: TextStyle(
-                        color: enableColor,
-                        fontSize: 12.sp
-                    ),
+                    'المسار الدراسي',
+                    style: TextStyle(color: enableColor, fontSize: 12.sp),
                   ),
                   underline: const SizedBox(),
-                  items:
-                  degree.map<DropdownMenuItem<String>>((String value) {
+                  items: degree.map<DropdownMenuItem<String>>((String value) {
                     return DropdownMenuItem<String>(
                       value: value,
                       child: Column(
@@ -498,8 +524,112 @@ class _PersonalDataState extends State<PersonalData> {
                         children: [
                           Text(
                             value,
-                            style: TextStyle(
-                                fontSize: 14.sp, color: gridcolor),
+                            style: TextStyle(fontSize: 14.sp, color: gridcolor),
+                          ),
+                          Divider(
+                              // height: 2.h,
+                              )
+                        ],
+                      ),
+                    );
+                  }).toList(),
+                  onChanged: (Object? value) {},
+                ),
+              ),
+              SizedBox(
+                height: 20.h,
+              ),
+              Text(
+                'فصيلة الدم',
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w600,
+                    fontFamily: 'poppins'),
+              ),
+              SizedBox(
+                height: 10.h,
+              ),
+              Container(
+                width: MediaQuery.of(context).size.width,
+                padding: EdgeInsetsDirectional.fromSTEB(10.w, 3.h, 10.w, 3.h),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(color: enableColor)),
+                child: DropdownButton<String>(
+                  isExpanded: true,
+                  hint: Text(
+                    'فصيلة الدم',
+                    style: TextStyle(color: enableColor, fontSize: 12.sp),
+                  ),
+                  underline: const SizedBox(),
+                  items: degree.map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Text(
+                            value,
+                            style: TextStyle(fontSize: 14.sp, color: gridcolor),
+                          ),
+                          Divider(
+                              // height: 2.h,
+                              )
+                        ],
+                      ),
+                    );
+                  }).toList(),
+                  onChanged: (Object? value) {},
+                ),
+              ),
+              SizedBox(
+                height: 20.h,
+              ),
+              Row(
+                children: [
+                  Checkbox(value: false, onChanged: null),
+                  Text('هل يحتاج الطالب/ة الي مساعدات مالية')
+                ],
+              ),
+
+              SizedBox(height: 20.h,),
+
+              Text(
+                'ما هي المواد المحببة للطالب/ة',
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w600,
+                    fontFamily: 'poppins'),
+              ),
+              SizedBox(
+                height: 10.h,
+              ),
+              Container(
+                width: MediaQuery.of(context).size.width,
+                padding: EdgeInsetsDirectional.fromSTEB(10.w, 3.h, 10.w, 3.h),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(color: enableColor)),
+                child: DropdownButton<String>(
+                  isExpanded: true,
+                  hint: Text(
+                    'ما هي المواد المحببة للطالب/ة',
+                    style: TextStyle(color: enableColor, fontSize: 12.sp),
+                  ),
+                  underline: const SizedBox(),
+                  items: degree.map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Text(
+                            value,
+                            style: TextStyle(fontSize: 14.sp, color: gridcolor),
                           ),
                           Divider(
                             // height: 2.h,
@@ -510,85 +640,162 @@ class _PersonalDataState extends State<PersonalData> {
                   }).toList(),
                   onChanged: (Object? value) {},
                 ),
-
               ),
-
 
               SizedBox(height: 20.h,),
-              Row(
-                children: [
-                  Text(
-                    'صورة الهوية',
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.w600,
-                        fontFamily: 'poppins'),
-                  ),
-                  SizedBox(
-                    width: 10.w,
-                  ),
-                  Container(
-                    padding: EdgeInsetsDirectional.all(3),
-                    decoration: BoxDecoration(
-                      color: add,
-                      borderRadius: BorderRadius.circular(8.r),
-                    ),
-                    child: Text('اضافة مرفق',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.w600,
-                            fontFamily: 'poppins')
-                    ),
-                  ),
-
-
-                ],
+              Text(
+                'حالة الوالدين',
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w600,
+                    fontFamily: 'poppins'),
               ),
-              SizedBox(height: 10.h,),
-              Row(
-                children: [
-                  Text(
-                    'ملف السيرة الذاتية',
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.w600,
-                        fontFamily: 'poppins'),
+              SizedBox(
+                height: 10.h,
+              ),
+              Container(
+                width: MediaQuery.of(context).size.width,
+                padding: EdgeInsetsDirectional.fromSTEB(10.w, 3.h, 10.w, 3.h),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(color: enableColor)),
+                child: DropdownButton<String>(
+                  isExpanded: true,
+                  hint: Text(
+                    'حالة الوالدبن',
+                    style: TextStyle(color: enableColor, fontSize: 12.sp),
                   ),
-                  SizedBox(
-                    width: 10.w,
-                  ),
-                  Container(
-                    padding: EdgeInsetsDirectional.all(3),
-                    decoration: BoxDecoration(
-                      color: add,
-                      borderRadius: BorderRadius.circular(8.r),
-                    ),
-                    child: Text('اضافة مرفق',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.w600,
-                            fontFamily: 'poppins')
-                    ),
-                  ),
-
-
-                ],
+                  underline: const SizedBox(),
+                  items: degree.map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Text(
+                            value,
+                            style: TextStyle(fontSize: 14.sp, color: gridcolor),
+                          ),
+                          Divider(
+                              // height: 2.h,
+                              )
+                        ],
+                      ),
+                    );
+                  }).toList(),
+                  onChanged: (Object? value) {},
+                ),
+              ),
+              SizedBox(
+                height: 20.h,
               ),
 
+              Text(
+                'مع من يعيش الطالب',
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w600,
+                    fontFamily: 'poppins'),
+              ),
+              SizedBox(
+                height: 10.h,
+              ),
+              Container(
+                width: MediaQuery.of(context).size.width,
+                padding: EdgeInsetsDirectional.fromSTEB(10.w, 3.h, 10.w, 3.h),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(color: enableColor)),
+                child: DropdownButton<String>(
+                  isExpanded: true,
+                  hint: Text(
+                    'مع من يعيش الطالب',
+                    style: TextStyle(color: enableColor, fontSize: 12.sp),
+                  ),
+                  underline: const SizedBox(),
+                  items: degree.map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Text(
+                            value,
+                            style: TextStyle(fontSize: 14.sp, color: gridcolor),
+                          ),
+                          Divider(
+                            // height: 2.h,
+                          )
+                        ],
+                      ),
+                    );
+                  }).toList(),
+                  onChanged: (Object? value) {},
+                ),
+              ),
+
+              SizedBox(height: 20.h,),
+              Text(
+                'ما هي المواد الغير محببة للطالب/ة',
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w600,
+                    fontFamily: 'poppins'),
+              ),
+              SizedBox(
+                height: 10.h,
+              ),
+              Container(
+                width: MediaQuery.of(context).size.width,
+                padding: EdgeInsetsDirectional.fromSTEB(10.w, 3.h, 10.w, 3.h),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(color: enableColor)),
+                child: DropdownButton<String>(
+                  isExpanded: true,
+                  hint: Text(
+                    'ما هي المواد الغير محببة للطالب/ة',
+                    style: TextStyle(color: enableColor, fontSize: 12.sp),
+                  ),
+                  underline: const SizedBox(),
+                  items: degree.map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Text(
+                            value,
+                            style: TextStyle(fontSize: 14.sp, color: gridcolor),
+                          ),
+                          Divider(
+                            // height: 2.h,
+                          )
+                        ],
+                      ),
+                    );
+                  }).toList(),
+                  onChanged: (Object? value) {},
+                ),
+              ),
 
               SizedBox(height: 20.h,),
 
-              NextPreviousButtons(
-
-                nextPressed: (){
-                  navigateTo(context, CommunicationInfo());
+              Row(children: [
+                Checkbox(value: false, onChanged: null),
+                Text('هل يواجه الطالب/ة اي مشاكل في المدرسة')
+              ],),
+              SaveCancelButtons(
+                savePressed: (){
+                  navigateTo(context, StudentData());
                 },
               )
-
             ],
           ),
         ),

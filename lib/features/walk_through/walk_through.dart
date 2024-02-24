@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:maserty/features/home/home_screen.dart';
 import 'package:maserty/features/request_job/presentation/pages/personal_data.dart';
+import 'package:maserty/features/sign_up/presentation/pages/student_data.dart';
 import 'package:maserty/style/colors/colors.dart';
 import 'package:page_view_dot_indicator/page_view_dot_indicator.dart';
 
 import '../login/presentation/pages/login.dart';
+import '../sign_up/presentation/pages/add_student_data.dart';
+import '../sign_up/presentation/pages/father_data.dart';
 
 class WalkThrough extends StatefulWidget {
   const WalkThrough({Key? key}) : super(key: key);
@@ -57,36 +60,38 @@ class _WalkThroughState extends State<WalkThrough> {
                       children: <Widget>[
                         Container(
                           padding: EdgeInsets.symmetric(horizontal: 58.w),
-                          child: Column(
-                            children: [
-                              SizedBox(
-                                height: 90.h,
-                              ),
-                              Image.asset('assets/images/first.png'),
-                              SizedBox(
-                                height: 5.h,
-                              ),
-                              Text(
-                                'مرحبا بكم في أكاديمية مسيرتي',
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 24.sp,
-                                    fontWeight: FontWeight.w600,
-                                    fontFamily: 'poppins'),
-                              ),
-                              SizedBox(
-                                height: 20.h,
-                              ),
-                              Text(
-                                'لوريم إيبسوم هو نص عربي غير معنى، يُستخدم في مجالات الطباعة ومواقع الويب كنص دال على الشكل والتخطيط. يمكنك اختيار عدد الفقرات.',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    color: walkThroughText,
-                                    fontSize: 16.sp,
-                                    fontWeight: FontWeight.w400,
-                                    fontFamily: 'poppins'),
-                              ),
-                            ],
+                          child: SingleChildScrollView(
+                            child: Column(
+                              children: [
+                                SizedBox(
+                                  height: 90.h,
+                                ),
+                                Image.asset('assets/images/first.png'),
+                                SizedBox(
+                                  height: 5.h,
+                                ),
+                                Text(
+                                  'مرحبا بكم في أكاديمية مسيرتي',
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 24.sp,
+                                      fontWeight: FontWeight.w600,
+                                      fontFamily: 'poppins'),
+                                ),
+                                SizedBox(
+                                  height: 20.h,
+                                ),
+                                Text(
+                                  'لوريم إيبسوم هو نص عربي غير معنى، يُستخدم في مجالات الطباعة ومواقع الويب كنص دال على الشكل والتخطيط. يمكنك اختيار عدد الفقرات.',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      color: walkThroughText,
+                                      fontSize: 16.sp,
+                                      fontWeight: FontWeight.w400,
+                                      fontFamily: 'poppins'),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ],
@@ -138,22 +143,29 @@ class _WalkThroughState extends State<WalkThrough> {
                             children: [
                               Column(
                                 children: [
-                                  Container(
-                                    padding: EdgeInsets.symmetric(
-                                    horizontal: 35.w, vertical: 22.h),
-                                    decoration: BoxDecoration(
-                                    color: primaryColor,
-                                    borderRadius:
-                                        BorderRadius.circular(10.r)),
-                                    child: Center(
-                                  child: Text(
-                                    'انشاء حساب جديد',
-                                    style: TextStyle(
-                                        fontFamily: 'poppins',
-                                        fontWeight: FontWeight.w300,
-                                        fontSize: 18.sp,
-                                        color: Colors.white),
-                                  ),
+                                  GestureDetector(onTap:(){
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(builder: (context) => FatherData()),
+                                    );
+                                  },
+                                    child: Container(
+                                      padding: EdgeInsets.symmetric(
+                                      horizontal: 35.w, vertical: 22.h),
+                                      decoration: BoxDecoration(
+                                      color: primaryColor,
+                                      borderRadius:
+                                          BorderRadius.circular(10.r)),
+                                      child: Center(
+                                    child: Text(
+                                      'انشاء حساب جديد',
+                                      style: TextStyle(
+                                          fontFamily: 'poppins',
+                                          fontWeight: FontWeight.w300,
+                                          fontSize: 18.sp,
+                                          color: Colors.white),
+                                    ),
+                                      ),
                                     ),
                                   ),
                                   SizedBox(
