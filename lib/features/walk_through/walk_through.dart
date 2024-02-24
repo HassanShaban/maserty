@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:maserty/features/home/home_screen.dart';
+import 'package:maserty/features/request_job/presentation/pages/personal_data.dart';
 import 'package:maserty/style/colors/colors.dart';
 import 'package:page_view_dot_indicator/page_view_dot_indicator.dart';
 
@@ -191,14 +192,21 @@ class _WalkThroughState extends State<WalkThrough> {
                               SizedBox(
                                 height: 29.h,
                               ),
-                              Text(
-                                'طلب توظيف',
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  decoration: TextDecoration.underline,
-                                  fontSize: 20.sp,
-                                  fontFamily: 'poppins',
-                                  fontWeight: FontWeight.w300,
+                              GestureDetector(onTap: (){
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => PersonalData()),
+                                );
+                              },
+                                child: Text(
+                                  'طلب توظيف',
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    decoration: TextDecoration.underline,
+                                    fontSize: 20.sp,
+                                    fontFamily: 'poppins',
+                                    fontWeight: FontWeight.w300,
+                                  ),
                                 ),
                               ),
                               SizedBox(
