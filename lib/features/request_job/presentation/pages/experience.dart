@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:maserty/features/request_job/presentation/pages/add_experience.dart';
 import 'package:maserty/features/request_job/presentation/pages/course.dart';
 import 'package:maserty/features/request_job/presentation/pages/qualification.dart';
 import 'package:maserty/features/request_job/presentation/widgets/header.dart';
@@ -29,25 +30,30 @@ class Experience extends StatelessWidget {
               ),
               SizedBox(height: 20.h,),
 
-              Container(
-                width: 151.w,
-                height: 48.h,
-                decoration: BoxDecoration(
-                    color: primaryColor,
-                    border: Border.all(color: primaryColor),
-                    borderRadius: BorderRadius.circular(8)),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'اضافة خبرة',
-                      style: TextStyle(color: Colors.white),
+              GestureDetector(
+                onTap: (){
+                  navigateTo(context, AddExperience());
+                },
+                child: Container(
+                  width: 151.w,
+                  height: 48.h,
+                  decoration: BoxDecoration(
+                      color: primaryColor,
+                      border: Border.all(color: primaryColor),
+                      borderRadius: BorderRadius.circular(8)),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'اضافة خبرة',
+                        style: TextStyle(color: Colors.white),
 
-                    ),
-                    SizedBox(width: 20.w,),
-                    Icon(Icons.add,
-                      color: Colors.white,)
-                  ],
+                      ),
+                      SizedBox(width: 20.w,),
+                      Icon(Icons.add,
+                        color: Colors.white,)
+                    ],
+                  ),
                 ),
               ),
 

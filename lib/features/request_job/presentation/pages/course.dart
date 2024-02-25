@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:maserty/features/request_job/presentation/pages/add_course.dart';
 import 'package:maserty/features/request_job/presentation/pages/finish_job.dart';
 import 'package:maserty/features/request_job/presentation/widgets/header.dart';
 import 'package:maserty/features/request_job/presentation/widgets/next_previous_buttons.dart';
@@ -28,25 +29,30 @@ class Course extends StatelessWidget {
               ),
               SizedBox(height: 20.h,),
 
-              Container(
-                width: 151.w,
-                height: 48.h,
-                decoration: BoxDecoration(
-                    color: primaryColor,
-                    border: Border.all(color: primaryColor),
-                    borderRadius: BorderRadius.circular(8)),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'اضافة دورة',
-                      style: TextStyle(color: Colors.white),
+              GestureDetector(
+                onTap: (){
+                  navigateTo(context, AddCourse());
+                },
+                child: Container(
+                  width: 151.w,
+                  height: 48.h,
+                  decoration: BoxDecoration(
+                      color: primaryColor,
+                      border: Border.all(color: primaryColor),
+                      borderRadius: BorderRadius.circular(8)),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'اضافة دورة',
+                        style: TextStyle(color: Colors.white),
 
-                    ),
-                    SizedBox(width: 20.w,),
-                    Icon(Icons.add,
-                      color: Colors.white,)
-                  ],
+                      ),
+                      SizedBox(width: 20.w,),
+                      Icon(Icons.add,
+                        color: Colors.white,)
+                    ],
+                  ),
                 ),
               ),
 
