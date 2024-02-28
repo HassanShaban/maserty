@@ -587,38 +587,38 @@ class _NewDiffQuranAyahState extends State<NewDiffQuranAyah>
     selectedAyahData = dataHelper.getAyahFromClick(xCoordinate, yCoordinate,
         diffQuranTabaa.imageHeight, displayScreenHeight);
 
-    // Fluttertoast.showToast(msg: selectedAyahData.surahNumber.toString());
-    // if (selectedAyahData != null)
-    //   debugPrint('Aya Number ' + selectedAyahData.ayahNumber.toString());
-    //
-    // if (selectedAyahData != null) {
-    //   ayaNmuber = selectedAyahData.ayahNumber;
-    //   surahNumber = selectedAyahData.surahNumber;
-    //   //    surahNum = surahNumber;
-    //   saveAyaNumber();
-    //   List<double> x = dataHelper.getLeftRightExtremesForAyah(
-    //       selectedAyahData.ayahNumber, selectedAyahData.surahNumber);
-    //   List<double> y = dataHelper.getLeftRightExtremesForAyah(
-    //       selectedAyahData.ayahNumber + 1, selectedAyahData.surahNumber);
-    //   var bbfrom = dataHelper.getBoundingBoxForAyah(
-    //       selectedAyahData.ayahNumber, selectedAyahData.surahNumber);
-    //   var bbto = dataHelper.getBoundingBoxForAyah(
-    //       selectedAyahData.ayahNumber + 1, selectedAyahData.surahNumber);
-    //   int start = 0;
-    //   var duration = 500;
-    //   int timeStamp = DateTime.now().microsecondsSinceEpoch;
-    //   if (start == 0) {
-    //     start = timeStamp;
-    //   }
-    //   var frac = (timeStamp - start) / duration;
-    //   boundingBox = dataHelper.getIntermediateBoundingBox(
-    //       bbfrom, bbto, 0, this.xCoordinate, this.yCoordinate);
-    //
-    //   setState(() {
-    //     isVisible = true;
-    //   });
-    //   // drawBoundingBox(bb);
-    // }
+    Fluttertoast.showToast(msg: selectedAyahData.ayahNumber.toString());
+    if (selectedAyahData != null)
+      debugPrint('Aya Number ' + selectedAyahData.ayahNumber.toString());
+
+    if (selectedAyahData != null) {
+      ayaNmuber = selectedAyahData.ayahNumber;
+      surahNumber = selectedAyahData.surahNumber;
+      //    surahNum = surahNumber;
+      saveAyaNumber();
+      List<double> x = dataHelper.getLeftRightExtremesForAyah(
+          selectedAyahData.ayahNumber, selectedAyahData.surahNumber);
+      List<double> y = dataHelper.getLeftRightExtremesForAyah(
+          selectedAyahData.ayahNumber + 1, selectedAyahData.surahNumber);
+      var bbfrom = dataHelper.getBoundingBoxForAyah(
+          selectedAyahData.ayahNumber, selectedAyahData.surahNumber);
+      var bbto = dataHelper.getBoundingBoxForAyah(
+          selectedAyahData.ayahNumber + 1, selectedAyahData.surahNumber);
+      int start = 0;
+      var duration = 500;
+      int timeStamp = DateTime.now().microsecondsSinceEpoch;
+      if (start == 0) {
+        start = timeStamp;
+      }
+      var frac = (timeStamp - start) / duration;
+      boundingBox = dataHelper.getIntermediateBoundingBox(
+          bbfrom, bbto, 0, this.xCoordinate, this.yCoordinate);
+
+      setState(() {
+        isVisible = true;
+      });
+      // drawBoundingBox(bb);
+    }
   }
 
   bool isLandcape = false;
