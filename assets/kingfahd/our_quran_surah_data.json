@@ -1,0 +1,567 @@
+[
+  {
+    "surahNumber": 2,
+    "surahName": "Albaqara",
+    "numOfLineFromTop": 0
+  },
+  {
+    "surahNumber": 3,
+    "surahName": "al_imran",
+    "numOfLineFromTop": 2
+  },
+  {
+    "surahNumber": 4,
+    "surahName": "al_nisaa",
+    "numOfLineFromTop": 2
+  },
+  {
+    "surahNumber": 5,
+    "surahName": "almaeda",
+    "numOfLineFromTop": 8
+  },
+  {
+    "surahNumber": 6,
+    "surahName": "al_anaam",
+    "numOfLineFromTop": 2
+  },
+  {
+    "surahNumber": 7,
+    "surahName": "al_araf",
+    "numOfLineFromTop": 2
+  },
+  {
+    "surahNumber": 8,
+    "surahName": "al_anfal",
+    "numOfLineFromTop": 3
+  },
+  {
+    "surahNumber": 9,
+    "surahName": "al_tawba",
+    "numOfLineFromTop": 1
+  },
+  {
+    "surahNumber": 10,
+    "surahName": "yonius",
+    "numOfLineFromTop": 2
+  },
+  {
+    "surahNumber": 11,
+    "surahName": "hood",
+    "numOfLineFromTop": 9
+  },
+  {
+    "surahNumber": 12,
+    "surahName": "yousef",
+    "numOfLineFromTop": 11
+  },
+  {
+    "surahNumber": 13,
+    "surahName": "al_raad",
+    "numOfLineFromTop": 2
+  },
+  {
+    "surahNumber": 14,
+    "surahName": "ibrahim",
+    "numOfLineFromTop": 5
+  },
+  {
+    "surahNumber": 15,
+    "surahName": "al_hegr",
+    "numOfLineFromTop": 2
+  },
+  {
+    "surahNumber": 16,
+    "surahName": "al_nahl",
+    "numOfLineFromTop": 9
+  },
+  {
+    "surahNumber": 17,
+    "surahName": "al_israa",
+    "numOfLineFromTop": 3
+  },
+  {
+    "surahNumber": 18,
+    "surahName": "al_kahf",
+    "numOfLineFromTop": 12
+  },
+  {
+    "surahNumber": 19,
+    "surahName": "maryam",
+    "numOfLineFromTop": 2
+  },
+  {
+    "surahNumber": 20,
+    "surahName": "taha",
+    "numOfLineFromTop": 7
+  },
+  {
+    "surahNumber": 21,
+    "surahName": "al_anbiaa",
+    "numOfLineFromTop": 2
+  },
+  {
+    "surahNumber": 22,
+    "surahName": "al_hagj",
+    "numOfLineFromTop": 2
+  },
+  {
+    "surahNumber": 23,
+    "surahName": "al_moemnon",
+    "numOfLineFromTop": 2
+  },
+  {
+    "surahNumber": 24,
+    "surahName": "al_noor",
+    "numOfLineFromTop": 2
+  },
+  {
+    "surahNumber": 25,
+    "surahName": "al_forqan",
+    "numOfLineFromTop": 13
+  },
+  {
+    "surahNumber": 26,
+    "surahName": "al_shoraa",
+    "numOfLineFromTop": 2
+  },
+  {
+    "surahNumber": 27,
+    "surahName": "al_naml",
+    "numOfLineFromTop": 2
+  },
+  {
+    "surahNumber": 28,
+    "surahName": "al_qasas",
+    "numOfLineFromTop": 10
+  },
+  {
+    "surahNumber": 29,
+    "surahName": "al_enkabot",
+    "numOfLineFromTop": 10
+  },
+  {
+    "surahNumber": 30,
+    "surahName": "al_room",
+    "numOfLineFromTop": 12
+  },
+  {
+    "surahNumber": 31,
+    "surahName": "lokman",
+    "numOfLineFromTop": 2
+  },
+  {
+    "surahNumber": 32,
+    "surahName": "al_sajdah",
+    "numOfLineFromTop": 3
+  },
+  {
+    "surahNumber": 33,
+    "surahName": "al_ahzab",
+    "numOfLineFromTop": 2
+  },
+  {
+    "surahNumber": 34,
+    "surahName": "sabaa",
+    "numOfLineFromTop": 2
+  },
+  {
+    "surahNumber": 35,
+    "surahName": "fater",
+    "numOfLineFromTop": 10
+  },
+  {
+    "surahNumber": 36,
+    "surahName": "yaseen",
+    "numOfLineFromTop": 6
+  },
+  {
+    "surahNumber": 37,
+    "surahName": "al_safat",
+    "numOfLineFromTop": 2
+  },
+  {
+    "surahNumber": 38,
+    "surahName": "sad",
+    "numOfLineFromTop": 2
+  },
+  {
+    "surahNumber": 39,
+    "surahName": "al_zumar",
+    "numOfLineFromTop": 5
+  },
+  {
+    "surahNumber": 40,
+    "surahName": "ghafer",
+    "numOfLineFromTop": 4
+  },
+  {
+    "surahNumber": 41,
+    "surahName": "fussilat",
+    "numOfLineFromTop": 2
+  },
+  {
+    "surahNumber": 42,
+    "surahName": "al_shora",
+    "numOfLineFromTop": 2
+  },
+  {
+    "surahNumber": 43,
+    "surahName": "al_zukhruf",
+    "numOfLineFromTop": 7
+  },
+  {
+    "surahNumber": 44,
+    "surahName": "al_dukhan",
+    "numOfLineFromTop": 2
+  },
+  {
+    "surahNumber": 45,
+    "surahName": "al_jathia",
+    "numOfLineFromTop": 2
+  },
+  {
+    "surahNumber": 46,
+    "surahName": "al_ahkaf",
+    "numOfLineFromTop": 9
+  },
+  {
+    "surahNumber": 47,
+    "surahName": "mohammed",
+    "numOfLineFromTop": 2
+  },
+  {
+    "surahNumber": 48,
+    "surahName": "al_fath",
+    "numOfLineFromTop": 2
+  },
+  {
+    "surahNumber": 49,
+    "surahName": "al_hugurat",
+    "numOfLineFromTop": 9
+  },
+  {
+    "surahNumber": 50,
+    "surahName": "qaf",
+    "numOfLineFromTop": 2
+  },
+  {
+    "surahNumber": 51,
+    "surahName": "al_zariat",
+    "numOfLineFromTop": 14
+  },
+  {
+    "surahNumber": 52,
+    "surahName": "al_tur",
+    "numOfLineFromTop": 10
+  },
+  {
+    "surahNumber": 53,
+    "surahName": "al_nagm",
+    "numOfLineFromTop": 2
+  },
+  {
+    "surahNumber": 54,
+    "surahName": "al_qamar",
+    "numOfLineFromTop": 11
+  },
+  {
+    "surahNumber": 55,
+    "surahName": "al_rahman",
+    "numOfLineFromTop": 7
+  },
+  {
+    "surahNumber": 56,
+    "surahName": "al_waqiaa",
+    "numOfLineFromTop": 8
+  },
+  {
+    "surahNumber": 57,
+    "surahName": "al_hadid",
+    "numOfLineFromTop": 12
+  },
+  {
+    "surahNumber": 58,
+    "surahName": "al_mugadala",
+    "numOfLineFromTop": 2
+  },
+  {
+    "surahNumber": 59,
+    "surahName": "al_hashr",
+    "numOfLineFromTop": 9
+  },
+  {
+    "surahNumber": 60,
+    "surahName": "al_momtahina",
+    "numOfLineFromTop": 2
+  },
+  {
+    "surahNumber": 61,
+    "surahName": "al_saff",
+    "numOfLineFromTop": 8
+  },
+  {
+    "surahNumber": 62,
+    "surahName": "al_jomaa",
+    "numOfLineFromTop": 2
+  },
+  {
+    "surahNumber": 63,
+    "surahName": "al_monafeqon",
+    "numOfLineFromTop": 9
+  },
+  {
+    "surahNumber": 64,
+    "surahName": "al_taghabon",
+    "numOfLineFromTop": 2
+  },
+  {
+    "surahNumber": 65,
+    "surahName": "al_talaq",
+    "numOfLineFromTop": 2
+  },
+  {
+    "surahNumber": 66,
+    "surahName": "al_tahrim",
+    "numOfLineFromTop": 2
+  },
+  {
+    "surahNumber": 67,
+    "surahName": "al_mulk",
+    "numOfLineFromTop": 2
+  },
+  {
+    "surahNumber": 68,
+    "surahName": "al_qalam",
+    "numOfLineFromTop": 7
+  },
+  {
+    "surahNumber": 69,
+    "surahName": "al_haqqa",
+    "numOfLineFromTop": 11
+  },
+  {
+    "surahNumber": 70,
+    "surahName": "al_maarij",
+    "numOfLineFromTop": 10
+  },
+  {
+    "surahNumber": 71,
+    "surahName": "nuh",
+    "numOfLineFromTop": 6
+  },
+  {
+    "surahNumber": 72,
+    "surahName": "al_gin",
+    "numOfLineFromTop": 2
+  },
+  {
+    "surahNumber": 73,
+    "surahName": "al_muzzamel",
+    "numOfLineFromTop": 2
+  },
+  {
+    "surahNumber": 74,
+    "surahName": "al_muddather",
+    "numOfLineFromTop": 9
+  },
+  {
+    "surahNumber": 75,
+    "surahName": "al_qiyhma",
+    "numOfLineFromTop": 7
+  },
+  {
+    "surahNumber": 76,
+    "surahName": "al_insan",
+    "numOfLineFromTop": 11
+  },
+  {
+    "surahNumber": 77,
+    "surahName": "al_murslat",
+    "numOfLineFromTop": 8
+  },
+  {
+    "surahNumber": 78,
+    "surahName": "al_nabaa",
+    "numOfLineFromTop": 2
+  },
+  {
+    "surahNumber": 79,
+    "surahName": "al_nazaat",
+    "numOfLineFromTop": 9
+  },
+  {
+    "surahNumber": 80,
+    "surahName": "abasah",
+    "numOfLineFromTop": 2
+  },
+  {
+    "surahNumber": 81,
+    "surahName": "al_takweer",
+    "numOfLineFromTop": 3
+  },
+  {
+    "surahNumber": 82,
+    "surahName": "al_infitar",
+    "numOfLineFromTop": 2
+  },
+  {
+    "surahNumber": 83,
+    "surahName": "al_motafefen",
+    "numOfLineFromTop": 13
+  },
+  {
+    "surahNumber": 84,
+    "surahName": "al_inshiqaq",
+    "numOfLineFromTop": 4
+  },
+  {
+    "surahNumber": 85,
+    "surahName": "al_buruj",
+    "numOfLineFromTop": 3
+  },
+  {
+    "surahNumber": 86,
+    "surahName": "al_tariq",
+    "numOfLineFromTop": 2
+  },
+  {
+    "surahNumber": 87,
+    "surahName": "al_aala",
+    "numOfLineFromTop": 11
+  },
+  {
+    "surahNumber": 88,
+    "surahName": "al_ghashiaa",
+    "numOfLineFromTop": 6
+  },
+  {
+    "surahNumber": 89,
+    "surahName": "al_fajr",
+    "numOfLineFromTop": 6
+  },
+  {
+    "surahNumber": 90,
+    "surahName": "al_balad",
+    "numOfLineFromTop": 8
+  },
+  {
+    "surahNumber": 91,
+    "surahName": "al_shams",
+    "numOfLineFromTop": 3
+  },
+  {
+    "surahNumber": 92,
+    "surahName": "al_layl",
+    "numOfLineFromTop": 13
+  },
+  {
+    "surahNumber": 93,
+    "surahName": "al_duha",
+    "numOfLineFromTop": 7
+  },
+  {
+    "surahNumber": 94,
+    "surahName": "al_sharh",
+    "numOfLineFromTop": 15
+  },
+  {
+    "surahNumber": 95,
+    "surahName": "al_teen",
+    "numOfLineFromTop": 4
+  },
+  {
+    "surahNumber": 96,
+    "surahName": "al_alaq",
+    "numOfLineFromTop": 11
+  },
+  {
+    "surahNumber": 97,
+    "surahName": "al_qadr",
+    "numOfLineFromTop": 5
+  },
+  {
+    "surahNumber": 98,
+    "surahName": "al_binnah",
+    "numOfLineFromTop": 10
+  },
+  {
+    "surahNumber": 99,
+    "surahName": "al_zalzalah",
+    "numOfLineFromTop": 7
+  },
+  {
+    "surahNumber": 100,
+    "surahName": "al_adyat",
+    "numOfLineFromTop": 14
+  },
+  {
+    "surahNumber": 101,
+    "surahName": "al_qarah",
+    "numOfLineFromTop": 5
+  },
+  {
+    "surahNumber": 102,
+    "surahName": "al_taqathur",
+    "numOfLineFromTop": 12
+  },
+  {
+    "surahNumber": 103,
+    "surahName": "al_asr",
+    "numOfLineFromTop": 2
+  },
+  {
+    "surahNumber": 104,
+    "surahName": "al_humaza",
+    "numOfLineFromTop": 6
+  },
+  {
+    "surahNumber": 105,
+    "surahName": "al_feel",
+    "numOfLineFromTop": 12
+  },
+  {
+    "surahNumber": 106,
+    "surahName": "quraish",
+    "numOfLineFromTop": 2
+  },
+  {
+    "surahNumber": 107,
+    "surahName": "al_maeon",
+    "numOfLineFromTop": 7
+  },
+  {
+    "surahNumber": 108,
+    "surahName": "al_kawthar",
+    "numOfLineFromTop": 13
+  },
+  {
+    "surahNumber": 109,
+    "surahName": "al_kaferoon",
+    "numOfLineFromTop": 2
+  },
+  {
+    "surahNumber": 110,
+    "surahName": "al_nasr",
+    "numOfLineFromTop": 7
+  },
+  {
+    "surahNumber": 111,
+    "surahName": "al_masad",
+    "numOfLineFromTop": 12
+  },
+  {
+    "surahNumber": 112,
+    "surahName": "al_ekhlas",
+    "numOfLineFromTop": 3
+  },
+  {
+    "surahNumber": 113,
+    "surahName": "al_falaq",
+    "numOfLineFromTop": 6
+  },
+  {
+    "surahNumber": 114,
+    "surahName": "al_nas",
+    "numOfLineFromTop": 12
+  }
+]

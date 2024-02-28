@@ -76,6 +76,8 @@ flutter:
     - assets/images/
     - assets/translations/
     - assets/icons/
+    - assets/kingfahd/
+    - assets/king_fahd_images/
 
   fonts:
     - family: poppins
