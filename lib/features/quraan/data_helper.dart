@@ -1,9 +1,9 @@
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:maserty/features/diff_quran_tabaa.dart';
 import 'package:maserty/features/quraan/selected_ayah_data.dart';
 
 import 'Entries.dart';
 import 'bound.dart';
-import 'diff_quran_tabaa_properities.dart';
 double mX = 6;
 double MX = 7;
 double mY = 8;

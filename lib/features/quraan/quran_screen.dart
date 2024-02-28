@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:maserty/features/land.dart';
 
 import '../../utils/cash_helper.dart';
 import '../../utils/constants.dart';
-import 'landscape_mode.dart';
 import 'navigate_to_quran_screen.dart';
 import 'new_diff_quran_ayah.dart';
 
@@ -57,7 +57,7 @@ class _MainQuranScreenState extends State<QuranScreen> {
   late PageController controller;
 
 
-  late String language;
+  late String language = 'ar';
 
   /*getLanguage() {
     language = CacheHelper.getData(key: Constants.lang.toString()) ?? 'ar';
@@ -83,7 +83,9 @@ class _MainQuranScreenState extends State<QuranScreen> {
 
     navigateToQuranScreen = widget.navigateToQuranScreen;
     addDataToList();
-    readFehresJson();
+    //readFehresJson();
+
+    pageController = PageController(initialPage: 0);
 
     // currentReadingPage = CacheHelper.getData(key: Constants.currentReadingPage.toString()) ?? 0;
     //currentReadingPage = CacheHelper.getData(key: Constants.currentReadingPage.toString()) ?? 0;

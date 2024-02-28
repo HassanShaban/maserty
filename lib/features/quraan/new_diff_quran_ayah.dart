@@ -10,6 +10,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:maserty/features/diff_quran_tabaa.dart';
+import 'package:maserty/features/land.dart';
 import 'package:maserty/features/quraan/selected_ayah_data.dart';
 
 
@@ -17,8 +19,6 @@ import '../../../../../../utils/cash_helper.dart';
 import '../../../../../../utils/constants.dart';
 import '../../utils/app_localizations.dart';
 import 'data_helper.dart';
-import 'diff_quran_tabaa_properities.dart';
-import 'landscape_mode.dart';
 import 'navigate_to_quran_screen.dart';
 import 'new_diff_quran_ayah_draw.dart';
 
@@ -119,9 +119,9 @@ class _NewDiffQuranAyahState extends State<NewDiffQuranAyah>
   String quranPath = "";
   late bool isKingFahdSelected, isShmarlySelected, isMadinaSelected;
 
-  getSurahdetailsJson() {
-    return rootBundle.loadString('assets/quran_json/quran_data_json.json');
-  }
+  // getSurahdetailsJson() {
+  //   return rootBundle.loadString('assets/quran_json/quran_data_json.json');
+  // }
 
   int numOfLIneFromTop = 0;
 
@@ -141,6 +141,7 @@ class _NewDiffQuranAyahState extends State<NewDiffQuranAyah>
 
   @override
   void initState() {
+    isKingFahdSelected = true;
   /*  isKingFahdSelected =
         CacheHelper.getData(key: Constants.isKingFahdSelected.toString()) ??
             false;*/
@@ -150,15 +151,19 @@ class _NewDiffQuranAyahState extends State<NewDiffQuranAyah>
 
     getGlyphsJson();
 
+
+
     final data = MediaQueryData.fromWindow(WidgetsBinding.instance.window);
     isTablet = data.size.shortestSide < 600 ? false : true;
+    isTablet = data.size.shortestSide < 600 ? false : true;
+    if (isKingFahdSelected)
+      diffQuranTabaa = dataHelper.setTabaaProperities('king_fahd', isTablet);
+
     /*if (isKingFahdSelected)
       diffQuranTabaa = dataHelper.setTabaaProperities('king_fahd', isTablet);
     else
       diffQuranTabaa = dataHelper.setTabaaProperities('warsh', isTablet);
 */
-    localPath = CacheHelper.getData(key: 'localDir');
-    pathName = CacheHelper.getData(key: Constants.pathName.toString());
     //  Fluttertoast.showToast(msg: pathName.toString());
     imageName = widget.imageName;
     pageNumber = widget.pageNumber;
@@ -185,35 +190,34 @@ class _NewDiffQuranAyahState extends State<NewDiffQuranAyah>
   late double containerHeight, containerWidth;
   bool isDarkColor = false;
   late bool isPortrait;
-  late bool isShamarlySelected, isWarshMadinaSelected;
+  bool isShamarlySelected = false;
+  bool isWarshMadinaSelected = false;
   late String lang;
   bool isSelectVisable = false;
   String surahnewNum = "1";
 
   void getAllJson() async {
-    readImageJson();
-    ourSurahData = json.decode(await getSurahJson());
-    detailsSurahData = json.decode(await getSurahdetailsJson());
-    for (int i = 0; i < detailsSurahData.length; i++) {
-      if (quranData[0]['sura_number'] == detailsSurahData[i]['number']) {
-        surah_name = detailsSurahData[i]['name'];
-        // surahNumber = detailsSurahData[i]['number'];
-        surahText = detailsSurahData[i]['text'];
-
-        for (int z = 0; z < detailsSurahData[i]['ayahs'].length; z++) {
-          if (quranData[0]['ayah_number'] ==
-              detailsSurahData[i]['ayahs'][z]['numberInSurah']) {
-            juze = detailsSurahData[i]['ayahs'][z]['juz'];
-            break;
-          }
-        }
-        hezb = detailsSurahData[i]['ayahs'][0]['hizbQuarter'];
-
-        print(
-            "surahname" + surah_name.toString() + "  juz  " + juze.toString());
-        break;
-      }
-    }
+    //readImageJson();
+    // for (int i = 0; i < detailsSurahData.length; i++) {
+    //   if (quranData[0]['sura_number'] == detailsSurahData[i]['number']) {
+    //     surah_name = detailsSurahData[i]['name'];
+    //     // surahNumber = detailsSurahData[i]['number'];
+    //     surahText = detailsSurahData[i]['text'];
+    //
+    //     for (int z = 0; z < detailsSurahData[i]['ayahs'].length; z++) {
+    //       if (quranData[0]['ayah_number'] ==
+    //           detailsSurahData[i]['ayahs'][z]['numberInSurah']) {
+    //         juze = detailsSurahData[i]['ayahs'][z]['juz'];
+    //         break;
+    //       }
+    //     }
+    //     hezb = detailsSurahData[i]['ayahs'][0]['hizbQuarter'];
+    //
+    //     print(
+    //         "surahname" + surah_name.toString() + "  juz  " + juze.toString());
+    //     break;
+    //   }
+    // }
     setState(() {});
   }
 
@@ -261,7 +265,7 @@ class _NewDiffQuranAyahState extends State<NewDiffQuranAyah>
 
     isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
     checkIfIsInPortrait();
-    lang = CacheHelper.getData(key: Constants.lang.toString());
+    lang = 'ar';
     final savedColor =
         Colors.white;
 
@@ -450,7 +454,7 @@ class _NewDiffQuranAyahState extends State<NewDiffQuranAyah>
     glyphs = json.decode(await getImageJson());
     quranData = glyphs;
     getAllJson();
-    getSurahName();
+    // getSurahName();
 //    dataHelper.populateEntries(glyphs);
   }
 
@@ -479,13 +483,9 @@ class _NewDiffQuranAyahState extends State<NewDiffQuranAyah>
     //  return rootBundle.loadString('assets/warsh/${widget.jsonName}.json');
     debugPrint(' Selected');
     //Fluttertoast.showToast(msg: widget.jsonName.toString());
-    return  rootBundle.loadString('assets/kingfahd/${widget.jsonName}.json');
-
+    return  rootBundle.loadString('assets/kingfahd/003.json');
   }
 
-  getSurahJson() {
-    return rootBundle.loadString('assets/kingfahd/our_quran_surah_data.json');
-  }
 
   void saveAyaNumber() {
     CacheHelper.saveData(
