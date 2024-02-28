@@ -273,160 +273,167 @@ class _NewDiffQuranAyahState extends State<NewDiffQuranAyah>
 
 
 
-    return SafeArea(
-      child: Directionality(
-        textDirection: TextDirection.ltr,
-        child: Container(
-          padding: MediaQuery.of(context).size.shortestSide < 600
-              ? null
-              : EdgeInsetsDirectional.only(start: 40, end: 40),
-          color: bgColor,
-          //   key: key,
-          child: Stack(
-              children: [
-          // containerHeight = constraints.maxHeight;
-          // containerWidth = constraints.maxWidth;
+    return GestureDetector(
+        onTapDown: (TapDownDetails details) =>
+        onTapDown(context, details),
+        onTap: () {
 
-           Container(
-          color: bgColor,
-          child: Column(
-            children: [
-              Visibility(
-                visible: isPortrait,
-                child: Row(
-                  mainAxisAlignment:
-                  MainAxisAlignment.center,
-                  crossAxisAlignment:
-                  CrossAxisAlignment.center,
-                  children: [
-                    Container(
-                      height: 65.h,
-                      width: MediaQuery.of(context)
-                          .size
-                          .shortestSide <
-                          600
-                          ? 200.w
-                          : 183.w,
-                      margin: EdgeInsetsDirectional.only(
-                        top: 10,
-                      ),
-                      /*   decoration: BoxDecoration(
-                                                              borderRadius:
-                                                                  BorderRadius.circular(
-                                                                      15),
-                                                              border: Border.all(
-                                                                  color: progressbg)),*/
-                      child: Center(
-                        child: Text(
-                            AppLocalizations.of(context)!
-                                .translate('juze') +
-                                " "
-                                    "${juze}" +
-                                " ",
-                            style: TextStyle(
-                                fontSize: MediaQuery.of(
-                                    context)
-                                    .size
-                                    .shortestSide <
-                                    600
-                                    ? 22.sp
-                                    : 15,
-                                fontFamily: 'Dexef',
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white
-                            )
-                          // isDarkMode == true ? Colors.white : Color(0xffB84C4C))
+        },
+      child: SafeArea(
+        child: Directionality(
+          textDirection: TextDirection.ltr,
+          child: Container(
+            padding: MediaQuery.of(context).size.shortestSide < 600
+                ? null
+                : EdgeInsetsDirectional.only(start: 40, end: 40),
+            color: bgColor,
+            //   key: key,
+            child: Stack(
+                children: [
+            // containerHeight = constraints.maxHeight;
+            // containerWidth = constraints.maxWidth;
+
+             Container(
+            color: bgColor,
+            child: Column(
+              children: [
+                Visibility(
+                  visible: isPortrait,
+                  child: Row(
+                    mainAxisAlignment:
+                    MainAxisAlignment.center,
+                    crossAxisAlignment:
+                    CrossAxisAlignment.center,
+                    children: [
+                      Container(
+                        height: 65.h,
+                        width: MediaQuery.of(context)
+                            .size
+                            .shortestSide <
+                            600
+                            ? 200.w
+                            : 183.w,
+                        margin: EdgeInsetsDirectional.only(
+                          top: 10,
+                        ),
+                        /*   decoration: BoxDecoration(
+                                                                borderRadius:
+                                                                    BorderRadius.circular(
+                                                                        15),
+                                                                border: Border.all(
+                                                                    color: progressbg)),*/
+                        child: Center(
+                          child: Text(
+                              AppLocalizations.of(context)!
+                                  .translate('juze') +
+                                  " "
+                                      "${juze}" +
+                                  " ",
+                              style: TextStyle(
+                                  fontSize: MediaQuery.of(
+                                      context)
+                                      .size
+                                      .shortestSide <
+                                      600
+                                      ? 22.sp
+                                      : 15,
+                                  fontFamily: 'Dexef',
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white
+                              )
+                            // isDarkMode == true ? Colors.white : Color(0xffB84C4C))
+                          ),
                         ),
                       ),
-                    ),
 
 
-                  ],
-                ),
-              ),
-              // SizedBox(
-              //   height: 60.h,
-              // ),
-              Expanded(
-                  flex: 16,
-                  child: LayoutBuilder(
-                      builder: (context, constraints) {
-                        containerHeight = constraints.maxHeight;
-                        containerWidth = constraints.maxWidth;
-                        return  GestureDetector(
-                          child: Container(
-                            key: key,
-                            width: MediaQuery.of(context)
-                                .size
-                                .width,
-                            // padding: EdgeInsetsDirectional
-                            //     .only(
-                            //         start: 15.w,
-                            //         end: 15.w),
-                            color: bgColor,
-                            child: FittedBox(
-                              fit: BoxFit.fill,
-                              child: isKingFahdSelected
-                                  ? Image.asset(
-                                'assets/king_fahd_images/page' +
-                                    widget
-                                        .imageName +
-                                    ".webp",
-                                fit: BoxFit.fill,
-                                color:
-                                isShamarlySelected
-                                    ? null
-                                    : isDarkColor ==
-                                    true
-                                    ? Colors
-                                    .white
-                                    : null,
-                              )
-                                  : (localPath.isNotEmpty
-                                  ? Image.file(
-                                (File(
-                                    '${quranPath + widget.imageName + ".png"}')),
-                                fit:
-                                BoxFit.fill,
-                                color: isShamarlySelected
-                                    ? null
-                                    : isDarkColor == true
-                                    ? Colors.white
-                                    : null,
-                              )
-                                  : Container()),
-                            )));
-
-
-
-
-                      })),
-              Visibility(
-                visible: isVisible,
-                child: Padding(
-                  padding: EdgeInsets.only(top: 1.0),
-                  child: CustomPaint(
-                    painter: (NewDiffDrawAyaLine(
-                        context,
-                        boundingBox,
-                        xPercent,
-                        diffQuranTabaa.lineRatio,
-                        diffQuranTabaa.lastAyaXSpace)),
+                    ],
                   ),
                 ),
-              ),
+                // SizedBox(
+                //   height: 60.h,
+                // ),
+                Expanded(
+                    flex: 16,
+                    child: LayoutBuilder(
+                        builder: (context, constraints) {
+                          containerHeight = constraints.maxHeight;
+                          containerWidth = constraints.maxWidth;
+                          return  GestureDetector(
+                            child: Container(
+                              key: key,
+                              width: MediaQuery.of(context)
+                                  .size
+                                  .width,
+                              // padding: EdgeInsetsDirectional
+                              //     .only(
+                              //         start: 15.w,
+                              //         end: 15.w),
+                              color: bgColor,
+                              child: FittedBox(
+                                fit: BoxFit.fill,
+                                child: isKingFahdSelected
+                                    ? Image.asset(
+                                  'assets/king_fahd_images/page' +
+                                      widget
+                                          .imageName +
+                                      ".webp",
+                                  fit: BoxFit.fill,
+                                  color:
+                                  isShamarlySelected
+                                      ? null
+                                      : isDarkColor ==
+                                      true
+                                      ? Colors
+                                      .white
+                                      : null,
+                                )
+                                    : (localPath.isNotEmpty
+                                    ? Image.file(
+                                  (File(
+                                      '${quranPath + widget.imageName + ".png"}')),
+                                  fit:
+                                  BoxFit.fill,
+                                  color: isShamarlySelected
+                                      ? null
+                                      : isDarkColor == true
+                                      ? Colors.white
+                                      : null,
+                                )
+                                    : Container()),
+                              )));
 
-              // SvgPicture.asset('assets/icons/mosque.svg' , height: 40.h , width: 40.h,),
+
+
+
+                        })),
+                Visibility(
+                  visible: isVisible,
+                  child: Padding(
+                    padding: EdgeInsets.only(top: 1.0),
+                    child: CustomPaint(
+                      painter: (NewDiffDrawAyaLine(
+                          context,
+                          boundingBox,
+                          xPercent,
+                          diffQuranTabaa.lineRatio,
+                          diffQuranTabaa.lastAyaXSpace)),
+                    ),
+                  ),
+                ),
+
+                // SvgPicture.asset('assets/icons/mosque.svg' , height: 40.h , width: 40.h,),
 
 
 
 
-            ],
-          ),
-        )
+              ],
+            ),
+          )
 ]
-      ),
-    )));
+        ),
+      ))),
+    );
 
 
   }
