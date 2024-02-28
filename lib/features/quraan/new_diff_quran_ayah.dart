@@ -440,8 +440,6 @@ class _NewDiffQuranAyahState extends State<NewDiffQuranAyah>
 
   late double displayScreenHeight;
   late double displayScreenWidth;
-
-
   List boundingBox = [];
   late double lineRatio = 0;
   late double xPercent = 0;
@@ -633,7 +631,6 @@ class _NewDiffQuranAyahState extends State<NewDiffQuranAyah>
     }
   }
 }
-
 
   @override
   Widget build(BuildContext context) {
