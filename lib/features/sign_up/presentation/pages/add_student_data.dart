@@ -791,6 +791,213 @@ class _AddStudentDataState extends State<AddStudentData> {
                 Checkbox(value: false, onChanged: null),
                 Text('هل يواجه الطالب/ة اي مشاكل في المدرسة')
               ],),
+              SizedBox(height: 20.h,),
+              Row(
+                children: [
+                  Text(
+                    'هوايات الطالب/ة',
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.w600,
+                        fontFamily: 'poppins'),
+                  ),
+                  Icon(
+                    Icons.star_border_purple500_rounded,
+                    color: requiredField,
+                  )
+                ],
+              ),
+              SizedBox(
+                height: 10.h,
+              ),
+              CustomTextFormField(
+                controller: grandFatherArabicTextField,
+                autoFocus: false,
+                hint: 'هوايات الطالب/ة',
+              ),
+              SizedBox(height: 20.h,),
+              Row(children: [
+                Checkbox(value: false, onChanged: null),
+                Text('هل بستطيع الطالب/ة المشاركة في الاذاعة')
+              ],),
+
+              SizedBox(height: 20.h,),
+
+              Text(
+                'تصوير للطالب/ة فى البرامج',
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w600,
+                    fontFamily: 'poppins'),
+              ),
+              SizedBox(
+                height: 10.h,
+              ),
+              Container(
+                width: MediaQuery.of(context).size.width,
+                padding: EdgeInsetsDirectional.fromSTEB(10.w, 3.h, 10.w, 3.h),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(color: enableColor)),
+                child: DropdownButton<String>(
+                  isExpanded: true,
+                  hint: Text(
+                    'تصوير للطالب/ة فى البرامج',
+                    style: TextStyle(color: enableColor, fontSize: 12.sp),
+                  ),
+                  underline: const SizedBox(),
+                  items: degree.map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Text(
+                            value,
+                            style: TextStyle(fontSize: 14.sp, color: gridcolor),
+                          ),
+                          Divider(
+                            // height: 2.h,
+                          )
+                        ],
+                      ),
+                    );
+                  }).toList(),
+                  onChanged: (Object? value) {},
+                ),
+              ),
+
+              SizedBox(height: 20.h,),
+              Row(children: [
+                Checkbox(value: false, onChanged: null),
+                Text('هل يعاني الطالب/ة من أي حالات مرضية لا قدر الله')
+              ],),
+
+              SizedBox(height: 20.h,),
+
+              Row(
+                children: [
+                  Text(
+                    'صورة شخصية',
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.w600,
+                        fontFamily: 'poppins'),
+                  ),
+                  SizedBox(
+                    width: 10.w,
+                  ),
+                  Container(
+                    padding: EdgeInsetsDirectional.all(3),
+                    decoration: BoxDecoration(
+                      color: add,
+                      borderRadius: BorderRadius.circular(8.r),
+                    ),
+                    child: Text('اضافة مرفق',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.w600,
+                            fontFamily: 'poppins')
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 20.h,),
+              Row(
+                children: [
+                  Text(
+                    'صورة الهوية للطالب/ة',
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.w600,
+                        fontFamily: 'poppins'),
+                  ),
+                  SizedBox(
+                    width: 10.w,
+                  ),
+                  Container(
+                    padding: EdgeInsetsDirectional.all(3),
+                    decoration: BoxDecoration(
+                      color: add,
+                      borderRadius: BorderRadius.circular(8.r),
+                    ),
+                    child: Text('اضافة مرفق',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.w600,
+                            fontFamily: 'poppins')
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 20.h,),
+              Row(
+                children: [
+                  Text(
+                    'صورة صك الحضانة فى (حالات الانفصال)',
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.w600,
+                        fontFamily: 'poppins'),
+                  ),
+                  SizedBox(
+                    width: 10.w,
+                  ),
+                  Container(
+                    padding: EdgeInsetsDirectional.all(3),
+                    decoration: BoxDecoration(
+                      color: add,
+                      borderRadius: BorderRadius.circular(8.r),
+                    ),
+                    child: Text('اضافة مرفق',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.w600,
+                            fontFamily: 'poppins')
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 20.h,),
+              Row(
+                children: [
+                  Text(
+                    'صورة كارت التطعيمات',
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.w600,
+                        fontFamily: 'poppins'),
+                  ),
+                  SizedBox(
+                    width: 10.w,
+                  ),
+                  Container(
+                    padding: EdgeInsetsDirectional.all(3),
+                    decoration: BoxDecoration(
+                      color: add,
+                      borderRadius: BorderRadius.circular(8.r),
+                    ),
+                    child: Text('اضافة مرفق',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.w600,
+                            fontFamily: 'poppins')
+                    ),
+                  ),
+                ],
+              ),
+
               SaveCancelButtons(
                 savePressed: (){
                   navigateTo(context, StudentData());
