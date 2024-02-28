@@ -79,5 +79,5 @@ enum Constants {
   branchPrefixId,
   templateIndex,
   templateNameInNavBar,
-  lang
+  lang, pathName, currentReadingPage
 }
