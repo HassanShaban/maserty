@@ -33,6 +33,7 @@ class DataHelper {
     }
   }
 
+
   DataBaseHelper(double min_x, double max_x, double min_y, double max_y) {
     this.min_x = min_x;
     this.max_x = max_x;
