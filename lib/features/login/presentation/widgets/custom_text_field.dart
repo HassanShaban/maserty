@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:maserty/style/colors/colors.dart';
 
@@ -28,6 +29,7 @@ class CustomTextFormField extends StatelessWidget {
     this.focusBorderColor = selectedBorder,
     this.errorBorderColor = Colors.red,
     this.onSuffixPressed,
+    this.onlyArabic = false,
   }) : super(key: key);
   String? label;
   String? hint;
@@ -52,6 +54,7 @@ class CustomTextFormField extends StatelessWidget {
   Color focusBorderColor;
   Color errorBorderColor;
   Function()? onSuffixPressed;
+  bool onlyArabic;
 
   @override
   Widget build(BuildContext context) {
@@ -67,6 +70,13 @@ class CustomTextFormField extends StatelessWidget {
       enabled: isEnabled,
       style: TextStyle(color: enableColor, fontSize: 12.sp),
       readOnly: readOnly,
+      inputFormatters: !onlyArabic
+          ? []
+          : [
+              FilteringTextInputFormatter.allow(RegExp(r'^[\u0600-\u06FF\s]+$'))
+            ],
+      // Arabic characters and spaces
+
       decoration: InputDecoration(
           fillColor: fillColor,
           hintText: hint,
@@ -76,10 +86,9 @@ class CustomTextFormField extends StatelessWidget {
           helperStyle: TextStyle(height: .2),
           helperText: "",
           prefixIcon: prefix != null ? prefix : null,
-          suffixIcon: GestureDetector(onTap: onSuffixPressed, child: Container(
-              width: 32.h,
-              height: 32.w,
-              child: suffix)),
+          suffixIcon: GestureDetector(
+              onTap: onSuffixPressed,
+              child: Container(width: 32.h, height: 32.w, child: suffix)),
           errorStyle: TextStyle(height: .5),
           // label: Padding(
           //   padding: EdgeInsets.symmetric(horizontal: 0),
