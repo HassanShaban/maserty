@@ -72,6 +72,7 @@ class _FatherDataState extends State<FatherData> {
   String qareb1PhoneWorkCode = '+966';
   String qareb2PhoneWorkCode = '+966';
   var formKey = GlobalKey<FormState>();
+  late SignUpCubit signUpCubit;
 
   @override
   Widget build(BuildContext context) {
@@ -82,694 +83,707 @@ class _FatherDataState extends State<FatherData> {
           // TODO: implement listener
         },
         builder: (context, state) {
+          signUpCubit = SignUpCubit.get(context);
           return Scaffold(
             body: Container(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height,
               color: Colors.white,
               padding: EdgeInsetsDirectional.fromSTEB(16.w, 60.h, 16.h, 30.h),
-              child: SingleChildScrollView(
-                child: Form(
-                  key: formKey,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      JobHeader(
-                        txt: 'تسجيل طالب جديد',
-                      ),
-                      SizedBox(
-                        height: 30.h,
-                      ),
-                      RequiredTxt(txt: 'الاسم الاول'),
-                      SizedBox(
-                        height: 10.h,
-                      ),
-                      CustomTextFormField(
-                        controller: firstNameArabicTextField,
-                        autoFocus: false,
-                        hint: 'الاسم الاول',
-                        onlyArabic: true,
-                        validator: (text) {
-                          if (text!.isEmpty) {
-                            return 'الاسم الاول فارغ';
-                          }
-                          return null;
-                        },
-                      ),
-                      RequiredTxt(txt: 'اسم الاب'),
-                      SizedBox(
-                        height: 10.h,
-                      ),
-                      CustomTextFormField(
-                        controller: fatherNameArabicTextField,
-                        autoFocus: false,
-                        hint: 'اسم الاب',
-                        validator: (text) {
-                          if (text!.isEmpty) {
-                            return 'الاسم الاب فارغ';
-                          }
-                          return null;
-                        },
-                        onlyArabic: true,
-                      ),
-                      SizedBox(
-                        height: 20.h,
-                      ),
-                      RequiredTxt(txt: 'اسم الجد'),
-                      SizedBox(
-                        height: 10.h,
-                      ),
-                      CustomTextFormField(
-                        controller: grandFatherArabicTextField,
-                        autoFocus: false,
-                        hint: 'اسم الجد',
-                        validator: (text) {
-                          if (text!.isEmpty) {
-                            return 'الاسم الجد فارغ';
-                          }
-                          return null;
-                        },
-                        onlyArabic: true,
-                      ),
-                      SizedBox(
-                        height: 20.h,
-                      ),
-                      RequiredTxt(txt: 'اللقب'),
-                      SizedBox(
-                        height: 10.h,
-                      ),
-                      CustomTextFormField(
-                        controller: surNameArabicTextField,
-                        autoFocus: false,
-                        hint: 'اللقب',
-                        validator: (text) {
-                          if (text!.isEmpty) {
-                            return 'الاسم اللقب فارغ';
-                          }
-                          return null;
-                        },
-                        onlyArabic: true,
-                      ),
-                      SizedBox(
-                        height: 20.h,
-                      ),
-                      SizedBox(
-                        height: 20.h,
-                      ),
-                      RequiredTxt(txt: 'الجنسية'),
-                      SizedBox(
-                        height: 10.h,
-                      ),
-                      CustomTextFormField(
-                        controller: nationalityArabicTextField,
-                        autoFocus: false,
-                        hint: 'الجنسية',
-                        onlyArabic: true,
-                        validator: (text) {
-                          if (text!.isEmpty) {
-                            return 'الجنسية فارغة';
-                          }
-                          return null;
-                        },
-                      ),
-                      SizedBox(
-                        height: 20.h,
-                      ),
-                      Text(
-                        'صلة القرابة',
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.w600,
-                            fontFamily: 'poppins'),
-                      ),
-                      SizedBox(
-                        height: 10.h,
-                      ),
-                      Container(
-                        width: MediaQuery.of(context).size.width,
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            10.w, 3.h, 10.w, 3.h),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            border: Border.all(color: enableColor)),
-                        child: DropdownButtonFormField<String>(
-                          isExpanded: true,
-                          hint: Text(
-                            'صلة القرابة',
-                            style:
-                                TextStyle(color: enableColor, fontSize: 12.sp),
-                          ),
-                          value: selectedSelahQaraba,
+              child: signUpCubit.isGettingAllSignUpData
+                  ? const Center(
+                      child: CircularProgressIndicator(),
+                    )
+                  : SingleChildScrollView(
+                      child: Form(
+                        key: formKey,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            JobHeader(
+                              txt: 'تسجيل طالب جديد',
+                            ),
+                            SizedBox(
+                              height: 30.h,
+                            ),
+                            RequiredTxt(txt: 'الاسم الاول'),
+                            SizedBox(
+                              height: 10.h,
+                            ),
+                            CustomTextFormField(
+                              controller: firstNameArabicTextField,
+                              autoFocus: false,
+                              hint: 'الاسم الاول',
+                              onlyArabic: true,
+                              validator: (text) {
+                                if (text!.isEmpty) {
+                                  return 'الاسم الاول فارغ';
+                                }
+                                return null;
+                              },
+                            ),
+                            RequiredTxt(txt: 'اسم الاب'),
+                            SizedBox(
+                              height: 10.h,
+                            ),
+                            CustomTextFormField(
+                              controller: fatherNameArabicTextField,
+                              autoFocus: false,
+                              hint: 'اسم الاب',
+                              validator: (text) {
+                                if (text!.isEmpty) {
+                                  return 'الاسم الاب فارغ';
+                                }
+                                return null;
+                              },
+                              onlyArabic: true,
+                            ),
+                            SizedBox(
+                              height: 20.h,
+                            ),
+                            RequiredTxt(txt: 'اسم الجد'),
+                            SizedBox(
+                              height: 10.h,
+                            ),
+                            CustomTextFormField(
+                              controller: grandFatherArabicTextField,
+                              autoFocus: false,
+                              hint: 'اسم الجد',
+                              validator: (text) {
+                                if (text!.isEmpty) {
+                                  return 'الاسم الجد فارغ';
+                                }
+                                return null;
+                              },
+                              onlyArabic: true,
+                            ),
+                            SizedBox(
+                              height: 20.h,
+                            ),
+                            RequiredTxt(txt: 'اللقب'),
+                            SizedBox(
+                              height: 10.h,
+                            ),
+                            CustomTextFormField(
+                              controller: surNameArabicTextField,
+                              autoFocus: false,
+                              hint: 'اللقب',
+                              validator: (text) {
+                                if (text!.isEmpty) {
+                                  return 'الاسم اللقب فارغ';
+                                }
+                                return null;
+                              },
+                              onlyArabic: true,
+                            ),
+                            SizedBox(
+                              height: 20.h,
+                            ),
+                            SizedBox(
+                              height: 20.h,
+                            ),
+                            RequiredTxt(txt: 'الجنسية'),
+                            SizedBox(
+                              height: 10.h,
+                            ),
+                            CustomTextFormField(
+                              controller: nationalityArabicTextField,
+                              autoFocus: false,
+                              hint: 'الجنسية',
+                              onlyArabic: true,
+                              validator: (text) {
+                                if (text!.isEmpty) {
+                                  return 'الجنسية فارغة';
+                                }
+                                return null;
+                              },
+                            ),
+                            SizedBox(
+                              height: 20.h,
+                            ),
+                            Text(
+                              'صلة القرابة',
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 16.sp,
+                                  fontWeight: FontWeight.w600,
+                                  fontFamily: 'poppins'),
+                            ),
+                            SizedBox(
+                              height: 10.h,
+                            ),
+                            Container(
+                              width: MediaQuery.of(context).size.width,
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  10.w, 3.h, 10.w, 3.h),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8),
+                                  border: Border.all(color: enableColor)),
+                              child: DropdownButtonFormField<String>(
+                                isExpanded: true,
+                                hint: Text(
+                                  'صلة القرابة',
+                                  style: TextStyle(
+                                      color: enableColor, fontSize: 12.sp),
+                                ),
+                                value: selectedSelahQaraba,
 
-                          decoration: InputDecoration(
-                            border: InputBorder.none, // Remove underline
-                          ),
+                                decoration: InputDecoration(
+                                  border: InputBorder.none, // Remove underline
+                                ),
 
-                          // underline: const SizedBox(),
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'رجاء اختيار صلة القرابة';
-                            }
-                            return null;
-                          },
-                          items: selahQaraba
-                              .map<DropdownMenuItem<String>>((String value) {
-                            return DropdownMenuItem<String>(
-                              value: value,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
+                                // underline: const SizedBox(),
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'رجاء اختيار صلة القرابة';
+                                  }
+                                  return null;
+                                },
+                                items: selahQaraba
+                                    .map<DropdownMenuItem<String>>(
+                                        (String value) {
+                                  return DropdownMenuItem<String>(
+                                    value: value,
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      children: [
+                                        Text(
+                                          value,
+                                          style: TextStyle(
+                                              fontSize: 14.sp,
+                                              color: gridcolor),
+                                        ),
+                                        Divider(
+                                            // height: 2.h,
+                                            )
+                                      ],
+                                    ),
+                                  );
+                                }).toList(),
+                                onChanged: (Object? value) {
+                                  setState(() {
+                                    selectedSelahQaraba = value.toString();
+                                  });
+                                },
+                              ),
+                            ),
+                            SizedBox(
+                              height: 20.h,
+                            ),
+                            Text(
+                              'نوع الهوية',
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 16.sp,
+                                  fontWeight: FontWeight.w600,
+                                  fontFamily: 'poppins'),
+                            ),
+                            SizedBox(
+                              height: 10.h,
+                            ),
+                            Container(
+                              width: MediaQuery.of(context).size.width,
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  10.w, 3.h, 10.w, 3.h),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8),
+                                  border: Border.all(color: enableColor)),
+                              child: DropdownButtonFormField<String>(
+                                isExpanded: true,
+                                hint: Text(
+                                  'نوع الهوية',
+                                  style: TextStyle(
+                                      color: enableColor, fontSize: 12.sp),
+                                ),
+                                value: selectedNohHaweya,
+                                decoration: InputDecoration(
+                                  border: InputBorder.none, // Remove underline
+                                ),
+
+                                // underline: const SizedBox(),
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'رجاء اختيار نوع الهوية';
+                                  }
+                                  return null;
+                                },
+                                items: nohHaweya.map<DropdownMenuItem<String>>(
+                                    (String value) {
+                                  return DropdownMenuItem<String>(
+                                    value: value,
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      children: [
+                                        Text(
+                                          value,
+                                          style: TextStyle(
+                                              fontSize: 14.sp,
+                                              color: gridcolor),
+                                        ),
+                                        Divider(
+                                            // height: 2.h,
+                                            )
+                                      ],
+                                    ),
+                                  );
+                                }).toList(),
+                                onChanged: (Object? value) {
+                                  setState(() {
+                                    selectedNohHaweya = value.toString();
+                                  });
+                                },
+                              ),
+                            ),
+                            SizedBox(
+                              height: 20.h,
+                            ),
+                            RequiredTxt(txt: 'رقم الهوية'),
+                            SizedBox(
+                              height: 10.h,
+                            ),
+                            CustomTextFormField(
+                              controller: haweyaNumTextField,
+                              autoFocus: false,
+                              hint: 'رقم الهوية',
+                              validator: (text) {
+                                if (text!.isEmpty) {
+                                  return 'رقم الهوية فارغ';
+                                } else if (text.length < 10) {
+                                  return 'رقم الهوية يجب أن تكون أرقم فقط وتحتوي على 10 خانات فقط';
+                                }
+                                return null;
+                              },
+                            ),
+                            SizedBox(
+                              height: 20.h,
+                            ),
+                            RequiredTxt(txt: 'مصدر الهوية'),
+                            SizedBox(
+                              height: 10.h,
+                            ),
+                            CustomTextFormField(
+                              controller: haweyaSourceTextField,
+                              autoFocus: false,
+                              hint: 'مصدر الهوية',
+                              validator: (text) {
+                                if (text!.isEmpty) {
+                                  return 'مصدر الهوية فارغ';
+                                }
+                                return null;
+                              },
+                            ),
+                            Text(
+                              'تاريخ انتهاء الهوية',
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 16.sp,
+                                  fontWeight: FontWeight.w600,
+                                  fontFamily: 'poppins'),
+                            ),
+                            SizedBox(
+                              height: 10.h,
+                            ),
+                            CustomTextFormField(
+                              controller: expireHaweyaTextField,
+                              autoFocus: false,
+                              suffix: Icon(Icons.calendar_month),
+                              onSuffixPressed: () {
+                                _showDatePicker();
+                              },
+                              validator: (text) {
+                                if (text!.isEmpty) {
+                                  return 'تاريخ انتهاء الهوية فارغ';
+                                }
+                                return null;
+                              },
+                              hint: 'تاريخ انتهاء الهوية',
+                            ),
+                            SizedBox(
+                              height: 20.h,
+                            ),
+                            Text(
+                              'رقم الجوال',
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 16.sp,
+                                  fontWeight: FontWeight.w600,
+                                  fontFamily: 'poppins'),
+                            ),
+                            SizedBox(
+                              height: 10.h,
+                            ),
+                            Container(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  10.w, 3.h, 10.w, 3.h),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8),
+                                  border: Border.all(color: enableColor)),
+                              child: Row(
                                 children: [
-                                  Text(
-                                    value,
-                                    style: TextStyle(
-                                        fontSize: 14.sp, color: gridcolor),
+                                  Expanded(
+                                    flex: 4,
+                                    child: TextFormField(
+                                      controller: phoneNumTextField,
+                                      keyboardType: TextInputType.number,
+                                      maxLength: 10,
+                                      validator: (text) {
+                                        if (text!.isEmpty) {
+                                          return 'رقم الجوال فارغ';
+                                        }
+                                        return null;
+                                      },
+                                      style: TextStyle(
+                                          color: enableColor, fontSize: 12.sp),
+                                      inputFormatters: [
+                                        FilteringTextInputFormatter.digitsOnly,
+                                      ],
+                                      buildCounter: (BuildContext context,
+                                              {int? currentLength,
+                                              int? maxLength,
+                                              bool? isFocused}) =>
+                                          null,
+                                      decoration: InputDecoration(
+                                        border: InputBorder.none,
+                                        hintText: 'رقم الجوال',
+                                      ),
+                                    ),
                                   ),
-                                  Divider(
-                                      // height: 2.h,
-                                      )
+                                  SizedBox(
+                                      width: 130.w,
+                                      child: CountryCodePicker(
+                                        onChanged: (code) {
+                                          fatherPhoneCode = code.toString();
+                                        },
+                                        initialSelection: 'SA',
+                                        // Initial selection set to Saudi Arabia (KSA)
+                                        showCountryOnly: false,
+                                        showOnlyCountryWhenClosed: false,
+                                        alignLeft: false,
+                                      ))
+                                  // Expanded(
+                                  //     flex: 1,
+                                  //     child: Row(
+                                  //       children: [
+                                  //         SizedBox(
+                                  //           height: 20,
+                                  //           child: VerticalDivider(
+                                  //             color: enableColor,
+                                  //             thickness: 2,
+                                  //           ),
+                                  //         ),
+                                  //         Text('+966')
+                                  //       ],
+                                  //     ))
                                 ],
                               ),
-                            );
-                          }).toList(),
-                          onChanged: (Object? value) {
-                            setState(() {
-                              selectedSelahQaraba = value.toString();
-                            });
-                          },
-                        ),
-                      ),
-                      SizedBox(
-                        height: 20.h,
-                      ),
-                      Text(
-                        'نوع الهوية',
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.w600,
-                            fontFamily: 'poppins'),
-                      ),
-                      SizedBox(
-                        height: 10.h,
-                      ),
-                      Container(
-                        width: MediaQuery.of(context).size.width,
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            10.w, 3.h, 10.w, 3.h),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            border: Border.all(color: enableColor)),
-                        child: DropdownButtonFormField<String>(
-                          isExpanded: true,
-                          hint: Text(
-                            'نوع الهوية',
-                            style:
-                                TextStyle(color: enableColor, fontSize: 12.sp),
-                          ),
-                          value: selectedNohHaweya,
-                          decoration: InputDecoration(
-                            border: InputBorder.none, // Remove underline
-                          ),
-
-                          // underline: const SizedBox(),
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'رجاء اختيار نوع الهوية';
-                            }
-                            return null;
-                          },
-                          items: nohHaweya
-                              .map<DropdownMenuItem<String>>((String value) {
-                            return DropdownMenuItem<String>(
-                              value: value,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
+                            ),
+                            SizedBox(
+                              height: 20.h,
+                            ),
+                            Text(
+                              'رقم هاتف العمل',
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 16.sp,
+                                  fontWeight: FontWeight.w600,
+                                  fontFamily: 'poppins'),
+                            ),
+                            Container(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  10.w, 3.h, 10.w, 3.h),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8),
+                                  border: Border.all(color: enableColor)),
+                              child: Row(
                                 children: [
-                                  Text(
-                                    value,
-                                    style: TextStyle(
-                                        fontSize: 14.sp, color: gridcolor),
+                                  Expanded(
+                                    flex: 4,
+                                    child: TextFormField(
+                                      controller: workPhoneNumTextField,
+                                      keyboardType: TextInputType.number,
+                                      maxLength: 10,
+                                      style: TextStyle(
+                                          color: enableColor, fontSize: 12.sp),
+                                      inputFormatters: [
+                                        FilteringTextInputFormatter.digitsOnly,
+                                      ],
+                                      buildCounter: (BuildContext context,
+                                              {int? currentLength,
+                                              int? maxLength,
+                                              bool? isFocused}) =>
+                                          null,
+                                      decoration: InputDecoration(
+                                        border: InputBorder.none,
+                                        hintText: 'رقم هاتف العمل',
+                                      ),
+                                    ),
                                   ),
-                                  Divider(
-                                      // height: 2.h,
-                                      )
+                                  SizedBox(
+                                      width: 130.w,
+                                      child: CountryCodePicker(
+                                        onChanged: (code) {
+                                          fatherPhoneWorkCode = code.toString();
+                                          Fluttertoast.showToast(
+                                              msg: fatherPhoneWorkCode);
+                                        },
+                                        initialSelection: 'SA',
+                                        // Initial selection set to Saudi Arabia (KSA)
+                                        showCountryOnly: false,
+                                        showOnlyCountryWhenClosed: false,
+                                        alignLeft: false,
+                                      ))
+
+                                  // Expanded(
+                                  //     flex: 1,
+                                  //     child: Row(
+                                  //       children: [
+                                  //         SizedBox(
+                                  //           height: 20,
+                                  //           child: VerticalDivider(
+                                  //             color: enableColor,
+                                  //             thickness: 2,
+                                  //           ),
+                                  //         ),
+                                  //         Text('+966')
+                                  //       ],
+                                  //     ))
                                 ],
-                              ),
-                            );
-                          }).toList(),
-                          onChanged: (Object? value) {
-                            setState(() {
-                              selectedNohHaweya = value.toString();
-                            });
-                          },
-                        ),
-                      ),
-                      SizedBox(
-                        height: 20.h,
-                      ),
-                      RequiredTxt(txt: 'رقم الهوية'),
-                      SizedBox(
-                        height: 10.h,
-                      ),
-                      CustomTextFormField(
-                        controller: haweyaNumTextField,
-                        autoFocus: false,
-                        hint: 'رقم الهوية',
-                        validator: (text) {
-                          if (text!.isEmpty) {
-                            return 'رقم الهوية فارغ';
-                          } else if (text.length < 10) {
-                            return 'رقم الهوية يجب أن تكون أرقم فقط وتحتوي على 10 خانات فقط';
-                          }
-                          return null;
-                        },
-                      ),
-                      SizedBox(
-                        height: 20.h,
-                      ),
-                      RequiredTxt(txt: 'مصدر الهوية'),
-                      SizedBox(
-                        height: 10.h,
-                      ),
-                      CustomTextFormField(
-                        controller: haweyaSourceTextField,
-                        autoFocus: false,
-                        hint: 'مصدر الهوية',
-                        validator: (text) {
-                          if (text!.isEmpty) {
-                            return 'مصدر الهوية فارغ';
-                          }
-                          return null;
-                        },
-                      ),
-                      Text(
-                        'تاريخ انتهاء الهوية',
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.w600,
-                            fontFamily: 'poppins'),
-                      ),
-                      SizedBox(
-                        height: 10.h,
-                      ),
-                      CustomTextFormField(
-                        controller: expireHaweyaTextField,
-                        autoFocus: false,
-                        suffix: Icon(Icons.calendar_month),
-                        onSuffixPressed: () {
-                          _showDatePicker();
-                        },
-                        validator: (text) {
-                          if (text!.isEmpty) {
-                            return 'تاريخ انتهاء الهوية فارغ';
-                          }
-                          return null;
-                        },
-                        hint: 'تاريخ انتهاء الهوية',
-                      ),
-                      SizedBox(
-                        height: 20.h,
-                      ),
-                      Text(
-                        'رقم الجوال',
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.w600,
-                            fontFamily: 'poppins'),
-                      ),
-                      SizedBox(
-                        height: 10.h,
-                      ),
-                      Container(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            10.w, 3.h, 10.w, 3.h),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            border: Border.all(color: enableColor)),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              flex: 4,
-                              child: TextFormField(
-                                controller: phoneNumTextField,
-                                keyboardType: TextInputType.number,
-                                maxLength: 10,
-                                validator: (text) {
-                                  if (text!.isEmpty) {
-                                    return 'رقم الجوال فارغ';
-                                  }
-                                  return null;
-                                },
-                                style: TextStyle(
-                                    color: enableColor, fontSize: 12.sp),
-                                inputFormatters: [
-                                  FilteringTextInputFormatter.digitsOnly,
-                                ],
-                                buildCounter: (BuildContext context,
-                                        {int? currentLength,
-                                        int? maxLength,
-                                        bool? isFocused}) =>
-                                    null,
-                                decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  hintText: 'رقم الجوال',
-                                ),
                               ),
                             ),
                             SizedBox(
-                                width: 130.w,
-                                child: CountryCodePicker(
-                                  onChanged: (code) {
-                                    fatherPhoneCode = code.toString();
-                                  },
-                                  initialSelection: 'SA',
-                                  // Initial selection set to Saudi Arabia (KSA)
-                                  showCountryOnly: false,
-                                  showOnlyCountryWhenClosed: false,
-                                  alignLeft: false,
-                                ))
-                            // Expanded(
-                            //     flex: 1,
-                            //     child: Row(
-                            //       children: [
-                            //         SizedBox(
-                            //           height: 20,
-                            //           child: VerticalDivider(
-                            //             color: enableColor,
-                            //             thickness: 2,
-                            //           ),
-                            //         ),
-                            //         Text('+966')
-                            //       ],
-                            //     ))
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 20.h,
-                      ),
-                      Text(
-                        'رقم هاتف العمل',
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.w600,
-                            fontFamily: 'poppins'),
-                      ),
-                      Container(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            10.w, 3.h, 10.w, 3.h),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            border: Border.all(color: enableColor)),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              flex: 4,
-                              child: TextFormField(
-                                controller: workPhoneNumTextField,
-                                keyboardType: TextInputType.number,
-                                maxLength: 10,
-                                style: TextStyle(
-                                    color: enableColor, fontSize: 12.sp),
-                                inputFormatters: [
-                                  FilteringTextInputFormatter.digitsOnly,
+                              height: 20.h,
+                            ),
+                            RequiredTxt(txt: 'اسم قريب للطالب/ة1'),
+                            SizedBox(
+                              height: 10.h,
+                            ),
+                            CustomTextFormField(
+                              controller: qaribTaleb1ArabicTextField,
+                              autoFocus: false,
+                              // suffix: Icon(Icons.calendar_month),
+                              // onSuffixPressed: () {},
+                              hint: 'اسم قريب للطالب/ة1',
+
+                              validator: (text) {
+                                if (text!.isEmpty) {
+                                  return 'اسم قريب للطالب/ة1 فارغ';
+                                }
+                                return null;
+                              },
+                            ),
+                            SizedBox(
+                              height: 20.h,
+                            ),
+                            Text(
+                              'رقم الجوال',
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 16.sp,
+                                  fontWeight: FontWeight.w600,
+                                  fontFamily: 'poppins'),
+                            ),
+                            SizedBox(
+                              height: 10.h,
+                            ),
+                            Container(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  10.w, 3.h, 10.w, 3.h),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8),
+                                  border: Border.all(color: enableColor)),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    flex: 4,
+                                    child: TextFormField(
+                                      controller:
+                                          phoneNumQaribTaleb1ArabicTextField,
+                                      keyboardType: TextInputType.number,
+                                      maxLength: 10,
+                                      validator: (text) {
+                                        if (text!.isEmpty) {
+                                          return 'رقم الجوال فارغ';
+                                        }
+                                        return null;
+                                      },
+                                      style: TextStyle(
+                                          color: enableColor, fontSize: 12.sp),
+                                      inputFormatters: [
+                                        FilteringTextInputFormatter.digitsOnly,
+                                      ],
+                                      buildCounter: (BuildContext context,
+                                              {int? currentLength,
+                                              int? maxLength,
+                                              bool? isFocused}) =>
+                                          null,
+                                      decoration: InputDecoration(
+                                        border: InputBorder.none,
+                                        hintText: 'رقم الجوال',
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                      width: 130.w,
+                                      child: CountryCodePicker(
+                                        onChanged: (code) {
+                                          qareb1PhoneWorkCode = code.toString();
+                                        },
+                                        initialSelection: 'SA',
+                                        // Initial selection set to Saudi Arabia (KSA)
+                                        showCountryOnly: false,
+                                        showOnlyCountryWhenClosed: false,
+                                        alignLeft: false,
+                                      ))
                                 ],
-                                buildCounter: (BuildContext context,
-                                        {int? currentLength,
-                                        int? maxLength,
-                                        bool? isFocused}) =>
-                                    null,
-                                decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  hintText: 'رقم هاتف العمل',
-                                ),
                               ),
                             ),
                             SizedBox(
-                                width: 130.w,
-                                child: CountryCodePicker(
-                                  onChanged: (code) {
-                                    fatherPhoneWorkCode = code.toString();
-                                    Fluttertoast.showToast(
-                                        msg: fatherPhoneWorkCode);
-                                  },
-                                  initialSelection: 'SA',
-                                  // Initial selection set to Saudi Arabia (KSA)
-                                  showCountryOnly: false,
-                                  showOnlyCountryWhenClosed: false,
-                                  alignLeft: false,
-                                ))
+                              height: 20,
+                            ),
+                            RequiredTxt(txt: 'العنوان'),
+                            SizedBox(
+                              height: 10.h,
+                            ),
+                            CustomTextFormField(
+                              controller: addressQaribTaleb1ArabicTextField,
+                              autoFocus: false,
+                              // suffix: Icon(Icons.calendar_month),
+                              // onSuffixPressed: () {},
+                              hint: 'العنوان',
+                              validator: (text) {
+                                if (text!.isEmpty) {
+                                  return 'العنوان فارغ';
+                                }
+                                return null;
+                              },
+                            ),
+                            RequiredTxt(txt: 'اسم قريب للطالب/ة2'),
+                            SizedBox(
+                              height: 10.h,
+                            ),
+                            CustomTextFormField(
+                              controller: qaribTaleb2ArabicTextField,
+                              autoFocus: false,
+                              // suffix: Icon(Icons.calendar_month),
+                              // onSuffixPressed: () {},
+                              hint: 'اسم قريب للطالب/ة2',
 
-                            // Expanded(
-                            //     flex: 1,
-                            //     child: Row(
-                            //       children: [
-                            //         SizedBox(
-                            //           height: 20,
-                            //           child: VerticalDivider(
-                            //             color: enableColor,
-                            //             thickness: 2,
-                            //           ),
-                            //         ),
-                            //         Text('+966')
-                            //       ],
-                            //     ))
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 20.h,
-                      ),
-                      RequiredTxt(txt: 'اسم قريب للطالب/ة1'),
-                      SizedBox(
-                        height: 10.h,
-                      ),
-                      CustomTextFormField(
-                        controller: qaribTaleb1ArabicTextField,
-                        autoFocus: false,
-                        // suffix: Icon(Icons.calendar_month),
-                        // onSuffixPressed: () {},
-                        hint: 'اسم قريب للطالب/ة1',
-
-                        validator: (text) {
-                          if (text!.isEmpty) {
-                            return 'اسم قريب للطالب/ة1 فارغ';
-                          }
-                          return null;
-                        },
-                      ),
-                      SizedBox(
-                        height: 20.h,
-                      ),
-                      Text(
-                        'رقم الجوال',
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.w600,
-                            fontFamily: 'poppins'),
-                      ),
-                      SizedBox(
-                        height: 10.h,
-                      ),
-                      Container(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            10.w, 3.h, 10.w, 3.h),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            border: Border.all(color: enableColor)),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              flex: 4,
-                              child: TextFormField(
-                                controller: phoneNumQaribTaleb1ArabicTextField,
-                                keyboardType: TextInputType.number,
-                                maxLength: 10,
-                                validator: (text) {
-                                  if (text!.isEmpty) {
-                                    return 'رقم الجوال فارغ';
-                                  }
-                                  return null;
-                                },
-                                style: TextStyle(
-                                    color: enableColor, fontSize: 12.sp),
-                                inputFormatters: [
-                                  FilteringTextInputFormatter.digitsOnly,
+                              validator: (text) {
+                                if (text!.isEmpty) {
+                                  return 'اسم قريب للطالب/ة2 فارغ';
+                                }
+                                return null;
+                              },
+                            ),
+                            SizedBox(
+                              height: 20.h,
+                            ),
+                            Text(
+                              'رقم الجوال',
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 16.sp,
+                                  fontWeight: FontWeight.w600,
+                                  fontFamily: 'poppins'),
+                            ),
+                            SizedBox(
+                              height: 10.h,
+                            ),
+                            Container(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  10.w, 3.h, 10.w, 3.h),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8),
+                                  border: Border.all(color: enableColor)),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    flex: 4,
+                                    child: TextFormField(
+                                      controller:
+                                          phoneNumQaribTaleb2ArabicTextField,
+                                      keyboardType: TextInputType.number,
+                                      maxLength: 10,
+                                      buildCounter: (BuildContext context,
+                                              {int? currentLength,
+                                              int? maxLength,
+                                              bool? isFocused}) =>
+                                          null,
+                                      style: TextStyle(
+                                          color: enableColor, fontSize: 12.sp),
+                                      inputFormatters: [
+                                        FilteringTextInputFormatter.digitsOnly,
+                                      ],
+                                      validator: (text) {
+                                        if (text!.isEmpty) {
+                                          return 'رقم الجوال فارغ';
+                                        }
+                                        return null;
+                                      },
+                                      decoration: InputDecoration(
+                                        border: InputBorder.none,
+                                        hintText: 'رقم الجوال',
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                      width: 130.w,
+                                      child: CountryCodePicker(
+                                        onChanged: (code) {
+                                          qareb2PhoneWorkCode = code.toString();
+                                        },
+                                        initialSelection: 'SA',
+                                        // Initial selection set to Saudi Arabia (KSA)
+                                        showCountryOnly: false,
+                                        showOnlyCountryWhenClosed: false,
+                                        alignLeft: false,
+                                      ))
                                 ],
-                                buildCounter: (BuildContext context,
-                                        {int? currentLength,
-                                        int? maxLength,
-                                        bool? isFocused}) =>
-                                    null,
-                                decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  hintText: 'رقم الجوال',
-                                ),
                               ),
                             ),
                             SizedBox(
-                                width: 130.w,
-                                child: CountryCodePicker(
-                                  onChanged: (code) {
-                                    qareb1PhoneWorkCode = code.toString();
-                                  },
-                                  initialSelection: 'SA',
-                                  // Initial selection set to Saudi Arabia (KSA)
-                                  showCountryOnly: false,
-                                  showOnlyCountryWhenClosed: false,
-                                  alignLeft: false,
-                                ))
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      RequiredTxt(txt: 'العنوان'),
-                      SizedBox(
-                        height: 10.h,
-                      ),
-                      CustomTextFormField(
-                        controller: addressQaribTaleb1ArabicTextField,
-                        autoFocus: false,
-                        // suffix: Icon(Icons.calendar_month),
-                        // onSuffixPressed: () {},
-                        hint: 'العنوان',
-                        validator: (text) {
-                          if (text!.isEmpty) {
-                            return 'العنوان فارغ';
-                          }
-                          return null;
-                        },
-                      ),
-                      RequiredTxt(txt: 'اسم قريب للطالب/ة2'),
-                      SizedBox(
-                        height: 10.h,
-                      ),
-                      CustomTextFormField(
-                        controller: qaribTaleb2ArabicTextField,
-                        autoFocus: false,
-                        // suffix: Icon(Icons.calendar_month),
-                        // onSuffixPressed: () {},
-                        hint: 'اسم قريب للطالب/ة2',
+                              height: 20,
+                            ),
+                            RequiredTxt(txt: 'العنوان'),
+                            SizedBox(
+                              height: 10.h,
+                            ),
+                            CustomTextFormField(
+                              controller: addressQaribTaleb2ArabicTextField,
+                              autoFocus: false,
 
-                        validator: (text) {
-                          if (text!.isEmpty) {
-                            return 'اسم قريب للطالب/ة2 فارغ';
-                          }
-                          return null;
-                        },
-                      ),
-                      SizedBox(
-                        height: 20.h,
-                      ),
-                      Text(
-                        'رقم الجوال',
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.w600,
-                            fontFamily: 'poppins'),
-                      ),
-                      SizedBox(
-                        height: 10.h,
-                      ),
-                      Container(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            10.w, 3.h, 10.w, 3.h),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            border: Border.all(color: enableColor)),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              flex: 4,
-                              child: TextFormField(
-                                controller: phoneNumQaribTaleb2ArabicTextField,
-                                keyboardType: TextInputType.number,
-                                maxLength: 10,
-                                buildCounter: (BuildContext context,
-                                        {int? currentLength,
-                                        int? maxLength,
-                                        bool? isFocused}) =>
-                                    null,
-                                style: TextStyle(
-                                    color: enableColor, fontSize: 12.sp),
-                                inputFormatters: [
-                                  FilteringTextInputFormatter.digitsOnly,
-                                ],
-                                validator: (text) {
-                                  if (text!.isEmpty) {
-                                    return 'رقم الجوال فارغ';
-                                  }
-                                  return null;
-                                },
-                                decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  hintText: 'رقم الجوال',
-                                ),
-                              ),
+                              // suffix: Icon(Icons.calendar_month),
+                              // onSuffixPressed: () {},
+                              hint: 'العنوان',
+
+                              validator: (text) {
+                                if (text!.isEmpty) {
+                                  return 'العنوان فارغ';
+                                }
+                                return null;
+                              },
                             ),
                             SizedBox(
-                                width: 130.w,
-                                child: CountryCodePicker(
-                                  onChanged: (code) {
-                                    qareb2PhoneWorkCode = code.toString();
-                                  },
-                                  initialSelection: 'SA',
-                                  // Initial selection set to Saudi Arabia (KSA)
-                                  showCountryOnly: false,
-                                  showOnlyCountryWhenClosed: false,
-                                  alignLeft: false,
-                                ))
+                              height: 20.h,
+                            ),
+                            NextPreviousButtons(
+                              nextPressed: () {
+                                if (formKey.currentState!.validate()) {
+                                  navigateTo(
+                                      context, SignUpCommunicationInfo());
+                                }
+                              },
+                            )
                           ],
                         ),
                       ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      RequiredTxt(txt: 'العنوان'),
-                      SizedBox(
-                        height: 10.h,
-                      ),
-                      CustomTextFormField(
-                        controller: addressQaribTaleb2ArabicTextField,
-                        autoFocus: false,
-
-                        // suffix: Icon(Icons.calendar_month),
-                        // onSuffixPressed: () {},
-                        hint: 'العنوان',
-
-                        validator: (text) {
-                          if (text!.isEmpty) {
-                            return 'العنوان فارغ';
-                          }
-                          return null;
-                        },
-                      ),
-                      SizedBox(
-                        height: 20.h,
-                      ),
-                      NextPreviousButtons(
-                        nextPressed: () {
-                          if (formKey.currentState!.validate()) {
-                            navigateTo(context, SignUpCommunicationInfo());
-                          }
-                        },
-                      )
-                    ],
-                  ),
-                ),
-              ),
+                    ),
             ),
           );
         },
