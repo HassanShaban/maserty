@@ -9,6 +9,7 @@ import 'package:maserty/features/login/presentation/widgets/custom_text_field.da
 import 'package:maserty/features/request_job/presentation/pages/communication_info.dart';
 import 'package:maserty/features/request_job/presentation/widgets/header.dart';
 import 'package:maserty/features/request_job/presentation/widgets/next_previous_buttons.dart';
+import 'package:maserty/features/sign_up/data/model/registration_model.dart';
 import 'package:maserty/features/sign_up/presentation/cubit/sign_up_cubit.dart';
 import 'package:maserty/features/sign_up/presentation/cubit/sign_up_state.dart';
 import 'package:maserty/features/sign_up/presentation/pages/sign_up_communication_data.dart';
@@ -73,7 +74,10 @@ class _FatherDataState extends State<FatherData> {
   String qareb2PhoneWorkCode = '+966';
   var formKey = GlobalKey<FormState>();
   late SignUpCubit signUpCubit;
-
+  Countries? country;
+  Relations? relation;
+  IdentityTypes? identityType;
+  Cities? city;
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -186,17 +190,77 @@ class _FatherDataState extends State<FatherData> {
                             SizedBox(
                               height: 10.h,
                             ),
-                            CustomTextFormField(
-                              controller: nationalityArabicTextField,
-                              autoFocus: false,
-                              hint: 'الجنسية',
-                              onlyArabic: true,
-                              validator: (text) {
-                                if (text!.isEmpty) {
-                                  return 'الجنسية فارغة';
-                                }
-                                return null;
-                              },
+
+                            // CustomTextFormField(
+                            //   controller: nationalityArabicTextField,
+                            //   autoFocus: false,
+                            //   hint: 'الجنسية',
+                            //   onlyArabic: true,
+                            //   validator: (text) {
+                            //     if (text!.isEmpty) {
+                            //       return 'الجنسية فارغة';
+                            //     }
+                            //     return null;
+                            //   },
+                            // ),
+
+                            Container(
+                              width: MediaQuery.of(context).size.width,
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  10.w, 3.h, 10.w, 3.h),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8.r),
+                                  border: Border.all(color: enableColor)),
+                              child: DropdownButtonFormField<Countries?>(
+                                isExpanded: true,
+                                hint: Text(
+                                  'الجنسية',
+                                  style: TextStyle(
+                                      color: enableColor, fontSize: 12.sp),
+                                ),
+                                value: country,
+
+                                decoration: InputDecoration(
+                                  border: InputBorder.none, // Remove underline
+                                ),
+
+                                // underline: const SizedBox(),
+                                validator: (value) {
+                                  if (value == null) {
+                                    return 'رجاء اختيار جنسية';
+                                  }
+                                  return null;
+                                },
+                                items: signUpCubit.countries
+                                    .map<DropdownMenuItem<Countries>>(
+                                        (Countries value) {
+                                  return DropdownMenuItem<Countries>(
+                                    value: value,
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      children: [
+                                        Text(
+                                          value.nameAr,
+                                          style: TextStyle(
+                                              fontSize: 14.sp,
+                                              color: gridcolor),
+                                        ),
+                                        Divider(
+                                            // height: 2.h,
+                                            )
+                                      ],
+                                    ),
+                                  );
+                                }).toList(),
+                                onChanged: (Countries? value) {
+                                  setState(() {
+                                    country = value!;
+                                  });
+                                },
+                              ),
                             ),
                             SizedBox(
                               height: 20.h,
@@ -219,14 +283,14 @@ class _FatherDataState extends State<FatherData> {
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(8),
                                   border: Border.all(color: enableColor)),
-                              child: DropdownButtonFormField<String>(
+                              child: DropdownButtonFormField<Relations>(
                                 isExpanded: true,
                                 hint: Text(
                                   'صلة القرابة',
                                   style: TextStyle(
                                       color: enableColor, fontSize: 12.sp),
                                 ),
-                                value: selectedSelahQaraba,
+                                value: relation,
 
                                 decoration: InputDecoration(
                                   border: InputBorder.none, // Remove underline
@@ -234,15 +298,15 @@ class _FatherDataState extends State<FatherData> {
 
                                 // underline: const SizedBox(),
                                 validator: (value) {
-                                  if (value == null || value.isEmpty) {
+                                  if (value == null) {
                                     return 'رجاء اختيار صلة القرابة';
                                   }
                                   return null;
                                 },
-                                items: selahQaraba
-                                    .map<DropdownMenuItem<String>>(
-                                        (String value) {
-                                  return DropdownMenuItem<String>(
+                                items: signUpCubit.relations
+                                    .map<DropdownMenuItem<Relations>>(
+                                        (Relations value) {
+                                  return DropdownMenuItem<Relations>(
                                     value: value,
                                     child: Column(
                                       crossAxisAlignment:
@@ -251,7 +315,7 @@ class _FatherDataState extends State<FatherData> {
                                           MainAxisAlignment.spaceAround,
                                       children: [
                                         Text(
-                                          value,
+                                          value.titleAr,
                                           style: TextStyle(
                                               fontSize: 14.sp,
                                               color: gridcolor),
@@ -263,9 +327,9 @@ class _FatherDataState extends State<FatherData> {
                                     ),
                                   );
                                 }).toList(),
-                                onChanged: (Object? value) {
+                                onChanged: (Relations? value) {
                                   setState(() {
-                                    selectedSelahQaraba = value.toString();
+                                    relation = value!;
                                   });
                                 },
                               ),
@@ -291,28 +355,29 @@ class _FatherDataState extends State<FatherData> {
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(8),
                                   border: Border.all(color: enableColor)),
-                              child: DropdownButtonFormField<String>(
+                              child: DropdownButtonFormField<IdentityTypes>(
                                 isExpanded: true,
                                 hint: Text(
                                   'نوع الهوية',
                                   style: TextStyle(
                                       color: enableColor, fontSize: 12.sp),
                                 ),
-                                value: selectedNohHaweya,
+                                value: identityType,
                                 decoration: InputDecoration(
                                   border: InputBorder.none, // Remove underline
                                 ),
 
                                 // underline: const SizedBox(),
                                 validator: (value) {
-                                  if (value == null || value.isEmpty) {
+                                  if (value == null ) {
                                     return 'رجاء اختيار نوع الهوية';
                                   }
                                   return null;
                                 },
-                                items: nohHaweya.map<DropdownMenuItem<String>>(
-                                    (String value) {
-                                  return DropdownMenuItem<String>(
+                                items: signUpCubit.identityTypes
+                                    .map<DropdownMenuItem<IdentityTypes>>(
+                                        (IdentityTypes value) {
+                                  return DropdownMenuItem<IdentityTypes>(
                                     value: value,
                                     child: Column(
                                       crossAxisAlignment:
@@ -321,7 +386,7 @@ class _FatherDataState extends State<FatherData> {
                                           MainAxisAlignment.spaceAround,
                                       children: [
                                         Text(
-                                          value,
+                                          value.titleAr,
                                           style: TextStyle(
                                               fontSize: 14.sp,
                                               color: gridcolor),
@@ -333,9 +398,9 @@ class _FatherDataState extends State<FatherData> {
                                     ),
                                   );
                                 }).toList(),
-                                onChanged: (Object? value) {
+                                onChanged: (IdentityTypes? value) {
                                   setState(() {
-                                    selectedNohHaweya = value.toString();
+                                    identityType = value;
                                   });
                                 },
                               ),
@@ -367,16 +432,75 @@ class _FatherDataState extends State<FatherData> {
                             SizedBox(
                               height: 10.h,
                             ),
-                            CustomTextFormField(
-                              controller: haweyaSourceTextField,
-                              autoFocus: false,
-                              hint: 'مصدر الهوية',
-                              validator: (text) {
-                                if (text!.isEmpty) {
-                                  return 'مصدر الهوية فارغ';
-                                }
-                                return null;
-                              },
+                            // CustomTextFormField(
+                            //   controller: haweyaSourceTextField,
+                            //   autoFocus: false,
+                            //   hint: 'مصدر الهوية',
+                            //   validator: (text) {
+                            //     if (text!.isEmpty) {
+                            //       return 'مصدر الهوية فارغ';
+                            //     }
+                            //     return null;
+                            //   },
+                            // ),
+
+                            Container(
+                              width: MediaQuery.of(context).size.width,
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  10.w, 3.h, 10.w, 3.h),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8.r),
+                                  border: Border.all(color: enableColor)),
+                              child: DropdownButtonFormField<Cities?>(
+                                isExpanded: true,
+                                hint: Text(
+                                  'مصدر الهوية',
+                                  style: TextStyle(
+                                      color: enableColor, fontSize: 12.sp),
+                                ),
+                                value: city,
+
+                                decoration: InputDecoration(
+                                  border: InputBorder.none, // Remove underline
+                                ),
+
+                                // underline: const SizedBox(),
+                                validator: (value) {
+                                  if (value == null) {
+                                    return 'رجاء اختيار مصدر الهوية';
+                                  }
+                                  return null;
+                                },
+                                items: signUpCubit.cities
+                                    .map<DropdownMenuItem<Cities>>(
+                                        (Cities value) {
+                                      return DropdownMenuItem<Cities>(
+                                        value: value,
+                                        child: Column(
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                          mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                          children: [
+                                            Text(
+                                              value.nameAr,
+                                              style: TextStyle(
+                                                  fontSize: 14.sp,
+                                                  color: gridcolor),
+                                            ),
+                                            Divider(
+                                              // height: 2.h,
+                                            )
+                                          ],
+                                        ),
+                                      );
+                                    }).toList(),
+                                onChanged: (Cities? value) {
+                                  setState(() {
+                                    city = value!;
+                                  });
+                                },
+                              ),
                             ),
                             Text(
                               'تاريخ انتهاء الهوية',
@@ -776,7 +900,10 @@ class _FatherDataState extends State<FatherData> {
                               nextPressed: () {
                                 if (formKey.currentState!.validate()) {
                                   navigateTo(
-                                      context, SignUpCommunicationInfo());
+                                      context, SignUpCommunicationInfo(
+                                    cities: signUpCubit.cities,
+                                    housingTypes: signUpCubit.housingTypes,
+                                  ));
                                 }
                               },
                             )

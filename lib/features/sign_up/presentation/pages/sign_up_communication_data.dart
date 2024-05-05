@@ -5,22 +5,41 @@ import 'package:maserty/features/login/presentation/widgets/custom_text_field.da
 import 'package:maserty/features/request_job/presentation/pages/qualification.dart';
 import 'package:maserty/features/request_job/presentation/widgets/header.dart';
 import 'package:maserty/features/request_job/presentation/widgets/next_previous_buttons.dart';
+import 'package:maserty/features/sign_up/data/model/registration_model.dart';
 import 'package:maserty/features/sign_up/presentation/pages/marital_status_data.dart';
 import 'package:maserty/style/colors/colors.dart';
 import 'package:maserty/utils/navigation_widget.dart';
 
-class SignUpCommunicationInfo extends StatelessWidget {
-  SignUpCommunicationInfo({Key? key}) : super(key: key);
+class SignUpCommunicationInfo extends StatefulWidget {
+  SignUpCommunicationInfo({Key? key , required this.cities , required this.housingTypes}) : super(key: key);
+  List<Cities> cities;
+  List<HousingTypes> housingTypes;
+  @override
+  State<SignUpCommunicationInfo> createState() => _SignUpCommunicationInfoState();
+}
+
+class _SignUpCommunicationInfoState extends State<SignUpCommunicationInfo> {
   TextEditingController madina = TextEditingController();
+
   TextEditingController hayee = TextEditingController();
+
   TextEditingController mainStreet = TextEditingController();
+
   TextEditingController subStreet = TextEditingController();
+
   TextEditingController homeNum = TextEditingController();
+
   TextEditingController email = TextEditingController();
+
   TextEditingController postalCode = TextEditingController();
+
   TextEditingController mailBox = TextEditingController();
+
   TextEditingController addressInVacation = TextEditingController();
+
   var formKey = GlobalKey<FormState>();
+
+  Cities? city;
 
   @override
   Widget build(BuildContext context) {
@@ -52,16 +71,75 @@ class SignUpCommunicationInfo extends StatelessWidget {
                 SizedBox(
                   height: 10.h,
                 ),
-                CustomTextFormField(
-                  controller: madina,
-                  autoFocus: true,
-                  hint: 'المدينة',
-                  validator: (text) {
-                    if (text!.isEmpty) {
-                      return 'هذا الحقل مطلوب';
-                    }
-                    return null;
-                  },
+                // CustomTextFormField(
+                //   controller: madina,
+                //   autoFocus: true,
+                //   hint: 'المدينة',
+                //   validator: (text) {
+                //     if (text!.isEmpty) {
+                //       return 'هذا الحقل مطلوب';
+                //     }
+                //     return null;
+                //   },
+                // ),
+
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  padding: EdgeInsetsDirectional.fromSTEB(
+                      10.w, 3.h, 10.w, 3.h),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8.r),
+                      border: Border.all(color: enableColor)),
+                  child: DropdownButtonFormField<Cities?>(
+                    isExpanded: true,
+                    hint: Text(
+                      'المدينة',
+                      style: TextStyle(
+                          color: enableColor, fontSize: 12.sp),
+                    ),
+                    value: city,
+
+                    decoration: InputDecoration(
+                      border: InputBorder.none, // Remove underline
+                    ),
+
+                    // underline: const SizedBox(),
+                    validator: (value) {
+                      if (value == null) {
+                        return 'رجاء اختيار المدينة';
+                      }
+                      return null;
+                    },
+                    items: widget.cities
+                        .map<DropdownMenuItem<Cities>>(
+                            (Cities value) {
+                          return DropdownMenuItem<Cities>(
+                            value: value,
+                            child: Column(
+                              crossAxisAlignment:
+                              CrossAxisAlignment.start,
+                              mainAxisAlignment:
+                              MainAxisAlignment.spaceAround,
+                              children: [
+                                Text(
+                                  value.nameAr,
+                                  style: TextStyle(
+                                      fontSize: 14.sp,
+                                      color: gridcolor),
+                                ),
+                                Divider(
+                                  // height: 2.h,
+                                )
+                              ],
+                            ),
+                          );
+                        }).toList(),
+                    onChanged: (Cities? value) {
+                      setState(() {
+                        city = value!;
+                      });
+                    },
+                  ),
                 ),
                 SizedBox(
                   height: 20.h,
@@ -232,7 +310,9 @@ class SignUpCommunicationInfo extends StatelessWidget {
                   },
                   nextPressed: () {
                     if (formKey.currentState!.validate())
-                      navigateTo(context, MaritalStatusData());
+                      navigateTo(context, MaritalStatusData(
+                        housingTypes: widget.housingTypes,
+                      ));
                   },
                 )
               ],

@@ -15,8 +15,12 @@ class SignUpCubit extends Cubit<SignUpState> {
 
   bool isGettingAllSignUpData = false;
 
-  late Registration AllDataSignUp;
-
+  late Registration allDataSignUp;
+  late List<Countries> countries;
+  late  List<Relations> relations;
+  late List<IdentityTypes> identityTypes;
+  late List<Cities> cities;
+  late List<HousingTypes> housingTypes;
   Future<void> getAllRegisterData() async {
     isGettingAllSignUpData = true;
     emit(GetAllSignUpDataState());
@@ -27,7 +31,17 @@ class SignUpCubit extends Cubit<SignUpState> {
       Fluttertoast.showToast(msg: 'Failed');
     }, (signUp) {
       isGettingAllSignUpData = false;
-      AllDataSignUp = signUp;
+      allDataSignUp = signUp;
+      countries = allDataSignUp.countries;
+      for(int i = 0; i < countries.length; i++){
+        if(countries[i].code == 'SA'){
+          cities = countries[i].cities;
+          break;
+        }
+      }
+      relations = allDataSignUp.relations;
+      identityTypes = allDataSignUp.identityTypes;
+      housingTypes = allDataSignUp.housingTypes;
       emit(GetAllSignUpDataSuccessState());
       Fluttertoast.showToast(msg: 'Success');
     });
