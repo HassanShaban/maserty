@@ -1,6 +1,5 @@
-import 'package:maserty/features/sign_up/domain/entity/registration_entity.dart';
 
-class Registration extends RegistrationEntity{
+class Registration {
   Registration({
     required this.isAvailable,
     required this.messageAr,
