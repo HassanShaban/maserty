@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:maserty/features/land.dart';
+import 'package:maserty/features/quraan/land.dart';
 import 'package:maserty/features/quraan/navigate_to_quran_screen.dart';
 import 'package:maserty/features/quraan/quran_screen.dart';
 import 'package:maserty/features/walk_through/walk_through.dart';

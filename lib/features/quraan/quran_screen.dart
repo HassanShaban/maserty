@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:maserty/features/land.dart';
+import 'package:maserty/features/quraan/land.dart';
 
 import '../../utils/cash_helper.dart';
 import '../../utils/constants.dart';

@@ -10,8 +10,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:maserty/features/diff_quran_tabaa.dart';
-import 'package:maserty/features/land.dart';
+import 'package:maserty/features/quraan/diff_quran_tabaa.dart';
+import 'package:maserty/features/quraan/land.dart';
 import 'package:maserty/features/quraan/selected_ayah_data.dart';
 
 

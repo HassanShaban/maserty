@@ -1,5 +1,5 @@
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:maserty/features/diff_quran_tabaa.dart';
+import 'package:maserty/features/quraan/diff_quran_tabaa.dart';
 import 'package:maserty/features/quraan/selected_ayah_data.dart';
 
 import 'Entries.dart';
