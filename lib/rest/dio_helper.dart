@@ -9,7 +9,7 @@ class DioHelper {
   int x = 0;
   static init() {
     BaseOptions options = new BaseOptions(
-      baseUrl: 'https://wsapi.dexef.com/',
+      baseUrl: 'https://masiratiapi.azurewebsites.net/',
       // baseUrl: 'https://devpos.dexef.com/',
       receiveDataWhenStatusError: true,
     );
@@ -77,6 +77,19 @@ class DioHelper {
     Map<String, dynamic>? query,
   }) async {
     return await dio!.patch(
+      url!,
+      queryParameters: query,
+      options: Options(headers: {
+        HttpHeaders.contentTypeHeader: "application/json",
+      }),
+    );
+  }
+  // put
+  static Future<Response> putData({
+    @required String? url,
+    Map<String, dynamic>? query,
+  }) async {
+    return await dio!.put(
       url!,
       queryParameters: query,
       options: Options(headers: {

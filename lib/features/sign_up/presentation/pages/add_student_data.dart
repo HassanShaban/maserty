@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:maserty/core/widget/required_text.dart';
 import 'package:maserty/features/login/presentation/widgets/custom_text_field.dart';
 import 'package:maserty/features/request_job/presentation/pages/communication_info.dart';
 import 'package:maserty/features/request_job/presentation/widgets/header.dart';
@@ -49,22 +50,7 @@ class _AddStudentDataState extends State<AddStudentData> {
               SizedBox(
                 height: 30.h,
               ),
-              Row(
-                children: [
-                  Text(
-                    'الاسم الأول عربي',
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.w600,
-                        fontFamily: 'poppins'),
-                  ),
-                  Icon(
-                    Icons.star_border_purple500_rounded,
-                    color: requiredField,
-                  )
-                ],
-              ),
+              RequiredTxt(txt: 'الاسم الأول عربي'),
               SizedBox(
                 height: 10.h,
               ),
@@ -76,22 +62,9 @@ class _AddStudentDataState extends State<AddStudentData> {
               SizedBox(
                 height: 20.h,
               ),
-              Row(
-                children: [
-                  Text(
-                    'اسم الأب عربي',
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.w600,
-                        fontFamily: 'poppins'),
-                  ),
-                  Icon(
-                    Icons.star_border_purple500_rounded,
-                    color: requiredField,
-                  )
-                ],
-              ),
+
+              RequiredTxt(txt: 'اسم الأب عربي'),
+
               SizedBox(
                 height: 10.h,
               ),
@@ -103,22 +76,9 @@ class _AddStudentDataState extends State<AddStudentData> {
               SizedBox(
                 height: 20.h,
               ),
-              Row(
-                children: [
-                  Text(
-                    'اسم الجد عربي',
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.w600,
-                        fontFamily: 'poppins'),
-                  ),
-                  Icon(
-                    Icons.star_border_purple500_rounded,
-                    color: requiredField,
-                  )
-                ],
-              ),
+
+              RequiredTxt(txt: 'اسم الجد عربي'),
+
               SizedBox(
                 height: 10.h,
               ),
@@ -130,22 +90,9 @@ class _AddStudentDataState extends State<AddStudentData> {
               SizedBox(
                 height: 20.h,
               ),
-              Row(
-                children: [
-                  Text(
-                    'اللقب عربي',
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.w600,
-                        fontFamily: 'poppins'),
-                  ),
-                  Icon(
-                    Icons.star_border_purple500_rounded,
-                    color: requiredField,
-                  )
-                ],
-              ),
+
+              RequiredTxt(txt: 'اللقب عربي'),
+
               SizedBox(
                 height: 10.h,
               ),
@@ -157,22 +104,9 @@ class _AddStudentDataState extends State<AddStudentData> {
               SizedBox(
                 height: 20.h,
               ),
-              Row(
-                children: [
-                  Text(
-                    'اللقب انجليزي',
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.w600,
-                        fontFamily: 'poppins'),
-                  ),
-                  Icon(
-                    Icons.star_border_purple500_rounded,
-                    color: requiredField,
-                  )
-                ],
-              ),
+
+              RequiredTxt(txt: 'اللقب انجليزي'),
+
               SizedBox(
                 height: 10.h,
               ),
@@ -184,22 +118,9 @@ class _AddStudentDataState extends State<AddStudentData> {
               SizedBox(
                 height: 20.h,
               ),
-              Row(
-                children: [
-                  Text(
-                    'الاسم الأول انجليزي',
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.w600,
-                        fontFamily: 'poppins'),
-                  ),
-                  Icon(
-                    Icons.star_border_purple500_rounded,
-                    color: requiredField,
-                  )
-                ],
-              ),
+
+              RequiredTxt(txt: 'الاسم الأول انجليزي'),
+
               SizedBox(
                 height: 10.h,
               ),
@@ -211,22 +132,9 @@ class _AddStudentDataState extends State<AddStudentData> {
               SizedBox(
                 height: 20.h,
               ),
-              Row(
-                children: [
-                  Text(
-                    'اسم الأب انجليزي',
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.w600,
-                        fontFamily: 'poppins'),
-                  ),
-                  Icon(
-                    Icons.star_border_purple500_rounded,
-                    color: requiredField,
-                  )
-                ],
-              ),
+
+              RequiredTxt(txt: 'اسم الأب انجليزي'),
+
               SizedBox(
                 height: 10.h,
               ),
@@ -238,22 +146,8 @@ class _AddStudentDataState extends State<AddStudentData> {
               SizedBox(
                 height: 20.h,
               ),
-              Row(
-                children: [
-                  Text(
-                    'اسم الجد انجليزي',
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.w600,
-                        fontFamily: 'poppins'),
-                  ),
-                  Icon(
-                    Icons.star_border_purple500_rounded,
-                    color: requiredField,
-                  )
-                ],
-              ),
+              RequiredTxt(txt: 'اسم الجد انجليزي'),
+
               SizedBox(
                 height: 10.h,
               ),
@@ -265,22 +159,9 @@ class _AddStudentDataState extends State<AddStudentData> {
               SizedBox(
                 height: 20.h,
               ),
-              Row(
-                children: [
-                  Text(
-                    'الجنسية',
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.w600,
-                        fontFamily: 'poppins'),
-                  ),
-                  Icon(
-                    Icons.star_border_purple500_rounded,
-                    color: requiredField,
-                  )
-                ],
-              ),
+
+              RequiredTxt(txt: 'الجنسية'),
+
               SizedBox(
                 height: 10.h,
               ),
@@ -437,22 +318,8 @@ class _AddStudentDataState extends State<AddStudentData> {
               SizedBox(
                 height: 20.h,
               ),
-              Row(
-                children: [
-                  Text(
-                    'مكان الميلاد/الدولة',
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.w600,
-                        fontFamily: 'poppins'),
-                  ),
-                  Icon(
-                    Icons.star_border_purple500_rounded,
-                    color: requiredField,
-                  )
-                ],
-              ),
+              RequiredTxt(txt: 'مكان الميلاد/الدولة'),
+
               SizedBox(
                 height: 10.h,
               ),
@@ -464,22 +331,8 @@ class _AddStudentDataState extends State<AddStudentData> {
               SizedBox(
                 height: 20.h,
               ),
-              Row(
-                children: [
-                  Text(
-                    'مكان الميلاد/المدينة',
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.w600,
-                        fontFamily: 'poppins'),
-                  ),
-                  Icon(
-                    Icons.star_border_purple500_rounded,
-                    color: requiredField,
-                  )
-                ],
-              ),
+              RequiredTxt(txt: 'مكان الميلاد/المدينة'),
+
               SizedBox(
                 height: 10.h,
               ),
@@ -792,22 +645,9 @@ class _AddStudentDataState extends State<AddStudentData> {
                 Text('هل يواجه الطالب/ة اي مشاكل في المدرسة')
               ],),
               SizedBox(height: 20.h,),
-              Row(
-                children: [
-                  Text(
-                    'هوايات الطالب/ة',
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.w600,
-                        fontFamily: 'poppins'),
-                  ),
-                  Icon(
-                    Icons.star_border_purple500_rounded,
-                    color: requiredField,
-                  )
-                ],
-              ),
+
+              RequiredTxt(txt: 'هوايات الطالب/ة'),
+
               SizedBox(
                 height: 10.h,
               ),

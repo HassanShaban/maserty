@@ -17,8 +17,8 @@ class _SplashScreenState extends State<SplashScreen> implements NavigateToQuranS
   void initState() {
 
     Future.delayed(const Duration(seconds: 2)).then((val) {
-      navigateAndFinish(context, QuranScreen(navigateToQuranScreen: this,    landscapeMode: this,));
-
+      // navigateAndFinish(context, QuranScreen(navigateToQuranScreen: this,    landscapeMode: this,));
+       navigateAndFinish(context, WalkThrough());
     });
 
     super.initState();
