@@ -1,3 +1,0 @@
-class NavigateToQuranScreen{
-  void navigateToQuranScreen(){}
-}

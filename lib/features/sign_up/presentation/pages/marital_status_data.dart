@@ -312,8 +312,9 @@ class _MaritalStatusDataState extends State<MaritalStatusData> {
                     Navigator.pop(context);
                   },
                   nextPressed: () {
-                    if (formKey.currentState!.validate())
-                      navigateTo(context, StudentData());
+                    navigateTo(context, StudentData());
+                   /* if (formKey.currentState!.validate())
+                      navigateTo(context, StudentData());*/
                   },
                 )
               ],

@@ -1,3 +1,5 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:maserty/core/widget/required_text.dart';
@@ -9,6 +11,7 @@ import 'package:maserty/features/request_job/presentation/widgets/save_cancel.da
 import 'package:maserty/features/sign_up/presentation/pages/student_data.dart';
 import 'package:maserty/style/colors/colors.dart';
 import 'package:maserty/utils/navigation_widget.dart';
+import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 class AddStudentData extends StatefulWidget {
   AddStudentData({Key? key}) : super(key: key);
@@ -25,9 +28,48 @@ class _AddStudentDataState extends State<AddStudentData> {
   TextEditingController grandFatherArabicTextField = TextEditingController();
 
   TextEditingController confirmPasswordTextField = TextEditingController();
-
+  TextEditingController endDateTextField = TextEditingController();
+  TextEditingController dateOfBirthTextField = TextEditingController();
+  TextEditingController CountryTextField = TextEditingController();
+  TextEditingController CityTextField = TextEditingController();
   int currentSexIndex = -1;
   List<String> degree = ['College'];
+
+  final CalendarController cal = CalendarController();
+
+  _showDatePicker() {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return Dialog(
+              child: Container(
+            height: 450.h,
+            child: SfCalendar(
+                view: CalendarView.month,
+                controller: cal,
+                initialSelectedDate: DateTime.now(),
+                onTap: _onSelectionChanged),
+          ));
+        });
+  }
+
+  String intehahHaweyaDate = DateFormat('yyyy-MM-dd', Locale('en').toString())
+      .format(DateTime.now())
+      .toString();
+
+  // On Date Changed
+  void _onSelectionChanged(CalendarTapDetails details) {
+    // close date picker.
+    Navigator.pop(context);
+    if (details.date is DateTime) {
+      intehahHaweyaDate = DateFormat('yyyy-MM-dd', Locale('en').toString())
+          .format(details.date!)
+          .toString();
+
+      endDateTextField.text = intehahHaweyaDate;
+    }
+  }
+// pich photo from gellery
 
   @override
   Widget build(BuildContext context) {
@@ -62,9 +104,7 @@ class _AddStudentDataState extends State<AddStudentData> {
               SizedBox(
                 height: 20.h,
               ),
-
               RequiredTxt(txt: 'اسم الأب عربي'),
-
               SizedBox(
                 height: 10.h,
               ),
@@ -76,9 +116,7 @@ class _AddStudentDataState extends State<AddStudentData> {
               SizedBox(
                 height: 20.h,
               ),
-
               RequiredTxt(txt: 'اسم الجد عربي'),
-
               SizedBox(
                 height: 10.h,
               ),
@@ -90,9 +128,7 @@ class _AddStudentDataState extends State<AddStudentData> {
               SizedBox(
                 height: 20.h,
               ),
-
               RequiredTxt(txt: 'اللقب عربي'),
-
               SizedBox(
                 height: 10.h,
               ),
@@ -104,9 +140,7 @@ class _AddStudentDataState extends State<AddStudentData> {
               SizedBox(
                 height: 20.h,
               ),
-
               RequiredTxt(txt: 'اللقب انجليزي'),
-
               SizedBox(
                 height: 10.h,
               ),
@@ -118,9 +152,7 @@ class _AddStudentDataState extends State<AddStudentData> {
               SizedBox(
                 height: 20.h,
               ),
-
               RequiredTxt(txt: 'الاسم الأول انجليزي'),
-
               SizedBox(
                 height: 10.h,
               ),
@@ -132,9 +164,7 @@ class _AddStudentDataState extends State<AddStudentData> {
               SizedBox(
                 height: 20.h,
               ),
-
               RequiredTxt(txt: 'اسم الأب انجليزي'),
-
               SizedBox(
                 height: 10.h,
               ),
@@ -147,7 +177,6 @@ class _AddStudentDataState extends State<AddStudentData> {
                 height: 20.h,
               ),
               RequiredTxt(txt: 'اسم الجد انجليزي'),
-
               SizedBox(
                 height: 10.h,
               ),
@@ -159,9 +188,7 @@ class _AddStudentDataState extends State<AddStudentData> {
               SizedBox(
                 height: 20.h,
               ),
-
               RequiredTxt(txt: 'الجنسية'),
-
               SizedBox(
                 height: 10.h,
               ),
@@ -288,10 +315,12 @@ class _AddStudentDataState extends State<AddStudentData> {
                 height: 10.h,
               ),
               CustomTextFormField(
-                controller: firstNameArabicTextField,
+                controller: endDateTextField,
                 autoFocus: false,
                 suffix: Icon(Icons.calendar_month),
-                onSuffixPressed: () {},
+                onSuffixPressed: () {
+                  _showDatePicker();
+                },
                 hint: 'تاريخ انتهاء الهوية',
               ),
               SizedBox(
@@ -309,22 +338,23 @@ class _AddStudentDataState extends State<AddStudentData> {
                 height: 10.h,
               ),
               CustomTextFormField(
-                controller: firstNameArabicTextField,
+                controller: dateOfBirthTextField,
                 autoFocus: false,
                 suffix: Icon(Icons.calendar_month),
-                onSuffixPressed: () {},
+                onSuffixPressed: () {
+                  _showDatePicker();
+                },
                 hint: 'تاريخ الميلاد',
               ),
               SizedBox(
                 height: 20.h,
               ),
               RequiredTxt(txt: 'مكان الميلاد/الدولة'),
-
               SizedBox(
                 height: 10.h,
               ),
               CustomTextFormField(
-                controller: firstNameArabicTextField,
+                controller: CountryTextField,
                 autoFocus: false,
                 hint: 'مكان الميلاد/الدولة',
               ),
@@ -332,12 +362,11 @@ class _AddStudentDataState extends State<AddStudentData> {
                 height: 20.h,
               ),
               RequiredTxt(txt: 'مكان الميلاد/المدينة'),
-
               SizedBox(
                 height: 10.h,
               ),
               CustomTextFormField(
-                controller: firstNameArabicTextField,
+                controller: CityTextField,
                 autoFocus: false,
                 hint: 'مكان الميلاد/المدينة',
               ),
@@ -446,9 +475,9 @@ class _AddStudentDataState extends State<AddStudentData> {
                   Text('هل يحتاج الطالب/ة الي مساعدات مالية')
                 ],
               ),
-
-              SizedBox(height: 20.h,),
-
+              SizedBox(
+                height: 20.h,
+              ),
               Text(
                 'ما هي المواد المحببة للطالب/ة',
                 style: TextStyle(
@@ -485,8 +514,8 @@ class _AddStudentDataState extends State<AddStudentData> {
                             style: TextStyle(fontSize: 14.sp, color: gridcolor),
                           ),
                           Divider(
-                            // height: 2.h,
-                          )
+                              // height: 2.h,
+                              )
                         ],
                       ),
                     );
@@ -494,8 +523,9 @@ class _AddStudentDataState extends State<AddStudentData> {
                   onChanged: (Object? value) {},
                 ),
               ),
-
-              SizedBox(height: 20.h,),
+              SizedBox(
+                height: 20.h,
+              ),
               Text(
                 'حالة الوالدين',
                 style: TextStyle(
@@ -544,7 +574,6 @@ class _AddStudentDataState extends State<AddStudentData> {
               SizedBox(
                 height: 20.h,
               ),
-
               Text(
                 'مع من يعيش الطالب',
                 style: TextStyle(
@@ -581,8 +610,8 @@ class _AddStudentDataState extends State<AddStudentData> {
                             style: TextStyle(fontSize: 14.sp, color: gridcolor),
                           ),
                           Divider(
-                            // height: 2.h,
-                          )
+                              // height: 2.h,
+                              )
                         ],
                       ),
                     );
@@ -590,8 +619,9 @@ class _AddStudentDataState extends State<AddStudentData> {
                   onChanged: (Object? value) {},
                 ),
               ),
-
-              SizedBox(height: 20.h,),
+              SizedBox(
+                height: 20.h,
+              ),
               Text(
                 'ما هي المواد الغير محببة للطالب/ة',
                 style: TextStyle(
@@ -628,8 +658,8 @@ class _AddStudentDataState extends State<AddStudentData> {
                             style: TextStyle(fontSize: 14.sp, color: gridcolor),
                           ),
                           Divider(
-                            // height: 2.h,
-                          )
+                              // height: 2.h,
+                              )
                         ],
                       ),
                     );
@@ -637,17 +667,19 @@ class _AddStudentDataState extends State<AddStudentData> {
                   onChanged: (Object? value) {},
                 ),
               ),
-
-              SizedBox(height: 20.h,),
-
-              Row(children: [
-                Checkbox(value: false, onChanged: null),
-                Text('هل يواجه الطالب/ة اي مشاكل في المدرسة')
-              ],),
-              SizedBox(height: 20.h,),
-
+              SizedBox(
+                height: 20.h,
+              ),
+              Row(
+                children: [
+                  Checkbox(value: false, onChanged: null),
+                  Text('هل يواجه الطالب/ة اي مشاكل في المدرسة')
+                ],
+              ),
+              SizedBox(
+                height: 20.h,
+              ),
               RequiredTxt(txt: 'هوايات الطالب/ة'),
-
               SizedBox(
                 height: 10.h,
               ),
@@ -656,14 +688,18 @@ class _AddStudentDataState extends State<AddStudentData> {
                 autoFocus: false,
                 hint: 'هوايات الطالب/ة',
               ),
-              SizedBox(height: 20.h,),
-              Row(children: [
-                Checkbox(value: false, onChanged: null),
-                Text('هل بستطيع الطالب/ة المشاركة في الاذاعة')
-              ],),
-
-              SizedBox(height: 20.h,),
-
+              SizedBox(
+                height: 20.h,
+              ),
+              Row(
+                children: [
+                  Checkbox(value: false, onChanged: null),
+                  Text('هل بستطيع الطالب/ة المشاركة في الاذاعة')
+                ],
+              ),
+              SizedBox(
+                height: 20.h,
+              ),
               Text(
                 'تصوير للطالب/ة فى البرامج',
                 style: TextStyle(
@@ -700,8 +736,8 @@ class _AddStudentDataState extends State<AddStudentData> {
                             style: TextStyle(fontSize: 14.sp, color: gridcolor),
                           ),
                           Divider(
-                            // height: 2.h,
-                          )
+                              // height: 2.h,
+                              )
                         ],
                       ),
                     );
@@ -709,15 +745,18 @@ class _AddStudentDataState extends State<AddStudentData> {
                   onChanged: (Object? value) {},
                 ),
               ),
-
-              SizedBox(height: 20.h,),
-              Row(children: [
-                Checkbox(value: false, onChanged: null),
-                Text('هل يعاني الطالب/ة من أي حالات مرضية لا قدر الله')
-              ],),
-
-              SizedBox(height: 20.h,),
-
+              SizedBox(
+                height: 20.h,
+              ),
+              Row(
+                children: [
+                  Checkbox(value: false, onChanged: null),
+                  Text('هل يعاني الطالب/ة من أي حالات مرضية لا قدر الله')
+                ],
+              ),
+              SizedBox(
+                height: 20.h,
+              ),
               Row(
                 children: [
                   Text(
@@ -742,12 +781,13 @@ class _AddStudentDataState extends State<AddStudentData> {
                             color: Colors.white,
                             fontSize: 16.sp,
                             fontWeight: FontWeight.w600,
-                            fontFamily: 'poppins')
-                    ),
+                            fontFamily: 'poppins')),
                   ),
                 ],
               ),
-              SizedBox(height: 20.h,),
+              SizedBox(
+                height: 20.h,
+              ),
               Row(
                 children: [
                   Text(
@@ -772,12 +812,13 @@ class _AddStudentDataState extends State<AddStudentData> {
                             color: Colors.white,
                             fontSize: 16.sp,
                             fontWeight: FontWeight.w600,
-                            fontFamily: 'poppins')
-                    ),
+                            fontFamily: 'poppins')),
                   ),
                 ],
               ),
-              SizedBox(height: 20.h,),
+              SizedBox(
+                height: 20.h,
+              ),
               Row(
                 children: [
                   Text(
@@ -791,23 +832,28 @@ class _AddStudentDataState extends State<AddStudentData> {
                   SizedBox(
                     width: 10.w,
                   ),
-                  Container(
-                    padding: EdgeInsetsDirectional.all(3),
-                    decoration: BoxDecoration(
-                      color: add,
-                      borderRadius: BorderRadius.circular(8.r),
-                    ),
-                    child: Text('اضافة مرفق',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.w600,
-                            fontFamily: 'poppins')
+                  InkWell(onTap: (){
+
+                  },
+                    child: Container(
+                      padding: EdgeInsetsDirectional.all(3),
+                      decoration: BoxDecoration(
+                        color: add,
+                        borderRadius: BorderRadius.circular(8.r),
+                      ),
+                      child: Text('اضافة مرفق',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16.sp,
+                              fontWeight: FontWeight.w600,
+                              fontFamily: 'poppins')),
                     ),
                   ),
                 ],
               ),
-              SizedBox(height: 20.h,),
+              SizedBox(
+                height: 20.h,
+              ),
               Row(
                 children: [
                   Text(
@@ -832,14 +878,12 @@ class _AddStudentDataState extends State<AddStudentData> {
                             color: Colors.white,
                             fontSize: 16.sp,
                             fontWeight: FontWeight.w600,
-                            fontFamily: 'poppins')
-                    ),
+                            fontFamily: 'poppins')),
                   ),
                 ],
               ),
-
               SaveCancelButtons(
-                savePressed: (){
+                savePressed: () {
                   navigateTo(context, StudentData());
                 },
               )

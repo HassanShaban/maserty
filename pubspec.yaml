@@ -44,8 +44,9 @@ dependencies:
   page_view_dot_indicator: ^2.3.0
   im_stepper: ^1.0.1+1
   horizontal_stepper_flutter: ^1.0.3
-  syncfusion_flutter_calendar: 20.3.61
-  country_code_picker: ^3.0.0
+  syncfusion_flutter_calendar: any
+  country_code_picker: any
+  image_picker: ^1.1.1
 
 dev_dependencies:
   flutter_test:

@@ -309,10 +309,13 @@ class _SignUpCommunicationInfoState extends State<SignUpCommunicationInfo> {
                     Navigator.pop(context);
                   },
                   nextPressed: () {
-                    if (formKey.currentState!.validate())
+                    navigateTo(context, MaritalStatusData(
+                      housingTypes: widget.housingTypes,
+                    ));
+                   /* if (formKey.currentState!.validate())
                       navigateTo(context, MaritalStatusData(
                         housingTypes: widget.housingTypes,
-                      ));
+                      ));*/
                   },
                 )
               ],

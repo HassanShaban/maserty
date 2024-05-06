@@ -898,13 +898,18 @@ class _FatherDataState extends State<FatherData> {
                             ),
                             NextPreviousButtons(
                               nextPressed: () {
-                                if (formKey.currentState!.validate()) {
+                                navigateTo(
+                                    context, SignUpCommunicationInfo(
+                                  cities: signUpCubit.cities,
+                                  housingTypes: signUpCubit.housingTypes,
+                                ));
+                              /*  if (formKey.currentState!.validate()) {
                                   navigateTo(
                                       context, SignUpCommunicationInfo(
                                     cities: signUpCubit.cities,
                                     housingTypes: signUpCubit.housingTypes,
                                   ));
-                                }
+                                }*/
                               },
                             )
                           ],
