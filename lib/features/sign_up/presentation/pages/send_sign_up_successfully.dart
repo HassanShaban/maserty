@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:maserty/features/request_job/presentation/pages/personal_data.dart';
 import 'package:maserty/features/request_job/presentation/widgets/header.dart';
+import 'package:maserty/features/sign_up/presentation/cubit/sign_up_cubit.dart';
 import 'package:maserty/features/sign_up/presentation/pages/father_data.dart';
 import 'package:maserty/style/colors/colors.dart';
 import 'package:maserty/utils/navigation_widget.dart';
 
 class SendSignUpSuccessfully extends StatelessWidget {
-  const SendSignUpSuccessfully({Key? key}) : super(key: key);
+   SendSignUpSuccessfully({Key? key, required this.signUpCubit}) : super(key: key);
+  SignUpCubit signUpCubit ;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +36,6 @@ class SendSignUpSuccessfully extends StatelessWidget {
                     width: 128.w,
                     height: 128.h,
                     child: Image.asset(
-
                         'assets/images/success.png'),
                   ),
                   SizedBox(

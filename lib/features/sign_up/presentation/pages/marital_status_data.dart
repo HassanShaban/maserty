@@ -4,13 +4,17 @@ import 'package:maserty/features/login/presentation/widgets/custom_text_field.da
 import 'package:maserty/features/request_job/presentation/widgets/header.dart';
 import 'package:maserty/features/request_job/presentation/widgets/next_previous_buttons.dart';
 import 'package:maserty/features/sign_up/data/model/registration_model.dart';
+import 'package:maserty/features/sign_up/presentation/cubit/sign_up_cubit.dart';
 import 'package:maserty/features/sign_up/presentation/pages/student_data.dart';
 import 'package:maserty/style/colors/colors.dart';
 import 'package:maserty/utils/navigation_widget.dart';
 
 class MaritalStatusData extends StatefulWidget {
-  MaritalStatusData({Key? key, required this.housingTypes}) : super(key: key);
+  MaritalStatusData(
+      {Key? key, required this.housingTypes, required this.signUpCubit})
+      : super(key: key);
   List<HousingTypes> housingTypes;
+  SignUpCubit signUpCubit;
 
   @override
   State<MaritalStatusData> createState() => _MaritalStatusDataState();
@@ -56,13 +60,21 @@ class _MaritalStatusDataState extends State<MaritalStatusData> {
                 SizedBox(
                   height: 30.h,
                 ),
-                Text(
-                  'نوع السكن',
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.w600,
-                      fontFamily: 'poppins'),
+                Row(
+                  children: [
+                    Text(
+                      'نوع السكن',
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.w600,
+                          fontFamily: 'poppins'),
+                    ),
+                    Icon(
+                      Icons.star_border_purple500_rounded,
+                      color: requiredField,
+                    )
+                  ],
                 ),
                 SizedBox(
                   height: 10.h,
@@ -80,7 +92,6 @@ class _MaritalStatusDataState extends State<MaritalStatusData> {
                       style: TextStyle(color: enableColor, fontSize: 12.sp),
                     ),
                     value: housingType,
-
                     decoration: InputDecoration(
                       border: InputBorder.none, // Remove underline
                     ),
@@ -97,19 +108,21 @@ class _MaritalStatusDataState extends State<MaritalStatusData> {
                             (HousingTypes value) {
                       return DropdownMenuItem<HousingTypes>(
                         value: value,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Text(
-                              value.titleAr,
-                              style:
-                                  TextStyle(fontSize: 14.sp, color: gridcolor),
-                            ),
-                            Divider(
-                                // height: 2.h,
-                                )
-                          ],
+                        child: SingleChildScrollView(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Text(
+                                value.titleAr,
+                                style: TextStyle(
+                                    fontSize: 14.sp, color: gridcolor),
+                              ),
+                              Divider(
+                                  // height: 2.h,
+                                  )
+                            ],
+                          ),
                         ),
                       );
                     }).toList(),
@@ -137,7 +150,16 @@ class _MaritalStatusDataState extends State<MaritalStatusData> {
                 CustomTextFormField(
                   controller: oghrafNum,
                   autoFocus: false,
+                  onlyDigital: true,
+                  keyboardType: TextInputType.number,
                   hint: 'عدد الغرف',
+                  validator: (text) {
+                    if (text!.isEmpty) {}
+                    else if (int.parse(text) > 10 || int.parse(text) <= 0){
+                      return "عدد الغرف يجب أن يكون بين ١ و ١٠ ";
+                    }
+                    return null;
+                  },
                 ),
                 SizedBox(
                   height: 20.h,
@@ -155,8 +177,17 @@ class _MaritalStatusDataState extends State<MaritalStatusData> {
                 ),
                 CustomTextFormField(
                   controller: twabeqNum,
+                  keyboardType: TextInputType.number,
+                  onlyDigital: true,
                   autoFocus: false,
                   hint: 'عدد الطوابق',
+                  validator: (text) {
+                    if (text!.isEmpty) {}
+                    else if (int.parse(text) > 10 || int.parse(text) <= 0){
+                      return "عدد الطوابق يجب أن يكون بين ١ و ١٠";
+                    }
+                    return null;
+                  },
                 ),
                 SizedBox(
                   height: 20.h,
@@ -181,6 +212,7 @@ class _MaritalStatusDataState extends State<MaritalStatusData> {
                   height: 10.h,
                 ),
                 CustomTextFormField(
+                  onlyArabic: true,
                   controller: dakhlSource,
                   autoFocus: false,
                   hint: 'مصدر الدخل',
@@ -206,7 +238,9 @@ class _MaritalStatusDataState extends State<MaritalStatusData> {
                   height: 10.h,
                 ),
                 CustomTextFormField(
+                  onlyDigital: true,
                   controller: dakhlMeqdar,
+                  keyboardType: TextInputType.number,
                   autoFocus: false,
                   hint: 'مقدار الدخل',
                 ),
@@ -252,18 +286,15 @@ class _MaritalStatusDataState extends State<MaritalStatusData> {
                         height: 10.h,
                       ),
                       CustomTextFormField(
+                        onlyArabic: true,
                         controller: otherDakhlSource,
                         autoFocus: false,
                         hint: 'ما هي المصادر الأخري',
                         validator: (text) {
-                          if(!isThereDakhlResource)
-                            return null;
-                          else {
                             if (text!.isEmpty) {
                               return 'هذا الحقل مطلوب';
                             }
                             return null;
-                          }
                         },
                       ),
                       SizedBox(
@@ -279,30 +310,19 @@ class _MaritalStatusDataState extends State<MaritalStatusData> {
                                 fontWeight: FontWeight.w600,
                                 fontFamily: 'poppins'),
                           ),
-                          Icon(
-                            Icons.star_border_purple500_rounded,
-                            color: requiredField,
-                          )
+
                         ],
                       ),
                       SizedBox(
                         height: 10.h,
                       ),
                       CustomTextFormField(
+                        onlyDigital: true,
                         controller: otherMeqdarDakhlSource,
+                        keyboardType: TextInputType.number,
                         autoFocus: false,
                         hint: 'ما مقداره',
-                        validator: (text) {
 
-                          if(!isThereDakhlResource)
-                            return null;
-                          else {
-                            if (text!.isEmpty) {
-                              return 'هذا الحقل مطلوب';
-                            }
-                            return null;
-                          }
-                        },
                       ),
                     ],
                   ),
@@ -312,9 +332,40 @@ class _MaritalStatusDataState extends State<MaritalStatusData> {
                     Navigator.pop(context);
                   },
                   nextPressed: () {
-                    navigateTo(context, StudentData());
-                   /* if (formKey.currentState!.validate())
-                      navigateTo(context, StudentData());*/
+              //      if (formKey.currentState!.validate()) {
+                      widget.signUpCubit.setDataFromMaritalStatus(
+                        housingType: housingType?.id,
+                        oghrafNum: oghrafNum.text.isEmpty
+                            ? null
+                            : int.parse(oghrafNum.text),
+
+                        twabeqNum: twabeqNum.text.isEmpty
+                            ? null
+                            : int.parse(twabeqNum.text),
+
+                        dakhlSource: dakhlSource.text,
+                        dakhlMeqdar: dakhlMeqdar.text.isEmpty
+                            ? null
+                            : int.parse(dakhlMeqdar.text),
+                        // dakhlMeqdar: int.parse(dakhlMeqdar.text),
+
+                        isThereDakhlResource: isThereDakhlResource,
+                        otherDakhlSource: otherDakhlSource.text,
+                        otherMeqdarDakhlSource:
+                            otherMeqdarDakhlSource.text.isEmpty
+                                ? null
+                                : int.parse(otherMeqdarDakhlSource.text),
+                      );
+
+                      navigateTo(
+                          context,
+                          StudentData(
+                            signUpCubit: widget.signUpCubit,
+                          ));
+
+            //        } // form vaild
+
+
                   },
                 )
               ],

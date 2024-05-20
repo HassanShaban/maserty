@@ -30,6 +30,11 @@ class CustomTextFormField extends StatelessWidget {
     this.errorBorderColor = Colors.red,
     this.onSuffixPressed,
     this.onlyArabic = false,
+    this.maxLength,
+    this.buildCounter,
+    this.onlyEnglish =false ,
+    this.onlyDigital = false ,
+    this.onlyEmail=false
   }) : super(key: key);
   String? label;
   String? hint;
@@ -55,6 +60,12 @@ class CustomTextFormField extends StatelessWidget {
   Color errorBorderColor;
   Function()? onSuffixPressed;
   bool onlyArabic;
+  bool onlyEnglish ;
+  bool onlyDigital ;
+  int? maxLength ;
+  bool onlyEmail ;
+  Widget? Function(BuildContext, {required int currentLength, required bool isFocused, required int? maxLength})? buildCounter;
+
 
   @override
   Widget build(BuildContext context) {
@@ -68,13 +79,24 @@ class CustomTextFormField extends StatelessWidget {
       onFieldSubmitted: onFieldSubmitted,
       onTap: onTap,
       enabled: isEnabled,
-      style: TextStyle(color: enableColor, fontSize: 12.sp),
+      style: TextStyle(color: blackColor, fontSize: 12.sp),
       readOnly: readOnly,
-      inputFormatters: !onlyArabic
-          ? []
-          : [
-              FilteringTextInputFormatter.allow(RegExp(r'^[\u0600-\u06FF\s]+$'))
-            ],
+      maxLength: maxLength,
+      buildCounter: buildCounter,
+      inputFormatters: [
+    if (onlyArabic)
+    FilteringTextInputFormatter.allow(RegExp(r'^[\u0600-\u06FF\s]+$')),
+    if (onlyEnglish)
+      FilteringTextInputFormatter.allow(RegExp(r'^[a-zA-Z\s]+$')),
+    if (onlyDigital)
+      FilteringTextInputFormatter.digitsOnly,
+    if (onlyEmail)
+      FilteringTextInputFormatter.deny(RegExp(r'[\s]')),
+
+
+
+      ],
+
       // Arabic characters and spaces
 
       decoration: InputDecoration(

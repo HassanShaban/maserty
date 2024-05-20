@@ -47,6 +47,7 @@ dependencies:
   syncfusion_flutter_calendar: any
   country_code_picker: any
   image_picker: ^1.1.1
+  multi_select_flutter: ^4.0.0
 
 dev_dependencies:
   flutter_test:

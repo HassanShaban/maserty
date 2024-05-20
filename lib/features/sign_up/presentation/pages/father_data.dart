@@ -1,4 +1,5 @@
 import 'package:country_code_picker/country_code_picker.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -78,6 +79,10 @@ class _FatherDataState extends State<FatherData> {
   Relations? relation;
   IdentityTypes? identityType;
   Cities? city;
+
+
+
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -224,6 +229,7 @@ class _FatherDataState extends State<FatherData> {
                                   border: InputBorder.none, // Remove underline
                                 ),
 
+
                                 // underline: const SizedBox(),
                                 validator: (value) {
                                   if (value == null) {
@@ -236,22 +242,24 @@ class _FatherDataState extends State<FatherData> {
                                         (Countries value) {
                                   return DropdownMenuItem<Countries>(
                                     value: value,
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
-                                      children: [
-                                        Text(
-                                          value.nameAr,
-                                          style: TextStyle(
-                                              fontSize: 14.sp,
-                                              color: gridcolor),
-                                        ),
-                                        Divider(
-                                            // height: 2.h,
-                                            )
-                                      ],
+                                    child: SingleChildScrollView(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceAround,
+                                        children: [
+                                          Text(
+                                            value.nameAr,
+                                            style: TextStyle(
+                                                fontSize: 14.sp,
+                                                color: gridcolor),
+                                          ),
+                                          Divider(
+                                              // height: 2.h,
+                                              )
+                                        ],
+                                      ),
                                     ),
                                   );
                                 }).toList(),
@@ -297,33 +305,35 @@ class _FatherDataState extends State<FatherData> {
                                 ),
 
                                 // underline: const SizedBox(),
-                                validator: (value) {
-                                  if (value == null) {
-                                    return 'رجاء اختيار صلة القرابة';
-                                  }
-                                  return null;
-                                },
+                                // validator: (value) {
+                                //   if (value == null) {
+                                //     return 'رجاء اختيار صلة القرابة';
+                                //   }
+                                //   return null;
+                                // },
                                 items: signUpCubit.relations
                                     .map<DropdownMenuItem<Relations>>(
                                         (Relations value) {
                                   return DropdownMenuItem<Relations>(
                                     value: value,
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
-                                      children: [
-                                        Text(
-                                          value.titleAr,
-                                          style: TextStyle(
-                                              fontSize: 14.sp,
-                                              color: gridcolor),
-                                        ),
-                                        Divider(
-                                            // height: 2.h,
-                                            )
-                                      ],
+                                    child: SingleChildScrollView(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceAround,
+                                        children: [
+                                          Text(
+                                            value.titleAr,
+                                            style: TextStyle(
+                                                fontSize: 14.sp,
+                                                color: gridcolor),
+                                          ),
+                                          Divider(
+                                              // height: 2.h,
+                                              )
+                                        ],
+                                      ),
                                     ),
                                   );
                                 }).toList(),
@@ -368,33 +378,35 @@ class _FatherDataState extends State<FatherData> {
                                 ),
 
                                 // underline: const SizedBox(),
-                                validator: (value) {
-                                  if (value == null ) {
-                                    return 'رجاء اختيار نوع الهوية';
-                                  }
-                                  return null;
-                                },
+                                // validator: (value) {
+                                //   if (value == null ) {
+                                //     return 'رجاء اختيار نوع الهوية';
+                                //   }
+                                //   return null;
+                                // },
                                 items: signUpCubit.identityTypes
                                     .map<DropdownMenuItem<IdentityTypes>>(
                                         (IdentityTypes value) {
                                   return DropdownMenuItem<IdentityTypes>(
                                     value: value,
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
-                                      children: [
-                                        Text(
-                                          value.titleAr,
-                                          style: TextStyle(
-                                              fontSize: 14.sp,
-                                              color: gridcolor),
-                                        ),
-                                        Divider(
-                                            // height: 2.h,
-                                            )
-                                      ],
+                                    child: SingleChildScrollView(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceAround,
+                                        children: [
+                                          Text(
+                                            value.titleAr,
+                                            style: TextStyle(
+                                                fontSize: 14.sp,
+                                                color: gridcolor),
+                                          ),
+                                          Divider(
+                                              // height: 2.h,
+                                              )
+                                        ],
+                                      ),
                                     ),
                                   );
                                 }).toList(),
@@ -414,13 +426,22 @@ class _FatherDataState extends State<FatherData> {
                             ),
                             CustomTextFormField(
                               controller: haweyaNumTextField,
+                              keyboardType: TextInputType.number,
+                              maxLength: 10,
                               autoFocus: false,
                               hint: 'رقم الهوية',
+                              onlyDigital: true,
+                              buildCounter: (BuildContext context,
+                                  {int? currentLength,
+                                    int? maxLength,
+                                    bool? isFocused}) =>
+                              null,
+
                               validator: (text) {
                                 if (text!.isEmpty) {
                                   return 'رقم الهوية فارغ';
                                 } else if (text.length < 10) {
-                                  return 'رقم الهوية يجب أن تكون أرقم فقط وتحتوي على 10 خانات فقط';
+                                  return 'رقم الهوية يجب أن تكون أرقام فقط وتحتوي على 10 خانات فقط';
                                 }
                                 return null;
                               },
@@ -459,11 +480,11 @@ class _FatherDataState extends State<FatherData> {
                                       color: enableColor, fontSize: 12.sp),
                                 ),
                                 value: city,
-
+                            
                                 decoration: InputDecoration(
                                   border: InputBorder.none, // Remove underline
                                 ),
-
+                            
                                 // underline: const SizedBox(),
                                 validator: (value) {
                                   if (value == null) {
@@ -476,22 +497,24 @@ class _FatherDataState extends State<FatherData> {
                                         (Cities value) {
                                       return DropdownMenuItem<Cities>(
                                         value: value,
-                                        child: Column(
-                                          crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
-                                          children: [
-                                            Text(
-                                              value.nameAr,
-                                              style: TextStyle(
-                                                  fontSize: 14.sp,
-                                                  color: gridcolor),
-                                            ),
-                                            Divider(
-                                              // height: 2.h,
-                                            )
-                                          ],
+                                        child: SingleChildScrollView(
+                                          child: Column(
+                                            crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                            mainAxisAlignment:
+                                            MainAxisAlignment.spaceAround,
+                                            children: [
+                                              Text(
+                                                value.nameAr,
+                                                style: TextStyle(
+                                                    fontSize: 14.sp,
+                                                    color: gridcolor),
+                                              ),
+                                              Divider(
+                                                // height: 2.h,
+                                              )
+                                            ],
+                                          ),
                                         ),
                                       );
                                     }).toList(),
@@ -516,6 +539,7 @@ class _FatherDataState extends State<FatherData> {
                             CustomTextFormField(
                               controller: expireHaweyaTextField,
                               autoFocus: false,
+
                               suffix: Icon(Icons.calendar_month),
                               onSuffixPressed: () {
                                 _showDatePicker();
@@ -523,6 +547,9 @@ class _FatherDataState extends State<FatherData> {
                               validator: (text) {
                                 if (text!.isEmpty) {
                                   return 'تاريخ انتهاء الهوية فارغ';
+                                }
+                                else if (!RegExp(r'^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$').hasMatch(text)) {
+                                  return 'يرجي ادخال تاريخ انتهاء الهوية صحيح';
                                 }
                                 return null;
                               },
@@ -563,7 +590,7 @@ class _FatherDataState extends State<FatherData> {
                                         return null;
                                       },
                                       style: TextStyle(
-                                          color: enableColor, fontSize: 12.sp),
+                                          color: blackColor, fontSize: 12.sp),
                                       inputFormatters: [
                                         FilteringTextInputFormatter.digitsOnly,
                                       ],
@@ -590,20 +617,7 @@ class _FatherDataState extends State<FatherData> {
                                         showOnlyCountryWhenClosed: false,
                                         alignLeft: false,
                                       ))
-                                  // Expanded(
-                                  //     flex: 1,
-                                  //     child: Row(
-                                  //       children: [
-                                  //         SizedBox(
-                                  //           height: 20,
-                                  //           child: VerticalDivider(
-                                  //             color: enableColor,
-                                  //             thickness: 2,
-                                  //           ),
-                                  //         ),
-                                  //         Text('+966')
-                                  //       ],
-                                  //     ))
+
                                 ],
                               ),
                             ),
@@ -633,7 +647,7 @@ class _FatherDataState extends State<FatherData> {
                                       keyboardType: TextInputType.number,
                                       maxLength: 10,
                                       style: TextStyle(
-                                          color: enableColor, fontSize: 12.sp),
+                                          color: blackColor, fontSize: 12.sp),
                                       inputFormatters: [
                                         FilteringTextInputFormatter.digitsOnly,
                                       ],
@@ -690,6 +704,7 @@ class _FatherDataState extends State<FatherData> {
                             CustomTextFormField(
                               controller: qaribTaleb1ArabicTextField,
                               autoFocus: false,
+                              onlyArabic: true,
                               // suffix: Icon(Icons.calendar_month),
                               // onSuffixPressed: () {},
                               hint: 'اسم قريب للطالب/ة1',
@@ -737,7 +752,7 @@ class _FatherDataState extends State<FatherData> {
                                         return null;
                                       },
                                       style: TextStyle(
-                                          color: enableColor, fontSize: 12.sp),
+                                          color: blackColor, fontSize: 12.sp),
                                       inputFormatters: [
                                         FilteringTextInputFormatter.digitsOnly,
                                       ],
@@ -777,6 +792,7 @@ class _FatherDataState extends State<FatherData> {
                             CustomTextFormField(
                               controller: addressQaribTaleb1ArabicTextField,
                               autoFocus: false,
+                              onlyArabic: true,
                               // suffix: Icon(Icons.calendar_month),
                               // onSuffixPressed: () {},
                               hint: 'العنوان',
@@ -792,6 +808,7 @@ class _FatherDataState extends State<FatherData> {
                               height: 10.h,
                             ),
                             CustomTextFormField(
+                              onlyArabic: true,
                               controller: qaribTaleb2ArabicTextField,
                               autoFocus: false,
                               // suffix: Icon(Icons.calendar_month),
@@ -840,7 +857,7 @@ class _FatherDataState extends State<FatherData> {
                                               bool? isFocused}) =>
                                           null,
                                       style: TextStyle(
-                                          color: enableColor, fontSize: 12.sp),
+                                          color: blackColor, fontSize: 12.sp),
                                       inputFormatters: [
                                         FilteringTextInputFormatter.digitsOnly,
                                       ],
@@ -881,11 +898,10 @@ class _FatherDataState extends State<FatherData> {
                             CustomTextFormField(
                               controller: addressQaribTaleb2ArabicTextField,
                               autoFocus: false,
-
+                              onlyArabic: true,
                               // suffix: Icon(Icons.calendar_month),
                               // onSuffixPressed: () {},
                               hint: 'العنوان',
-
                               validator: (text) {
                                 if (text!.isEmpty) {
                                   return 'العنوان فارغ';
@@ -898,20 +914,65 @@ class _FatherDataState extends State<FatherData> {
                             ),
                             NextPreviousButtons(
                               nextPressed: () {
-                                navigateTo(
-                                    context, SignUpCommunicationInfo(
-                                  cities: signUpCubit.cities,
-                                  housingTypes: signUpCubit.housingTypes,
-                                ));
-                              /*  if (formKey.currentState!.validate()) {
-                                  navigateTo(
-                                      context, SignUpCommunicationInfo(
-                                    cities: signUpCubit.cities,
-                                    housingTypes: signUpCubit.housingTypes,
-                                  ));
-                                }*/
+
+                       //      if (formKey.currentState!.validate()) {
+                               signUpCubit.setDataFromParent(
+                                   firstNameArabicTextField: firstNameArabicTextField
+                                       .text,
+                                   fatherNameArabicTextField: fatherNameArabicTextField
+                                       .text,
+                                   grandFatherArabicTextField: grandFatherArabicTextField
+                                       .text,
+                                   surNameArabicTextField: surNameArabicTextField
+                                       .text,
+                                   nationality: country?.nationalityAr,
+                                   selahQaraba: relation?.id,
+                                   nohHaweya: identityType?.id,
+                                   haweyaNumTextField: haweyaNumTextField.text,
+                                   haweyaSourceTextField: city?.id,
+                                   expireHaweyaTextField: expireHaweyaTextField
+                                       .text,
+                                   phoneNumTextField: fatherPhoneCode + phoneNumTextField.text,
+                                   workPhoneNumTextField:fatherPhoneWorkCode+ workPhoneNumTextField
+                                       .text,
+                                   qaribTaleb1ArabicTextField: qaribTaleb1ArabicTextField
+                                       .text,
+                                   phoneNumQaribTaleb1ArabicTextField:qareb1PhoneWorkCode+ phoneNumQaribTaleb1ArabicTextField
+                                       .text,
+                                   addressQaribTaleb1ArabicTextField: addressQaribTaleb1ArabicTextField
+                                       .text,
+                                   qaribTaleb2ArabicTextField: qaribTaleb2ArabicTextField
+                                       .text,
+                                   phoneNumQaribTaleb2ArabicTextField:qareb2PhoneWorkCode+ phoneNumQaribTaleb2ArabicTextField
+                                       .text,
+                                   addressQaribTaleb2ArabicTextField: addressQaribTaleb2ArabicTextField
+                                       .text
+
+                               );
+
+                               navigateTo(
+                                   context, SignUpCommunicationInfo(
+                                 cities: signUpCubit.cities,
+                                 housingTypes: signUpCubit.housingTypes,
+                                 signUpCubit: signUpCubit,
+                               ));
+
+
+
+
+
+                        //     } //form vaild
+
+
+
+
                               },
-                            )
+                            ),
+
+
+
+
+
                           ],
                         ),
                       ),

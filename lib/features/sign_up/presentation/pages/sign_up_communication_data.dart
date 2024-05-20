@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:maserty/core/widget/required_text.dart';
 import 'package:maserty/features/login/presentation/widgets/custom_text_field.dart';
@@ -6,16 +7,27 @@ import 'package:maserty/features/request_job/presentation/pages/qualification.da
 import 'package:maserty/features/request_job/presentation/widgets/header.dart';
 import 'package:maserty/features/request_job/presentation/widgets/next_previous_buttons.dart';
 import 'package:maserty/features/sign_up/data/model/registration_model.dart';
+import 'package:maserty/features/sign_up/presentation/cubit/sign_up_state.dart';
 import 'package:maserty/features/sign_up/presentation/pages/marital_status_data.dart';
 import 'package:maserty/style/colors/colors.dart';
 import 'package:maserty/utils/navigation_widget.dart';
+import 'package:maserty/locator.dart' as di;
+
+import '../cubit/sign_up_cubit.dart';
 
 class SignUpCommunicationInfo extends StatefulWidget {
-  SignUpCommunicationInfo({Key? key , required this.cities , required this.housingTypes}) : super(key: key);
+  SignUpCommunicationInfo(
+      {Key? key,
+      required this.cities,
+      required this.housingTypes,
+      required this.signUpCubit})
+      : super(key: key);
   List<Cities> cities;
   List<HousingTypes> housingTypes;
+  SignUpCubit signUpCubit;
   @override
-  State<SignUpCommunicationInfo> createState() => _SignUpCommunicationInfoState();
+  State<SignUpCommunicationInfo> createState() =>
+      _SignUpCommunicationInfoState();
 }
 
 class _SignUpCommunicationInfoState extends State<SignUpCommunicationInfo> {
@@ -67,7 +79,6 @@ class _SignUpCommunicationInfoState extends State<SignUpCommunicationInfo> {
 
                 RequiredTxt(txt: 'المدينة'),
 
-
                 SizedBox(
                   height: 10.h,
                 ),
@@ -85,8 +96,7 @@ class _SignUpCommunicationInfoState extends State<SignUpCommunicationInfo> {
 
                 Container(
                   width: MediaQuery.of(context).size.width,
-                  padding: EdgeInsetsDirectional.fromSTEB(
-                      10.w, 3.h, 10.w, 3.h),
+                  padding: EdgeInsetsDirectional.fromSTEB(10.w, 3.h, 10.w, 3.h),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8.r),
                       border: Border.all(color: enableColor)),
@@ -94,8 +104,7 @@ class _SignUpCommunicationInfoState extends State<SignUpCommunicationInfo> {
                     isExpanded: true,
                     hint: Text(
                       'المدينة',
-                      style: TextStyle(
-                          color: enableColor, fontSize: 12.sp),
+                      style: TextStyle(color: enableColor, fontSize: 12.sp),
                     ),
                     value: city,
 
@@ -111,29 +120,27 @@ class _SignUpCommunicationInfoState extends State<SignUpCommunicationInfo> {
                       return null;
                     },
                     items: widget.cities
-                        .map<DropdownMenuItem<Cities>>(
-                            (Cities value) {
-                          return DropdownMenuItem<Cities>(
-                            value: value,
-                            child: Column(
-                              crossAxisAlignment:
-                              CrossAxisAlignment.start,
-                              mainAxisAlignment:
-                              MainAxisAlignment.spaceAround,
-                              children: [
-                                Text(
-                                  value.nameAr,
-                                  style: TextStyle(
-                                      fontSize: 14.sp,
-                                      color: gridcolor),
-                                ),
-                                Divider(
+                        .map<DropdownMenuItem<Cities>>((Cities value) {
+                      return DropdownMenuItem<Cities>(
+                        value: value,
+                        child: SingleChildScrollView(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Text(
+                                value.nameAr,
+                                style: TextStyle(
+                                    fontSize: 14.sp, color: gridcolor),
+                              ),
+                              Divider(
                                   // height: 2.h,
-                                )
-                              ],
-                            ),
-                          );
-                        }).toList(),
+                                  )
+                            ],
+                          ),
+                        ),
+                      );
+                    }).toList(),
                     onChanged: (Cities? value) {
                       setState(() {
                         city = value!;
@@ -147,13 +154,13 @@ class _SignUpCommunicationInfoState extends State<SignUpCommunicationInfo> {
 
                 RequiredTxt(txt: 'الحي'),
 
-
                 SizedBox(
                   height: 10.h,
                 ),
                 CustomTextFormField(
                   controller: hayee,
                   autoFocus: false,
+                  onlyArabic: true,
                   hint: 'الحي',
                   validator: (text) {
                     if (text!.isEmpty) {
@@ -172,6 +179,7 @@ class _SignUpCommunicationInfoState extends State<SignUpCommunicationInfo> {
                   height: 10.h,
                 ),
                 CustomTextFormField(
+                  onlyArabic: true,
                   controller: mainStreet,
                   autoFocus: false,
                   hint: 'الشارع الرئيسي',
@@ -188,11 +196,11 @@ class _SignUpCommunicationInfoState extends State<SignUpCommunicationInfo> {
 
                 RequiredTxt(txt: 'الشارع الفرعي'),
 
-
                 SizedBox(
                   height: 10.h,
                 ),
                 CustomTextFormField(
+                  onlyArabic: true,
                   controller: subStreet,
                   autoFocus: false,
                   hint: 'الشارع الفرعي',
@@ -218,7 +226,9 @@ class _SignUpCommunicationInfoState extends State<SignUpCommunicationInfo> {
                   height: 10.h,
                 ),
                 CustomTextFormField(
+                  onlyDigital: true,
                   controller: homeNum,
+                  keyboardType: TextInputType.number,
                   autoFocus: false,
                   hint: 'رقم المنزل',
                 ),
@@ -236,10 +246,13 @@ class _SignUpCommunicationInfoState extends State<SignUpCommunicationInfo> {
                   autoFocus: false,
                   hint: 'البريد الالكتروني',
                   keyboardType: TextInputType.emailAddress,
+                  onlyEmail: true,
                   validator: (text) {
                     if (text!.isEmpty) {
                       return 'هذا الحقل مطلوب';
                     }
+                    else if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(text)) {
+                        return 'ادخل ايميل صحيح '; }
                     return null;
                   },
                 ),
@@ -255,6 +268,8 @@ class _SignUpCommunicationInfoState extends State<SignUpCommunicationInfo> {
                 CustomTextFormField(
                   controller: postalCode,
                   autoFocus: false,
+                  onlyDigital: true,
+                  keyboardType: TextInputType.number,
                   hint: 'الرمز البريدي',
                   validator: (text) {
                     if (text!.isEmpty) {
@@ -278,6 +293,8 @@ class _SignUpCommunicationInfoState extends State<SignUpCommunicationInfo> {
                   height: 10.h,
                 ),
                 CustomTextFormField(
+                  onlyDigital: true,
+                  keyboardType: TextInputType.number,
                   controller: mailBox,
                   autoFocus: false,
                   hint: 'صندوق البريد',
@@ -286,6 +303,7 @@ class _SignUpCommunicationInfoState extends State<SignUpCommunicationInfo> {
                   height: 20.h,
                 ),
                 Text(
+
                   'العنوان في الاجازة',
                   style: TextStyle(
                       color: Colors.black,
@@ -297,6 +315,7 @@ class _SignUpCommunicationInfoState extends State<SignUpCommunicationInfo> {
                   height: 10.h,
                 ),
                 CustomTextFormField(
+                  onlyArabic: true,
                   controller: addressInVacation,
                   autoFocus: false,
                   hint: 'العنوان في الاجازة',
@@ -309,13 +328,31 @@ class _SignUpCommunicationInfoState extends State<SignUpCommunicationInfo> {
                     Navigator.pop(context);
                   },
                   nextPressed: () {
-                    navigateTo(context, MaritalStatusData(
-                      housingTypes: widget.housingTypes,
-                    ));
-                   /* if (formKey.currentState!.validate())
-                      navigateTo(context, MaritalStatusData(
-                        housingTypes: widget.housingTypes,
-                      ));*/
+
+      //              if (formKey.currentState!.validate()) {
+                      widget.signUpCubit.setDataFromCommunicationData(
+                          city: city?.id,
+                          hayee: hayee.text,
+                          mainStreet: mainStreet.text,
+                          subStreet: subStreet.text,
+                          homeNum: homeNum.text,
+                          email: email.text,
+                          postalCode: postalCode.text,
+                          mailBox: mailBox.text,
+                          addressInVacation: addressInVacation.text);
+
+                      navigateTo(
+                          context,
+                          MaritalStatusData(
+                            housingTypes: widget.housingTypes,
+                            signUpCubit: widget.signUpCubit,
+                          ));
+
+
+         //           }   // form vaild
+
+
+
                   },
                 )
               ],
