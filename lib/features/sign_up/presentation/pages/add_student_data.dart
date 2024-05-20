@@ -1446,15 +1446,12 @@ class _AddStudentDataState extends State<AddStudentData> {
                           studentBloodGroupId: bloodGroups?.id,
                           studentNeedFinancialHelp: isStudentNeedFinancialHelp,
                           studentFavoriteSubjectIds: selectedFavSubjectsIds,
-
                           studentStatusId: lifeStatus?.id,
-
                           studentLivesWithId: livesWith?.id,
                           studentUnwantedSubjectIds: selectedNotFavSubjectsIds,
                           isSchoolProblems: isSchoolProblems,
                           schoolProblems: schoolProblemsTextField.text,
 
-                          //
                           hobbies: hobbyTextField.text,
                           radioParticipate: isRadioParticipate,
                           socialMediaPublishingId: socialMediaPublishing?.id,
