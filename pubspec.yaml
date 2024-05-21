@@ -48,6 +48,9 @@ dependencies:
   country_code_picker: any
   image_picker: ^1.1.1
   multi_select_flutter: ^4.0.0
+  openid_client: ^0.4.8
+  url_launcher: ^6.0.20
+
 
 dev_dependencies:
   flutter_test:

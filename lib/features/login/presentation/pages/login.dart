@@ -4,6 +4,11 @@ import 'package:maserty/features/home/home_screen.dart';
 import 'package:maserty/features/login/presentation/widgets/custom_button.dart';
 import 'package:maserty/features/login/presentation/widgets/custom_text_field.dart';
 import 'package:maserty/features/login/presentation/widgets/password_text_field.dart';
+import 'package:openid_client/openid_client.dart' as openid;
+import 'package:openid_client/openid_client.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+
 
 class Login extends StatelessWidget {
   Login({Key? key}) : super(key: key);
@@ -89,11 +94,13 @@ class Login extends StatelessWidget {
               SizedBox(height: 10.h,),
               CustomButton(
                 text: 'دخول',
-                onTap: (){
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => HomeScreen()),
-                  );
+                onTap: () async {
+                  await login();
+
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(builder: (context) => HomeScreen()),
+                  // );
                 },
               ),
              SizedBox(height: 15.h,),
@@ -125,4 +132,39 @@ class Login extends StatelessWidget {
       ),
     );
   }
+
+  final String issuerUrl ="https://masiraribackend.azurewebsites.net";
+  final String clientId = "mobile_app_flutter";
+  final String clientSecret = "mobile_app_flutter";
+  final List<String> scopes = ["openid", "profile", "scope2", "api1", "email"];
+  final String redirectUri = "https://masiraribackend.azurewebsites.net/auth-callback";
+
+  Future<void> login() async {
+    // Discover the OpenID configuration
+    var issuer = await openid.Issuer.discover(Uri.parse(issuerUrl));
+
+    // Create the client
+    var client = openid.Client(
+      issuer,
+      clientId,
+      clientSecret: clientSecret,
+    );
+
+    // Create an authorization flow
+    var flow = openid.Flow.authorizationCodeWithPKCE(
+      client,
+      scopes: scopes,
+    );
+
+    flow.redirectUri = Uri.parse(redirectUri) ;
+
+    var authUrl = flow.authenticationUri;
+    if (await canLaunchUrl(authUrl)) {
+      await launchUrl(authUrl);
+    } else {
+      throw 'Could not launch $authUrl';
+    }
+  }
+
+
 }
