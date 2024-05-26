@@ -50,6 +50,8 @@ dependencies:
   multi_select_flutter: ^4.0.0
   openid_client: ^0.4.8
   url_launcher: ^6.0.20
+  crypto: ^3.0.1
+  jose: ^0.3.2
 
 
 dev_dependencies:

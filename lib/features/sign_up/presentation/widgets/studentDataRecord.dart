@@ -31,9 +31,8 @@ class StudentDataRecord extends StatelessWidget {
             if ( studentData.studentProfileImageFile != null )
             CircleAvatar(
               radius: 25,
-              child:
-              Image(image: FileImage(File(studentData.studentProfileImageFile!.path)))
-              // Image.asset('assets/images/splash.png')
+              backgroundImage: FileImage(File(studentData.studentProfileImageFile!.path))
+
             )
             ,
             Text(

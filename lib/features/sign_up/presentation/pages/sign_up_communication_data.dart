@@ -329,7 +329,7 @@ class _SignUpCommunicationInfoState extends State<SignUpCommunicationInfo> {
                   },
                   nextPressed: () {
 
-                   if (formKey.currentState!.validate()) {
+                   // if (formKey.currentState!.validate()) {
                       widget.signUpCubit.setDataFromCommunicationData(
                           city: city?.id,
                           hayee: hayee.text,
@@ -349,7 +349,7 @@ class _SignUpCommunicationInfoState extends State<SignUpCommunicationInfo> {
                           ));
 
 
-                   }   // form vaild
+                   // }   // form vaild
 
 
 

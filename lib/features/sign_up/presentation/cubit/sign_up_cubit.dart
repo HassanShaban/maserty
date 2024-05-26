@@ -86,7 +86,7 @@ class SignUpCubit extends Cubit<SignUpState> {
       String? fatherNameArabicTextField,
       String? grandFatherArabicTextField,
       String? surNameArabicTextField,
-      nationality,
+      String? nationality,
       int? selahQaraba,
       int? nohHaweya,
       String? haweyaNumTextField,
@@ -384,97 +384,93 @@ class SignUpCubit extends Cubit<SignUpState> {
   Future<void> sendSignUpDataToServer() async {
     final Dio _dio = Dio();
 
-    final data = {
-      "gFirstName": registrationRequestsData.gFirstName,
-      "gFatherName": registrationRequestsData.gFatherName,
-      "gGrandFatherName": registrationRequestsData.gGrandFatherName,
-      "gLastName": registrationRequestsData.gLastName,
-      "identityTypeId": registrationRequestsData.identityTypeId,
-      "identitySourceId": registrationRequestsData.identitySourceId,
-      "identityExpiryDate": registrationRequestsData.identityExpiryDate,
-      "relationId": registrationRequestsData.relationId,
-      "nationalityCountryCode": registrationRequestsData.nationalityCountryCode,
-      "identityNumber": registrationRequestsData.identityNumber,
-      "mobileNumber": registrationRequestsData.mobileNumber,
-      "workPhone": registrationRequestsData.workPhone,
-      "relative1Name": registrationRequestsData.relative1Name,
-      "relative2Name": registrationRequestsData.relative2Name,
-      "relative1MobileNumber": registrationRequestsData.relative1MobileNumber,
-      "relative2MobileNumber": registrationRequestsData.relative2MobileNumber,
-      "relative1Address": registrationRequestsData.relative1Address,
-      "relative2Address": registrationRequestsData.relative2Address,
-      "contactCityId": registrationRequestsData.contactCityId,
-      "neighborhood": registrationRequestsData.neighborhood,
-      "mainStreet": registrationRequestsData.mainStreet,
-      "subStreet": registrationRequestsData.subStreet,
-      "email": registrationRequestsData.email,
-      "postalCode": registrationRequestsData.postalCode,
-      "mailBox": registrationRequestsData.mailBox,
-      "fax": registrationRequestsData.houseNumber,
-      "addressOnVacation": registrationRequestsData.addressOnVacation,
-      "housingTypeId": registrationRequestsData.housingTypeId,
-      "roomsNumber": registrationRequestsData.roomsNumber,
-      "floorsNumber": registrationRequestsData.floorsNumber,
-      "incomeSource": registrationRequestsData.incomeSource,
-      "incomeAmount": registrationRequestsData.incomeAmount,
-      "isOtherSourceOfIncome": registrationRequestsData.isOtherSourceOfIncome,
-      "otherSourceOfIncome": registrationRequestsData.otherSourceOfIncome,
-      "otherSourceOfIncomeAmount":
-          registrationRequestsData.otherSourceOfIncomeAmount,
-      "studentFirstNameAr": registrationRequestsData.studentFirstNameAr,
-      "studentFatherNameAr": registrationRequestsData.studentFatherNameAr,
-      "studentGrandFatherNameAr":
-          registrationRequestsData.studentGrandFatherNameAr,
-      "studentLastNameAr": registrationRequestsData.studentLastNameAr,
-      "studentFirstNameEn": registrationRequestsData.studentFirstNameEn,
-      "studentFatherNameEn": registrationRequestsData.studentFatherNameEn,
-      "studentGrandFatherNameEn":
-          registrationRequestsData.studentGrandFatherNameEn,
-      "studentLastNameEn": registrationRequestsData.studentLastNameEn,
-      "genderId": registrationRequestsData.genderId,
-      "studentNationalityCode": registrationRequestsData.studentNationalityCode,
-      "studentIdentityNumber": registrationRequestsData.studentIdentityNumber,
-      "studentIdentityTypeId": registrationRequestsData.studentIdentityTypeId,
-      "studentBirthDate": registrationRequestsData.studentBirthDate,
-      "studentBirthPlaceCountryCode":
-          registrationRequestsData.studentBirthPlaceCountryCode,
-      "studentBirthPlaceCity": registrationRequestsData.studentBirthPlaceCity,
-      "studentBloodGroupId": registrationRequestsData.studentBloodGroupId,
-      "studentIdImageName": registrationRequestsData.studentIdImageName,
-      "studentProfileImageName":
-          registrationRequestsData.studentProfileImageName,
-      "studentVacinationImageName":
-          registrationRequestsData.studentVacinationImageName,
-      "studentCustodyImageName":
-          registrationRequestsData.studentCustodyImageName,
-      "studentNeedFinancialHelp":
-          registrationRequestsData.studentNeedFinancialHelp,
-      "isSchoolProblems": registrationRequestsData.isSchoolProblems,
-      "schoolProblems": registrationRequestsData.schoolProblems,
-      "houseNumber": registrationRequestsData.houseNumber,
-      "studentFavoriteSubjectIds":
-          registrationRequestsData.studentFavoriteSubjectIds,
-      "studentStatusId": registrationRequestsData.studentStatusId,
-      "studentUnwantedSubjectIds":
-          registrationRequestsData.studentUnwantedSubjectIds,
-      "hobbies": registrationRequestsData.hobbies,
-      "radioParticipate": registrationRequestsData.radioParticipate,
-      "socialMediaPublishingId":
-          registrationRequestsData.socialMediaPublishingId,
-      "studentLivesWithId": registrationRequestsData.studentLivesWithId,
-      "pathologyDescription": registrationRequestsData.pathologyDescription,
-      "actionRequiredSituation":
-          registrationRequestsData.actionRequiredSituation,
-      "recommendations": registrationRequestsData.recommendations,
-      "studyTrackId": registrationRequestsData.studyTrackId,
+    final List<Map<String, dynamic>> data = [
+      for (int i = 0; i < studentDataList.length; i++) {
+        "gFirstName": registrationRequestsData.gFirstName,
+        "gFatherName": registrationRequestsData.gFatherName,
+        "gGrandFatherName": registrationRequestsData.gGrandFatherName,
+        "gLastName": registrationRequestsData.gLastName,
+        "identityTypeId": registrationRequestsData.identityTypeId,
+        "identitySourceId": registrationRequestsData.identitySourceId,
+        "identityExpiryDate": registrationRequestsData.identityExpiryDate,
+        "relationId": registrationRequestsData.relationId,
+        "nationalityCountryCode": registrationRequestsData.nationalityCountryCode,
+        "identityNumber": registrationRequestsData.identityNumber,
+        "mobileNumber": registrationRequestsData.mobileNumber,
+        "workPhone": registrationRequestsData.workPhone,
+        "relative1Name": registrationRequestsData.relative1Name,
+        "relative2Name": registrationRequestsData.relative2Name,
+        "relative1MobileNumber": registrationRequestsData.relative1MobileNumber,
+        "relative2MobileNumber": registrationRequestsData.relative2MobileNumber,
+        "relative1Address": registrationRequestsData.relative1Address,
+        "relative2Address": registrationRequestsData.relative2Address,
+        "contactCityId": registrationRequestsData.contactCityId,
+        "neighborhood": registrationRequestsData.neighborhood,
+        "mainStreet": registrationRequestsData.mainStreet,
+        "subStreet": registrationRequestsData.subStreet,
+        "email": registrationRequestsData.email,
+        "postalCode": registrationRequestsData.postalCode,
+        "mailBox": registrationRequestsData.mailBox,
+        "fax": registrationRequestsData.houseNumber,
+        "addressOnVacation": registrationRequestsData.addressOnVacation,
+        "housingTypeId": registrationRequestsData.housingTypeId,
+        "roomsNumber": registrationRequestsData.roomsNumber,
+        "floorsNumber": registrationRequestsData.floorsNumber,
+        "incomeSource": registrationRequestsData.incomeSource,
+        "incomeAmount": registrationRequestsData.incomeAmount,
+        "isOtherSourceOfIncome": registrationRequestsData.isOtherSourceOfIncome,
+        "otherSourceOfIncome": registrationRequestsData.otherSourceOfIncome,
+        "otherSourceOfIncomeAmount": registrationRequestsData.otherSourceOfIncomeAmount,
+        "studentFirstNameAr": studentDataList[i].studentFirstNameAr,
+        "studentFatherNameAr": studentDataList[i].studentFatherNameAr,
+        "studentGrandFatherNameAr": studentDataList[i].studentGrandFatherNameAr,
+        "studentLastNameAr": studentDataList[i].studentLastNameAr,
+        "studentFirstNameEn": studentDataList[i].studentFirstNameEn,
+        "studentFatherNameEn": studentDataList[i].studentFatherNameEn,
+        "studentGrandFatherNameEn": studentDataList[i].studentGrandFatherNameEn,
+        "studentLastNameEn": studentDataList[i].studentLastNameEn,
+        "genderId": studentDataList[i].genderId,
+        "studentNationalityCode": studentDataList[i].studentNationalityCode,
+        "studentIdentityNumber": studentDataList[i].studentIdentityNumber,
+        "studentIdentityTypeId": studentDataList[i].studentIdentityTypeId,
+        "studentBirthDate": studentDataList[i].studentBirthDate,
+        "studentBirthPlaceCountryCode": studentDataList[i].studentBirthPlaceCountryCode,
+        "studentBirthPlaceCity": studentDataList[i].studentBirthPlaceCity,
+        "studentBloodGroupId": studentDataList[i].studentBloodGroupId,
+        "studentIdImageName": studentDataList[i].studentIdImageName,
+        "studentProfileImageName": studentDataList[i].studentProfileImageName,
+        "studentVacinationImageName": studentDataList[i].studentVacinationImageName,
+        "studentCustodyImageName": studentDataList[i].studentCustodyImageName,
+        "studentNeedFinancialHelp": studentDataList[i].studentNeedFinancialHelp,
+        "isSchoolProblems": studentDataList[i].isSchoolProblems,
+        "schoolProblems": studentDataList[i].schoolProblems,
+        "houseNumber": studentDataList[i].houseNumber,
+        "studentFavoriteSubjectIds": studentDataList[i].studentFavoriteSubjectIds?.toList(),
+        "studentStatusId": studentDataList[i].studentStatusId,
+        "studentUnwantedSubjectIds": studentDataList[i].studentUnwantedSubjectIds?.toList(),
+        "hobbies": studentDataList[i].hobbies,
+        "radioParticipate": studentDataList[i].radioParticipate,
+        "socialMediaPublishingId": studentDataList[i].socialMediaPublishingId,
+        "studentLivesWithId": studentDataList[i].studentLivesWithId,
+        "pathologyDescription": studentDataList[i].pathologyDescription,
+        "actionRequiredSituation": studentDataList[i].actionRequiredSituation,
+        "recommendations": studentDataList[i].recommendations,
+        "studyTrackId": studentDataList[i].studyTrackId,
+      }
+    ];
+
+    final requestData = {
+      "registrationRequestsData": data,
     };
 
+    // Print the data
+    print(jsonEncode(requestData));
 
     try {
       emit(FileUploadLoading());
       final response = await _dio.post(
         'https://masiratiapi.azurewebsites.net/api/Registration',
-        data: jsonEncode(data),
+        data: jsonEncode(requestData),
         options: Options(
           headers: {
             HttpHeaders.contentTypeHeader: 'application/json',
@@ -488,16 +484,23 @@ class SignUpCubit extends Cubit<SignUpState> {
       if (response.statusCode == 200) {
         emit(FileUploadSuccess());
         print('File upload success!');
-        // Handle success
       } else {
         print('Failed to upload file');
-        // Handle failure
+        print('Response data: ${response.data}');
       }
     } catch (e) {
-      print('Error: $e');
-      // Handle error
+      if (e is DioError) {
+        print('Error: ${e.message}');
+        print('Response data: ${e.response?.data}');
+      } else {
+        print('Error: $e');
+      }
     }
   }
+
+
+
+
 
   Future<void> uploadFile(XFile file) async {
     final Dio _dio = Dio();
@@ -517,10 +520,17 @@ class SignUpCubit extends Cubit<SignUpState> {
       if (response.statusCode == 200) {
         emit(FileUploadSuccess());
       } else {
+        emit(FileUploadFailure('Failed to upload file' ));
+        print('Response data: ${response.data}');
 
       }
     } catch (e) {
-
+      if (e is DioError) {
+        print('Error: ${e.message}');
+        print('Response data: ${e.response?.data}');
+      } else {
+        print('Error: $e');
+      }
     }
   }
 

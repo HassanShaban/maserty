@@ -915,7 +915,7 @@ class _FatherDataState extends State<FatherData> {
                             NextPreviousButtons(
                               nextPressed: () {
 
-                            if (formKey.currentState!.validate()) {
+                            // if (formKey.currentState!.validate()) {
                                signUpCubit.setDataFromParent(
                                    firstNameArabicTextField: firstNameArabicTextField
                                        .text,
@@ -925,7 +925,7 @@ class _FatherDataState extends State<FatherData> {
                                        .text,
                                    surNameArabicTextField: surNameArabicTextField
                                        .text,
-                                   nationality: country?.nationalityAr,
+                                   nationality: country?.code,
                                    selahQaraba: relation?.id,
                                    nohHaweya: identityType?.id,
                                    haweyaNumTextField: haweyaNumTextField.text,
@@ -961,7 +961,7 @@ class _FatherDataState extends State<FatherData> {
 
 
 
-                            } //form vaild
+                            // } //form vaild
 
 
 

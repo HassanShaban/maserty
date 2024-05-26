@@ -16,7 +16,7 @@ class FileUploadLoading extends SignUpInitialState {}
 class FileUploadSuccess extends SignUpInitialState {}
 
 class FileUploadFailure extends SignUpInitialState {
-  final String error;
+  final String FailreError;
 
-  FileUploadFailure(this.error);
+  FileUploadFailure(this.FailreError);
 }

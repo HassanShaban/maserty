@@ -332,7 +332,7 @@ class _MaritalStatusDataState extends State<MaritalStatusData> {
                     Navigator.pop(context);
                   },
                   nextPressed: () {
-                   if (formKey.currentState!.validate()) {
+                   // if (formKey.currentState!.validate()) {
                       widget.signUpCubit.setDataFromMaritalStatus(
                         housingType: housingType?.id,
                         oghrafNum: oghrafNum.text.isEmpty
@@ -363,7 +363,7 @@ class _MaritalStatusDataState extends State<MaritalStatusData> {
                             signUpCubit: widget.signUpCubit,
                           ));
 
-                   } // form vaild
+                   // } // form vaild
 
 
                   },

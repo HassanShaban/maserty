@@ -55,6 +55,10 @@ class _AddStudentDataState extends State<EditStudentData> {
 
      currentSexIndex = widget.studentDataList!.genderId!;
 
+
+    String initialBirthCountryCode = widget.studentDataList!.studentBirthPlaceCountryCode.toString();
+    birthCountry = widget.signUpCubit.countries.firstWhere((c) => c.code == initialBirthCountryCode);
+
     String initialIdentityTypeCode = widget.studentDataList!.studentIdentityTypeId!.toString();
     identityType = widget.signUpCubit.identityTypes.firstWhere((c) => c.id.toString() == initialIdentityTypeCode);
 
@@ -148,6 +152,7 @@ class _AddStudentDataState extends State<EditStudentData> {
   IdentityTypes? identityType;
   BloodGroups? bloodGroups;
   Countries? country;
+  Countries?birthCountry;
   StudyTracks? studyTracks;
   LifeStatus? lifeStatus;
   LivesWith? livesWith;
@@ -467,7 +472,7 @@ class _AddStudentDataState extends State<EditStudentData> {
                       width: 10.w,
                     ),
                     Radio(
-                        value: 0,
+                        value: 7,
                         groupValue: currentSexIndex,
                         onChanged: (int? v) {
                           setState(() {
@@ -476,7 +481,7 @@ class _AddStudentDataState extends State<EditStudentData> {
                         }),
                     Text("ذكر"),
                     Radio(
-                        value: 1,
+                        value: 8,
                         groupValue: currentSexIndex,
                         onChanged: (int? v) {
                           setState(() {
@@ -634,20 +639,68 @@ class _AddStudentDataState extends State<EditStudentData> {
                 SizedBox(
                   height: 10.h,
                 ),
-                CustomTextFormField(
-                  controller: CountryTextField,
-                  onlyArabic: true,
-                  autoFocus: false,
-                  hint: 'مكان الميلاد/الدولة',
-                  validator: (text) {
-                    if (text!.isEmpty) {
-                      return 'مكان الميلاد/الدولة فارغ ';
-                    }
-                    return null;
-                  },
 
 
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  padding: EdgeInsetsDirectional.fromSTEB(10.w, 3.h, 10.w, 3.h),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8.r),
+                      border: Border.all(color: enableColor)),
+                  child: DropdownButtonFormField<Countries?>(
+                    isExpanded: true,
+
+                    hint: Text(
+                      'مكان الميلاد/الدولة',
+                      style: TextStyle(color: enableColor, fontSize: 12.sp),
+                    ),
+                    value: birthCountry,
+
+                    decoration: InputDecoration(
+                      border: InputBorder.none, // Remove underline
+                    ),
+
+                    // underline: const SizedBox(),
+                    validator: (value) {
+                      if (value == null) {
+                        return 'رجاء اختيار مكان الميلاد/الدولة';
+                      }
+                      return null;
+                    },
+                    items: widget.signUpCubit.countries
+                        .map<DropdownMenuItem<Countries>>((Countries value) {
+                      return DropdownMenuItem<Countries>(
+                        value: value,
+                        child: SingleChildScrollView(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Text(
+                                value.nameAr,
+                                style: TextStyle(
+                                    fontSize: 14.sp, color: gridcolor),
+                              ),
+                              Divider(
+                                // height: 2.h,
+                              )
+                            ],
+                          ),
+                        ),
+                      );
+                    }).toList(),
+                    onChanged: (Countries? value) {
+                      setState(() {
+                        birthCountry = value!;
+                      });
+                    },
+                  ),
                 ),
+
+
+
+
+
                 SizedBox(
                   height: 20.h,
                 ),
@@ -1504,7 +1557,7 @@ class _AddStudentDataState extends State<EditStudentData> {
                       studentIdentityNumber: identityTextField.text,
                       studentIdentityTypeId: identityType?.id,
                       studentBirthDate: dateOfBirthTextField.text,
-                      studentBirthPlaceCountryCode: CountryTextField.text,
+                      studentBirthPlaceCountryCode: birthCountry?.code.toString(),
                       studentBirthPlaceCity: CityTextField.text,
                       studyTrackId: studyTracks?.id,
                       studentBloodGroupId: bloodGroups?.id,
